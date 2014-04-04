@@ -34,5 +34,9 @@ module Guo
     I18n.enforce_available_locales = false
 
     config.middleware.insert_after ActionDispatch::ParamsParser, ActionDispatch::XmlParamsParser
+
+    #壓縮檔案
+    config.assets.precompile += %w( application.js )
+    config.assets.enabled = false
   end
 end
