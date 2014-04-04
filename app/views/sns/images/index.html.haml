@@ -1,0 +1,56 @@
+- content_for :subhead do
+  = render 'sns/shared/header/gallery'
+
+.wrap.gray
+  .container.cf
+    .col-main.gray
+      %h3.site.site2 发布作品图片
+      .lang-create
+        = simple_form_for 'artwork', url: multi_upload_sns_images_path, html: { class: 'form-horizontal' } do |f|
+
+          .form-group.form-group-select2
+            %label.control-label
+              %abbr{ title: 'required' } *
+              上传到
+            .controls
+              = f.input :gallery_id, as: :select,
+                                     wrapper: false,
+                                     collection: current_user.galleries,
+                                     label: false,
+                                     input_html: { class: 'select2' },
+                                     prompt: '选择廊...'
+
+              = f.input :artwork_id, as: :select,
+                                     wrapper: false,
+                                     collection: [],
+                                     label: false,
+                                     input_html: { class: 'select2' },
+                                     prompt: '选择作品集...'
+          .form-group.form-group-select2.text
+            %label.control-label
+            .controls
+              .col-sm-10
+                或
+                = link_to '新建廊', '#', class: 'text-info'
+              .col-sm-10
+                或
+                = link_to '新建作品', '#', class: 'text-info'
+
+          .form-group.upload.form-actions
+            %label.control-label
+            .controls.clearfix
+              .action
+                = link_to '#', class: 'btn btn-default', id: 'btn-pupload' do
+                  %i.fa.fa-picture-o
+                  选择图片
+                %small 按住Ctrl可多选照片，最多不超过十张。
+
+
+    %aside.col-sub
+      %h3.site.site2 小提示...
+      .lang-create.lang-create2
+        %p
+          发布后创艺廊的名称、介绍、标签在创立后都可以随时更改。
+        %p
+          玩艺儿网商城即将上线，届时您可以将作品出售给其他用户。
+  .bg

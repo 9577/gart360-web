@@ -1,0 +1,1 @@
+//= require sns/base/bootstrap

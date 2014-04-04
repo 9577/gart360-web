@@ -1,0 +1,9 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    = render 'user_nav'
+    .recharge-con.right
+      %p.recharge-name 账户充值
+      .recharge-list
+        .recharge-progress
+          = render 'recharge_progress', state: resource.state
+          = render 'recharge_processing'

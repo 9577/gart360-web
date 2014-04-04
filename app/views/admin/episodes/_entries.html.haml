@@ -1,0 +1,42 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    画报
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= Episode.human_attribute_name(:title)
+          %th= Episode.human_attribute_name(:photos_count)
+          %th= Episode.human_attribute_name(:created_at)
+          %th 操作
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.title
+            %td= resource.photos_count
+            %td= resource.created_at.to_date
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  %li 
+                    = link_to resource_path(resource) do
+                      %i.fa.fa-search 
+                      详情
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂时还没有牌品数据，请上传。

@@ -1,0 +1,20 @@
+- content_for :subhead do
+  = render 'sns/shared/header/event'
+
+
+.wrap.gray
+  .container.cf
+    .col-main.gray
+      .pub-create.cf
+        %h3.site.site2 创建我的的发布会
+        = render 'form'
+    %aside.col-sub
+      %h3.site.site2 创建发布会...
+      .lang-create.lang-create2
+        %p
+          发布会在进行中时，发布会名称、描述、结束时间、作品图片均可修改（开始时间不可修改）；
+        %p
+          发布会尚未召开时，发布会名称、描述、开始时间、结束时间、作品图片均可修改；
+        %p
+          发布会已结束时，发布会所有消息不可修改。
+  .bg

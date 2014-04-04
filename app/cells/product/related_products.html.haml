@@ -1,0 +1,22 @@
+.auction-title.clearfix
+  #{ @auction.title }下的其他拍品
+  .auction-more.right
+    %a.gray8{ href: weitou_auction_path(@auction) } 更多>>
+.auction-list.clearfix
+  - @products.each do |product|
+    - url = weitou_auction_product_path(@auction, product)
+    .col-xs-6.col-md-3
+      .item
+        .cover
+          = link_to url do
+            = image_tag product.square_cover_url, alt: product.title
+        .meta-info
+          %h3= link_to product.title, url, class: 'gray3'
+          %p.price
+            当前价格：
+            %span.orange ￥#{ product.current_price }
+            %span.s1 |
+            #{ product.bids_count } 次出价
+          %p.time
+            %span.glyphicon.glyphicon-time>
+            距结束：3小时 56分 12秒

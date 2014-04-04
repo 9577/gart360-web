@@ -1,0 +1,11 @@
+= simple_form_for user.addresses.new, url: addresses_path, html: { class: 'form-horizontal row-border' }, remote: true do |f|
+  = f.input :province_id, as: :region, collection: Province.select('id, name'), sub_region: :city_id, label: '省份'
+  = f.input :city_id, as: :region, collection: f.object.new_record? ? [] : f.object.province.cities, sub_region: :district_id, label: '城市'
+  = f.input :district_id, as: :region, label: '区|县|市|自治县'
+  = js_for_region_ajax
+
+  = f.input :recipient
+  = f.input :body
+  = f.input :is_default, inline_label: '设为默认地址', input_html: { class: 'simple_form_check_box' }
+  .form-actions.clearfix
+    = f.submit '添加新地址', class: 'btn btn-primary pull-right'

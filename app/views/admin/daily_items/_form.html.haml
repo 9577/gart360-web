@@ -1,0 +1,55 @@
+- resource.photos.new if resource.new_record?
+.row
+  .col-md-8
+    %section.panel.panel-default
+      %header.panel-heading 每日一砍
+
+      .panel-body
+        = simple_nested_form_for resource, url: url, html: { class: 'form-horizontal row-border', multipart: true } do |f|
+          = f.input :title, autofocus: true
+          = f.input :description
+          = f.input :price
+          = f.input :start_at, as: :string, input_html: { class: 'datetime start_at_end_at', id: 'product_start_at', data: { format: "YYYY-MM-DD HH:mm:ss", template: 'YYYY 年 MM 月 DD 日  HH : mm : ss' }, name: "#{f.object_name}[start_at]", value: f.object.start_at ? f.object.start_at.to_date : nil }
+
+          %fieldset#photos_wrap
+            %legend
+              %strong 拍品图片
+            = f.simple_fields_for :photos
+            = f.link_to_add :photos, class: 'btn btn-sm btn-default' do
+              %i.fa.fa-plus.text 
+              %span.text 添加图片
+
+          .form-actions
+            = f.button :submit, class: 'btn btn-info btn-large pull-right'
+
+  .col-md-4
+    %section.panel.panel-default
+      %header.panel-heading.font-bold
+        %i.fa.fa-lightbulb-o
+        帮助中心
+      .panel-body
+        %p 这里添加一些帮助性的文字
+- content_for :js do
+  :javascript
+    $(function(){
+        $('#product_start_at').combodate();  
+    });
+
+  :coffee
+    $ ->
+      new MainUploader
+        url: "#{admin_global_images_path}.js"
+        button: 'btn-pupload'
+
+      # init uploader for nested form
+      $(document).on 'nested:fieldAdded', (event) ->
+        
+        field = event.field
+        
+        dateField = field.find('.date')
+        count = field.parents('#new_product').find('.fields').size()
+        field.find('.btn.btn-default').attr 'id', 'btn-pupload' + count
+
+        new MainUploader
+          url: '#{admin_global_images_path}.js'
+          button: 'btn-pupload' + count

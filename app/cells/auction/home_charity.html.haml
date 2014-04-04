@@ -1,0 +1,23 @@
+.auction-title.clearfix
+  义拍义卖
+  .auction-more.right
+    = link_to '更多>>', weitou_products_path(filter_by_type: :charity), class: 'gray8'
+.auction-list.clearfix
+  - @charity_products.each do |product|
+    .col-xs-6.col-md-3
+      .item
+        .cover
+          = link_to weitou_product_path(product) do
+            = image_tag product.square_cover_url, size: '228x228'
+            %span.label{ class: label_class(product.state_text) }= t(".#{product.state_text}")
+        .meta-info
+          %h3
+            %a.gray3{:href => "#"}= product.title
+          %p.price
+            当前价格：
+            %span.orange ￥#{product.current_price}
+            %span.s1 |
+            0次出价
+          %p.time
+            %span.glyphicon.glyphicon-time>
+            距结束：3小时 56分 12秒

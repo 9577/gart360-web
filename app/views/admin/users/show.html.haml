@@ -1,0 +1,33 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+    = resource.username
+    详细信息
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= User.human_attribute_name(:email)
+          %th 头像：
+          %th= User.human_attribute_name(:mobile_phone)
+          %th= User.human_attribute_name(:region)
+          %th= User.human_attribute_name(:gender)
+          %th= User.human_attribute_name(:sign_in_count)
+          %th
+      %tbody
+        %tr
+          %td= resource.email
+          %td= image_tag(resource.avatar,size: '30x30')
+          %td= resource.mobile_phone
+          %td= resource.city.try(:name)
+          %td= resource.gender_text
+          %td= resource.sign_in_count
+    .panel-footer.clearfix
+      = link_to '返回到列表',admin_users_path,class: 'btn btn-info btn-large'
+  - else
+    .panel-body
+      %p 暂时还没有牌品数据，请上传。
+
+
+

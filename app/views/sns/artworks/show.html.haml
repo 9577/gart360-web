@@ -1,0 +1,68 @@
+- content_for :subhead do
+  = render 'sns/shared/header/gallery'
+
+.wrap.home
+  .container.cf
+    .col-main
+      = render 'sns/galleries/nav', user: parent.user
+      %dl.opus
+        %dt
+          #{parent.name} > #{resource.name}
+          %span.fr
+            = favourite_link_to resource
+
+        - resource.images.each do |image|
+          %dd
+            = link_to '#', class: 'pic' do
+              = image_tag image.gallery_img_url(200, 200)
+            %a.name{:href => "#"} 创一简约台灯1
+
+      / 评论
+      %section.my-message
+        .hd
+          %h3 评论...
+        %dd.newsfeed-comment
+          .comment-pub
+            = simple_form_for resource.comments.new, url: sns_gallery_artwork_comments_path(parent, resource), html: { class: 'form-horizontal' }, remote: true do |f|
+              = render_user_avatar current_user, size: '36x36' if current_user
+
+              = f.input :body, label: false
+
+              .comment-btn
+                = f.button :submit, '发表', class: 'btn btn-primary', data: { disable_with: '发表中' }
+
+          %ul.comment-list
+            - resource.comments.where('id IS NOT NULL').each_with_index do |c, i|
+              = render 'sns/comments/comment', comment: c
+
+            -# %li
+            -#   %p
+            -#     %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+            -#       %img{:alt => "七彩的幸福", :height => "36", :src => "images/pic-temp/2.png", :width => "36"}/
+            -#     %span.comment-text.blockquote
+            -#       %em.use 引用：
+            -#       %span.blockquote-cont
+            -#         %b> “
+            -#         这个情况能说下么
+            -#     %span.comment-text
+            -#       %a.username{:href => "#"} 蒲公英被吹散了：
+            -#       加我一个哦
+            -#       %br
+            -#         %a{:href => "#"} 回复
+            -#         %em.comment-time 2013-12-18 20:02
+    %aside.col-sub
+      .lang-info
+        = render_cell :user, :widget, user: parent.user
+        .cf
+        %span.tit 作品介绍
+        %p.text
+          %strong= resource.name
+          %span= resource.content
+  .bg
+
+  -# - content_for :js do
+  -#   :coffee
+  -#     $ ->
+  -#       $(document)
+  -#         .on 'ajax:beforeSend', '#new_comment', (xhr, settings) ->
+  -#           $(this).find('.loading').removeClass 'hide'

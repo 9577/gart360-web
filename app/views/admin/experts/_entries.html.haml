@@ -1,0 +1,18 @@
+%section.panel.panel-default
+  %header.panel-heading.bg-light 专家
+  .panel-body
+
+    %ul.list-group.gutter.list-group-lg.list-group-sp.sortable{ data: { :'update-url' => sort_admin_experts_path } }
+      - collection.each_with_index do |resource, index|
+        %li.list-group-item{ draggable: true, :'data-id' => resource.id }
+          %span.pull-right
+            = link_to edit_resource_path(resource) do
+              %i.fa.fa-pencil.icon-muted.fa-fw.m-r-xs 
+            = link_to resource_path(resource), method: :delete, data: { confirm: '确定要删除吗?' } do
+              %i.fa.fa-times.icon-muted.fa-fw
+          .clearfix.m-b
+            = link_to 'javascript:void(0)', class: 'pull-left thumb m-r' do
+              = image_tag resource.avatar, class: 'img-circle', alt: resource.name
+            .clear
+              .h3.m-t-xs.m-b-xs
+                = link_to resource.name, 'javascript:void(0)', class: 'editable editable-click', data: { type: 'text', pk: 1, title: '修改分类名称', :'original-title' => '', url: admin_expert_rename_path(resource) }

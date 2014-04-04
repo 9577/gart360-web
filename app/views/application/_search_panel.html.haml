@@ -1,0 +1,7 @@
+.navsearch.fr
+  = simple_form_for 'search', url: sns_explore_path, html: { class: 'form-forizontal search-form' }, method: :get do |f|
+    = f.input :q, wrapper: false, label: false, input_html: { class: 'search' }, :placeholder => "感兴趣的内容或人..."
+    .form-actions
+      %button{ type: 'submit', value: nil }
+        %i.fa.fa-search
+    -# %input.search.icon{:autocomplete => "off", :maxlength => "10", :placeholder => "感兴趣的内容或人...", :required => "required", :type => "search"}/

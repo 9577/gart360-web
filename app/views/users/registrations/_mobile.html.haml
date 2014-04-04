@@ -1,0 +1,11 @@
+= f.input :mobile_phone, wrapper: :sns
+= f.input :username, wrapper: :sns
+= f.input :password, wrapper: :sns
+= f.input :password_confirmation, wrapper: :sns
+= f.input :mobile_signup, as: :hidden, input_html: { value: true }
+
+.rows.cf
+  %label 验证码：
+  %input.input.v112#captcha{autocomplete: 'off', maxlength: '20', name: "#{f.object_name}[:captcha]", type: 'password'}
+  = link_to '免费获取验证码', 'javascript:void(0)', class: 'btn btn-default btn-sms'
+

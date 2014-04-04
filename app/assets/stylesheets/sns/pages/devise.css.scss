@@ -1,0 +1,104 @@
+#complete_profile {
+  form.settings-form .form-group.upload .img-holder {
+    border: none;
+    height: 50px;
+    width: 115px;
+    display: block;
+    padding: 0;
+  }
+
+  .form-horizontal .control-label { width: 70px; }
+  form .controls { width: 390px; }
+
+  .form-group { margin-top: 15px; margin-bottom: 25px; }
+
+  .intrests .controls { padding-left: 0; width: 600px; }
+  .intrests .form-group { margin-top: 0; }
+}
+
+form {
+  &.forget-pwd-form, &.settings-form {
+    .controls {
+      padding-left: 30px;
+      input.string, input.password { width: 266px; margin-right: 10px; }
+    }
+  }
+
+  &.settings-form {
+    margin-left: 20px;
+
+    input[type='submit'] {
+      float: left;
+    }
+
+    .form-group.radio_buttons {
+      label.radio {
+        width: 80px;
+        padding-left: 0;
+      }
+    }
+
+    .form-group.region {
+      .col-sm-10 {
+        float: left;
+        margin-right: 10px;
+        a.select2-choice { width: 132px; }
+      }
+    }
+
+    .form-group.combo {
+      select { float: left; }
+      a.select2-choice { }
+      .form-control { border: none; }
+      .select2-container { float: left; width: 88px; margin-right: 15px; }
+    }
+
+    .form-group.upload {
+      .img-holder { width: 176px; height: 176px; padding: 2px; border: 1px dashed #e4e4e4; }
+      .controls {
+        width: auto;
+        position: relative;
+        padding-bottom: 20px;
+        .action { position: absolute; bottom: 50px; left: 225px; }
+        .action small { display: block; margin-top: 10px; font-size: 13px; }
+      }
+    }
+
+  }
+
+  &.devise-form {
+
+    .form-actions .btn { width: 290px; }
+    .controls {
+      padding-left: 30px;
+      input.string, input.password { width: 266px; margin-right: 10px; }
+
+      input, span { display: inline-block; }
+
+      .checkbox {
+        padding-left: 0;
+        .icheckbox_minimal { margin-right: 10px; }
+
+        a { margin: 0 3px; }
+      }
+
+      .form-control.boolean {
+        width: auto;
+      }
+    }
+
+    .form-group.remember {
+      .col-sm-10 { float: left }
+      .forget-pwd {
+        margin-left: 140px;
+        padding-top: 7px;
+      }
+    }
+
+
+    p.callout-danger {
+      color: #FB2229;
+    }
+    
+  }
+}

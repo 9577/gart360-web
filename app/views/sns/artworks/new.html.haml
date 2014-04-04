@@ -1,0 +1,20 @@
+- content_for :subhead do
+  = render 'sns/shared/header/gallery'
+
+.wrap.gray
+  .container.cf
+    .col-main.gray
+      .lang-tips
+        - if notice
+          %span= notice
+        接下来您可以发布作品拉
+      .lang-create
+        = render 'form'
+    %aside.col-sub
+      %h3.site.site2 小提示...
+      .lang-create.lang-create2
+        %p
+          发布后创艺廊的名称、介绍、标签在创立后都可以随时更改。
+        %p
+          玩艺儿网商城即将上线，届时您可以将作品出售给其他用户。
+  .bg

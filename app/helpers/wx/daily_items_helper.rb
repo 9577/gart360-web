@@ -1,0 +1,2 @@
+module Wx::DailyItemsHelper
+end

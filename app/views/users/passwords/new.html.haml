@@ -1,0 +1,57 @@
+.headspace
+.container.cf
+  %h3.cf.site
+    %span.fl 密码找回
+  %ul.site-type
+    %li.active 邮箱找回
+    -# %li 手机找回
+  .login-form
+    .forget-step
+      %span.cur.fl 1
+      %span.fl.midd 2
+      %span.fr 3
+      .line
+
+    = simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal forget-pwd-form' } do |f|
+      
+      = f.input :email, wrapper: :sns, label: '邮箱'
+
+      .form-group.form-actions
+        %label.control-label
+        .controls
+          = f.button :submit, '找回密码', class: 'btn btn-primary'
+
+  .login-form
+    .forget-step
+      %span.cur.fl 1
+      %span.cur.fl.midd 2
+      %span.fr 3
+      .line
+    .rows.cf
+      %label 重置密码：
+      %input.input{:autocomplete => "off", :maxlength => "20", :name => "user", :required => "required", :type => "text"}/
+      %span.fl.static.static-error 邮箱错误
+    .rows.cf
+      %label 确认密码：
+      %input.input{:autocomplete => "off", :maxlength => "20", :name => "user", :required => "required", :type => "text"}/
+      %span.fl.static.static-error 邮箱错误
+    .rows.cf
+      %label
+      .rows-div.fl
+        %input.button.button-rounded.button-flat-highlight{:type => "submit", :value => "确认"}/
+  .login-form
+    .forget-step
+      %span.cur.fl 1
+      %span.cur.fl.midd 2
+      %span.cur.fr 3
+      .line
+    %p
+      我们已将找回密码的邮件发送到以下邮箱：
+      %br/
+      tony@gaas.com
+      %br/
+      请尽快查阅邮件并重设密码！
+    .rows.cf
+      %label
+      .rows-div.fl
+        %a.button.button-rounded.button-flat-highlight{:href => "#"} 查看邮箱

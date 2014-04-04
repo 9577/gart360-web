@@ -1,0 +1,13 @@
+.myinfo
+  = link_to sns_root_path, class: 'fl pic' do
+    = image_tag @user.avatar_url
+  .myinfo-r
+    .myinfo-name= link_to @user.username, sns_root_path
+    %span.fans
+      = link_to my_followers_path do
+        粉丝
+        %b= @user.followers_count
+    %span
+      = link_to my_following_path do
+        关注
+        %b= @user.followed_users.count

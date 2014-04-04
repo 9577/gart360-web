@@ -1,0 +1,9 @@
+
+- if image.target_type == 'artwork_multi'
+  %li.photo
+    = image_tag image.data.url(:artwork_multi)
+    %input{ type: 'hidden', name: "artwork[images_attributes][#{image.id}][img]", value: image.data.url }
+- elsif image.target_type == 'status_multi'
+  %li.photo
+    = image_tag image.data.url(:status_multi)
+    %input{ type: 'hidden', name: "status[images_attributes][#{image.id}][data]", value: image.data.url }

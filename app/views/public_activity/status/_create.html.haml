@@ -1,0 +1,15 @@
+%dd.newsfeed-cont
+  %p.text
+    = sanitize activity.trackable.body
+  - if activity.trackable.images_count == 1
+    %p.pic
+      - activity.trackable.images.each do |img|
+        = image_tag img.data_url(325, 260)
+  - elsif activity.trackable.images_count > 1
+    %p.album
+      - activity.trackable.images.each do |img|
+        = image_tag img.data_url
+%dd.newsfeed-info
+  %span.time= timeago_tag(activity.trackable.created_at, lang: 'zh-CN')
+  %a.del{:href => "#"} 删除
+  %a.comment{:href => "#"} 回应(8)

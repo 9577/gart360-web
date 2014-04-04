@@ -1,0 +1,4 @@
+= simple_form_for @description, url: respond_commit_admin_right_path(resource), html: { class: 'form-horizontal row-border' }, method: :post do |f|
+  = f.input :response, as: :text
+  .form-actions.clearfix
+    = f.button :submit, '回复', class: 'btn btn-info btn-large pull-right'

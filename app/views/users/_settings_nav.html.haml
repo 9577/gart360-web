@@ -1,0 +1,19 @@
+%ul.setting-aside
+  = sec_nav :settings do
+    = link_to edit_user_registration_path do
+      %em.icon.icon-config
+      账号设置
+
+  = sec_nav :conversations do
+    = link_to conversations_path do
+      %em.icon.icon-msg
+      我的消息
+
+  -# %li
+  -#   %a{:href => "#"}
+  -#     %em.icon.icon-dingdan
+  -#     我的订单
+  -# %li
+  -#   %a{:href => "#"}
+  -#     %em.icon.icon-shopcart
+  -#     我的购物车

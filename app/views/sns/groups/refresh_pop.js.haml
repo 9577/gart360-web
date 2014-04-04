@@ -1,0 +1,4 @@
+- html = capture do
+  = render_cell :group, :popular
+
+$('#popular_groups').replaceWith('#{j html}')

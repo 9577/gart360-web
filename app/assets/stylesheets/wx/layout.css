@@ -1,0 +1,87 @@
+/*global class*/
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.dialog_bg{
+    position: fixed;width: 100%;
+    height: 100%;
+    background: #000;opacity: 0.9;
+    left: 0;
+    top: 0;
+}
+.cut_word{
+     overflow:hidden;
+     text-overflow:ellipsis;
+     white-space:nowrap;
+}
+.db{display: block;}
+.dt{display: table;width: 100%;}
+.dtc{display: table-cell;vertical-align: middle;}
+.dib{display: inline-block;}
+.tc{text-align: center;}
+.tr{text-align: right;}
+.tsf{text-shadow: 0 1px 0 #FFF; }
+.pl10{padding-left: 10px;}
+.pr10{padding-right: 10px;}
+.hide{display: none;}
+.left{float: left;}
+.right{float: right;}
+.red{color: #ec6f6b;}
+.white{color: #fff;}
+.gray{color: #888580;}
+.w100{width: 100%;}
+.btn{
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 15px;
+  border: 0;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn-default{
+  background:#EC6F6B; 
+}
+.btn-blue{
+  background:#25AC99; 
+}
+*{
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+body{background: #43494E;}
+
+/*main*/
+.banner img{display: block;}
+.main{padding: 0 3% 30px 3%;}
+.ul-tabs{background: #000;border-radius: 20px;width: 70%;margin:0 15%;position: relative;top:-14px;overflow: hidden;box-shadow: 0 3px 5px #000;}
+.ul-tabs li{float: left;width: 50%;}
+.ul-tabs li a{display: block;padding: 7px 0;color: #fff;text-align: center;font-size: 13px;}
+.ul-tabs .active{background: #86898c}
+.main-con ul{text-align: center;}
+.main-con ul .price{padding: 10px 0 15px 0;}
+.main-con ul .price p{width: 70%;background: #fff;border-radius: 15px;margin: 0 auto;font-size: 13px;}
+.main-con ul .price p em{float: left;width: 30%;text-align: center;height: 30px;line-height: 30px;}
+.main-con ul .price p span{height: 30px;line-height: 30px;float:left;width: 10%;text-align: center;border-right: 1px #333 solid;}
+.main-con ul .price p em:first-child{border-right: 1px #333 solid;}
+.main-con ul .who{font-size: 13px;padding: 0 0 5px 0;color: #fff;}
+.main-con ul .how-much{font-size: 13px;padding: 15px 0 20px 0;color: #86898c;}
+.main-con ul li .invite{width: 50%;}
+.main-con ul .try button{width: 35%;margin: 0 2%;}
+.item-info p{padding: 5px 0 20px 0;font-size: 13px;color: #828689;line-height: 1.6em;}
+.item-info dl{font-size: 13px;color: #828689;}
+.item-info dl dd{line-height: 1.6em;}
+.friend{padding: 20px 0 0 0;}
+.friend p{font-size: 13px;color: #fff;padding: 0 0 15px 0;}
+.friend .list{text-align: center;background: #EC6F6B;border-radius: 5px;padding: 15px 10px;}
+.friend .list span{display: inline-block;color: #fff;font-size: 13px;line-height: 1.4em;margin: 0 5px;}
+.friend .list span img{width: 41px;height: 41px;border-radius: 50%;border: 3px #fff solid;}
+.dialog-main{position: fixed;top:80px;width: 100%;}
+.dialog-main ul{text-align: center;font-size: 14px;color: #fff;position: relative;}
+.dialog-main ul img{position: absolute;width: 70px;right: 10px;top:-75px;}
+.dialog-main ul li{padding: 0 0 10px 0;}
+
+
+ 

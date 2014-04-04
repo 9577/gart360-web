@@ -1,0 +1,74 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+      
+    = render 'user_nav'
+
+    .recharge-con.right
+      %p.recharge-name 账户充值
+      .recharge-list
+        .recharge-progress
+          .progress
+            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 0%"}
+              %span.sr-only 40% Complete (success)
+          .progress-name.clearfix
+            %span.active 1.验证身份
+            %span.open 2.启用支付密码
+            %span.right 3.完成
+        %form.form-horizontal{:role => "form"}
+          .form-group
+            %label.col-sm-4.control-label 已验证收益：
+            .col-sm-8.form-name
+              130****0000
+          .form-group
+            .col-sm-offset-4.col-sm-8
+              %button.btn.btn-primary{:type => "submit"} 获取短信验证码
+          .form-group
+            %label.col-sm-4.control-label{:for => "recharge_money"} 请填写手机校验码：
+            .col-sm-8
+              %input#recharge_money.form-control.recharge-input{:placeholder => "请填写手机校验码", :type => "text"}
+          .form-group
+            .col-sm-offset-4.col-sm-8
+              %button.btn.btn-success{:type => "submit"} 提交
+        %dl.warm
+          %dt 为什么要进行身份验证？
+          %dd 1. 为保障您的账户信息安全，在变更账户中的重要信息时需要进行身份验证，感谢您的理解和支持。
+          %dd 2. 验证身份遇到问题？请点击右侧客服进行咨询。
+        .recharge-progress
+          .progress
+            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 45%"}
+              %span.sr-only 40% Complete (success)
+          .progress-name.clearfix
+            %span.active 1.验证身份
+            %span.open.active 2.启用支付密码
+            %span.right 3.完成
+        %form.form-horizontal{:role => "form"}
+          .form-group
+            %label.col-sm-4.control-label{:for => "recharge_pwd"} 支付密码：
+            .col-sm-8
+              %input#recharge_pwd.form-control.recharge-input{:type => "password"}
+          .form-group
+            %label.col-sm-4.control-label{:for => "recharge_pwd_again"} 确认支付密码：
+            .col-sm-8
+              %input#recharge_pwd_again.form-control.recharge-input{:type => "password"}
+          .form-group
+            .col-sm-offset-4.col-sm-8
+              %button.btn.btn-primary{:type => "submit"} 提交
+        %dl.warm
+          %dt 为什么要进行身份验证？
+          %dd 1. 为保障您的账户信息安全，在变更账户中的重要信息时需要进行身份验证，感谢您的理解和支持。
+          %dd 2. 验证身份遇到问题？请点击右侧客服进行咨询。
+        .recharge-progress
+          .progress
+            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 100%"}
+              %span.sr-only 40% Complete (success)
+          .progress-name.clearfix
+            %span.active 1.验证身份
+            %span.open.active 2.启用支付密码
+            %span.right.active 3.完成
+        .payment-password
+          %p.text-center 支付密码已启用，使用账户中余额、玩艺币时，需要输入此支付密码
+          .go-payment.text-center
+            您现在可以：
+            %a.btn.btn-primary{:href => "#"} 充值余额
+            或
+            %a.green{:href => "#"} 购买玩艺币

@@ -1,0 +1,14 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  = 1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[每日一砍]]>"
+    %Description
+      = raw "<![CDATA[欢迎来到每日一砍]]>"
+    %PicUrl
+      = raw "<![CDATA[#{@daily_item.photos.first.weixin_image_url}]]>"
+    %Url
+      = raw "<![CDATA[#{weixin_daily_item_url(@daily_item, openid: @wx_user.openid)}]]>"

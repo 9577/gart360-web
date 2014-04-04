@@ -1,0 +1,57 @@
+%header.groupheader
+  .container
+    .navsearch.long
+      = render 'sns/shared/header/search'
+.wrap
+  .container.cf
+    .col-main
+      .mod-search
+        %h3
+          与"
+          %span.huang> #{params[:q]}
+          "相关的内容
+        %p 共找到#{@sunspot_search.results.total_count}个
+
+      - unless @sunspot_search.results.blank?
+        .search-cate
+          %ul
+            %li{class: params[:klass] ? '' : 'cur'}
+              = link_to '全部', url_for(q: params[:q])
+            - for row in @sunspot_search.facet(:klass).rows
+              %li{class: params[:klass] == row.value ? 'cur' : ''}
+                = link_to t("activerecord.models.#{row.value.downcase}"), url_for(q: params[:q], :klass => row.value)
+            / %li
+            /   %a{href: "#"} 成员
+            / %li
+            /   %a{href: "#"} 创意廊
+            / %li
+            /   %a{href: "#"} 作品
+            / %li
+            /   %a{href: "#"} 发布会
+            / %li
+            /   %a{href: "#"} 小组
+            / %li
+            /   %a{href: "#"} 话题
+        .search-result
+          %ul.list2.cf
+            - @sunspot_search.results.each do |result|
+              - case result.class.name
+              - when 'User'
+                = render partial: 'user', locals: {result: result}
+              - when 'Group'
+                = render partial: 'group', locals: {result: result}
+              - when 'Topic'
+                = render partial: 'topic', locals: {result: result}
+              - when 'Event'
+                = render partial: 'event', locals: {result: result}
+              - when 'Artwork'
+                = render partial: 'artwork', locals: {result: result}
+              - when 'Gallery'
+                = render partial: 'gallery', locals: {result: result}
+          .panel-footer.clearfix
+            = paginate @sunspot_search.results
+
+    - if @users_count > 0
+      = render 'user_sidebar'
+
+  .bg

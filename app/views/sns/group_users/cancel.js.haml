@@ -1,0 +1,4 @@
+- html = capture do
+  = link_to '+加入', sns_group_group_users_path(@group), method: 'post', remote: true, class: 'btn btn-primary btn-sm'
+
+$("#group_#{@group.id}").find('.g-link').html('#{j html}')

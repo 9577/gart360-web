@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title= t('layout.title')
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    /[if lt IE 9]
+      = javascript_include_tag 'html5'
+      = javascript_include_tag 'respond.min'
+
+    = stylesheet_link_tag :application, media: :all
+    = csrf_meta_tags
+
+  %body{ id: params[:controller].gsub('/', '_'), class: params[:action] }
+    .wrapper
+      = render 'shared/nav'
+      -# = render_banner
+
+      = yield :subhead
+
+      = yield
+      .push
+    
+    = render 'shared/footer'
+
+    = javascript_include_tag 'application'
+    = yield :js

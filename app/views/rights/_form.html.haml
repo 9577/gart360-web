@@ -1,0 +1,22 @@
+= simple_nested_form_for resource, url: url, html: { class: 'form-horizontal row-border', multipart: true } do |f|
+  .form-group
+    %label.col-sm-3.text-right 是否收到货
+    .col-sm-9
+      = f.collection_radio_buttons :is_received, [['到货', 'true'], ['未到货', 'false']], :last, :first do |b|
+        = b.label do
+          = b.radio_button
+          = b.text
+
+  = f.input :type_identifier, as: :select, collection: Right.get_type_identifier_values, prompt: true, input_html: { class: 'select2-option' }, wrapper_class: 'select_width custom_width'
+
+  = f.simple_fields_for :descriptions
+
+  .form-group
+    %label.col-sm-3.text-right 上传凭证：
+    .col-sm-9
+      %input{:id => "", :name => "", :type => "file"}
+        %br
+          %span.gray6 每张图片大小不超过5M，支持JPG、PNG格式，最多上传5张
+  .form-group
+    .col-sm-offset-3.col-sm-9
+      %button.btn.btn-success{:type => "submit"} 提交申请

@@ -1,0 +1,165 @@
+- if resource.new_record?
+  - resource.build_detail
+  - resource.build_product_owner
+  - resource.photos.build
+  - resource.reviews.build
+  - resource.product_attributes.build
+
+.row
+  .col-md-9
+    %section.panel.panel-default#auction_form
+      %header.panel-heading 拍品
+      .panel-body
+        = simple_nested_form_for resource, url: url, html: { class: 'form-horizontal product-form' } do |f|
+          = f.input :title, autofoces: true
+
+          .form-group#type_identifier
+            %label.col-md-2.control-label 类型
+            .col-md-10
+              = f.collection_radio_buttons :type_identifier, Product.get_type_identifier_values, :last, :first do |b|
+                .radio
+                  = b.label(class: 'radio-custom') do
+                    = b.radio_button
+                    %i.fa.fa-circle-o
+                    = b.text
+
+          #acution_type
+            = f.input :auction_id, as: :select, collection: Auction.all, prompt: true, input_html: { class: 'select2-option', id: 'auction_id_select' }
+          = f.input :category_id, as: :select, collection: Category.roots, prompt: true, input_html: { class: 'select2-option' }
+          = f.input :base_price
+          = f.input :per_price
+          = f.input :deposit
+          #start_at_end_at.hide
+            = f.input :start_at, as: :string, input_html: { class: 'datetime start_at_end_at', id: 'product_start_at', data: { format: "YYYY-MM-DD HH:mm:ss", template: 'YYYY 年 MM 月 DD 日  HH : mm : ss' }, name: "#{f.object_name}[start_at]", value: f.object.start_at ? f.object.start_at.to_date : nil }
+   
+            = f.input :end_at, as: :string, input_html: { class: 'datetime start_at_end_at', id: 'product_end_at', data: { format: "YYYY-MM-DD HH:mm:ss", template: 'YYYY 年 MM 月 DD 日  HH : mm : ss' }, name: "#{f.object_name}[end_at]", value: f.object.end_at ? f.object.end_at.to_date : nil }
+          
+          = f.simple_fields_for :detail
+          %fieldset#attributes_wrap
+            %legend
+              %strong 商品故事
+            = f.input :story, as: :text, input_html: { class: 'reditor' }
+          %fieldset#attributes_wrap
+            %legend
+              %strong 商品属性
+            = f.simple_fields_for :product_attributes
+            = f.link_to_add :product_attributes, class: 'btn btn-sm btn-default' do
+              %i.fa.fa-plus.text 
+              %span.text 添加属性
+
+          %fieldset#photos_wrap
+            %legend
+              %strong 拍品图片
+            = f.simple_fields_for :photos
+            = f.link_to_add :photos, class: 'btn btn-sm btn-default' do
+              %i.fa.fa-plus.text 
+              %span.text 添加图片
+
+          = f.input :user_id, as: :select,
+                              collection: User.all.pluck(:email, :id),
+                              prompt: '自定义拥有者',
+                              input_html: { class: 'select2-option' }
+
+
+          %fieldset#product_owner_wrap
+            %legend
+              %strong 自定义拥有者
+            = f.simple_fields_for :product_owner
+
+          %fieldset#reviews_wrap
+            %legend
+              %strong 专家评价
+            = f.simple_fields_for :reviews
+            = f.link_to_add :reviews, class: 'btn btn-sm btn-default' do
+              %i.fa.fa-plus.text 
+              %span.text 添加评价
+
+          .form-actions
+            = f.button :submit, class: 'btn btn-primary pull-right'
+
+  .col-md-3
+
+- content_for :js do
+  :javascript
+    $(function(){
+        $('#product_start_at').combodate();  
+        $('#product_end_at').combodate();
+    });
+
+  :coffee
+    $ ->
+      # uploader
+      new MainUploader
+        url: '#{admin_global_images_path}.js'
+        button: 'btn-pupload'
+
+      new MainUploader
+        url: '#{admin_global_images_path}.js'
+        button: 'btn-pupload2'
+
+      # init reditor
+      $(document).on 'click', '.btn-add-photo', (e) ->
+        e.preventDefault()
+        $('input#topic_photo').trigger 'click'
+
+      redactor = new RedactorInitializer
+      redactor.init_by_default()
+      # init reditor
+
+      # init uploader for nested form
+      $(document).on 'nested:fieldAdded', (event) ->
+        
+        field = event.field
+        
+        dateField = field.find('.date')
+        count = field.parents('#new_product').find('.fields').size()
+        field.find('.btn.btn-default').attr 'id', 'btn-pupload' + count
+
+        new MainUploader
+          url: '#{admin_global_images_path}.js'
+          button: 'btn-pupload' + count
+
+
+      # switch
+      auction_form = $('#auction_form')
+      productOwnerWrap = $('#product_owner_wrap')
+      
+      # 监听拥有者
+      $(document).on 'change', '#product_user_id', (e) ->
+        console.log $(this).val()
+        if $(this).val() is ''
+          productOwnerWrap.removeClass 'hide'
+          productOwnerWrap.each (index, el) ->
+            $(this).find('.owner_attribute').removeAttr 'disabled'
+        else
+          productOwnerWrap.addClass 'hide'
+          productOwnerWrap.each (index, el) ->
+            $(this).find('.owner_attribute').attr 'disabled', 'disabled'
+
+
+      # 初始化类型      
+      if $('input[name="product[type_identifier]"][checked="checked"]').val() is 'auction'
+        $('#acution_type').removeClass 'hide'
+        $('#auction_id_select').removeAttr 'disabled'
+        $('#start_at_end_at').addClass 'hide'
+        $('.start_at_end_at').attr 'disabled', 'disabled'
+      else
+        $('#acution_type').addClass 'hide'
+        $('#auction_id_select').attr 'disabled', 'disabled'
+        $('#start_at_end_at').removeClass 'hide'
+        $('.start_at_end_at').removeAttr 'disabled'
+      
+      # 监听类型
+      auction_form.on 'click', 'input[name=\'product[type_identifier]\']', (e) ->
+        if $(this).val() is 'auction'
+          $('#acution_type').removeClass 'hide'
+          $('#auction_id_select').removeAttr 'disabled'
+          $('#start_at_end_at').addClass 'hide'
+          $('.start_at_end_at').attr 'disabled', 'disabled'
+        else
+          $('#acution_type').addClass 'hide'
+          $('#auction_id_select').attr 'disabled', 'disabled'
+          $('#start_at_end_at').removeClass 'hide'
+          $('.start_at_end_at').removeAttr 'disabled'
+
+

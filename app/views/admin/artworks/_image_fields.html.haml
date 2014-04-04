@@ -1,0 +1,20 @@
+.global_upload_wrapper
+  .form-group.upload.global_upload
+    %label.control-label.col-md-2 图片
+    .controls.clearfix.col-md-10
+      .img-holder
+        - if f.object.img
+          = image_tag f.object.gallery_img_url(120, 120)
+        - else
+          = image_tag('sns/user-header-bg.png', size: '120x120')
+      .action
+        = link_to '#', class: 'btn btn-default', id: 'btn-pupload' do
+          %i.fa.fa-picture-o
+          选择图片
+        %p 
+          %small 
+            %p 支持png、jpg、gif格式
+            %p 大小不超过1M
+            %p.g-block
+              %b 
+  = f.input :img, as: :hidden, input_html: { class: 'target_input required' }

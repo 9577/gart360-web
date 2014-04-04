@@ -1,0 +1,19 @@
+.wrap
+  .container.cf
+    %h3.site.site2 最新作品
+    .reflow.cf
+      - @artworks.each do |artwork|
+        - url = sns_gallery_artwork_path(artwork.gallery, artwork)
+        %ul.reflow-col
+          %li.reflow-item
+            = link_to url, class: 'pic' do
+              = image_tag artwork.avatar_url(200, nil)
+            = link_to artwork.name, url, class: 'name'
+            %p.cf.userinfo
+              = render_user_avatar artwork.user, size: '36x36', fl: true
+              %span
+                = link_to artwork.user_name, user_profile_url(artwork.user), class: 'user'
+                %br/
+                = link_to artwork.gallery_name, url
+    .reflow-more.cf
+      %a{:href => "#"} 加载更多....

@@ -1,0 +1,59 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      = render 'sns/groups/nav'
+      %h3.site.site2 我的小组话题
+      .g-topic
+        - if @topics.any?
+          %ul
+            - @topics.each do |topic|
+              %li
+                .topic-body
+                  .vote
+                    = link_to topic.replies_count, '#'
+                    %p 回应
+                  .topic-cont
+                    %h3
+                      = link_to topic.title, sns_group_topic_path(topic.group, topic)
+                    %p
+                      小组:
+                      = link_to topic.group.name, sns_group_path(topic.group), class: 'lan'
+                  .topic-info
+                    %span.time
+                      创建时间：
+                      = topic.created_at.to_minute
+        - else
+          %p.empty-content 我还没有任何话题
+
+      = paginate @topics
+    %aside.col-sub
+      .lang-info
+        = render_cell :user, :widget, user: current_user
+
+      = link_to '创建小组 &gt;'.html_safe, new_sns_group_path, class: 'btn btn-default btn-block tb-padding'
+
+      / 我加入的小组
+      .aside-lists
+        %span.aside-info
+          %b.fl
+            = link_to all_sns_groups_path do
+              我加入的小组(#{ current_user.joined_groups_count })
+
+        - if @joined_groups.any?
+          %ul.mydp.myadd
+            - @joined_groups.each do |group|
+              %li
+                = link_to image_tag(group.logo), sns_group_path(group), title: group.name
+                %p
+                  = link_to group.description, sns_group_path(group)
+        - else
+          %p.empty-content 还没加入任何小组
+
+      / 新锐小组推荐
+      = render_cell :group, :recommended
+      / 我的小组热门话题
+      = render_cell :group, :hot_topics
+  .bg

@@ -1,0 +1,56 @@
+- content_for :subhead do
+  = render 'sns/shared/header/user'
+
+.wrap.home
+  .container.cf
+    .col-main
+      %section.publish
+        = simple_form_for current_user.statuses.new, url: sns_statuses_path, remote: true do |f|
+          .publish-type
+            = link_to sns_root_path, class: 'icon-status active' do
+              %i.fa.fa-comments
+              说说
+            = link_to '#', class: 'icon-status' do
+              %i.fa.fa-picture-o
+              发作品
+            = link_to sns_events_path, class: 'icon-status' do
+              %i.fa.fa-bookmark
+              发布会
+          .publish-cont
+            = f.input :body, wrapper: false,
+                             label: false,
+                             input_html: { class: 'status-body' },
+                             placeholder: '随时随地分享新鲜玩艺儿'
+          .publish-sub
+            = link_to 'javascript:void(0);', class: 'taka-a-photo fl', rel: 'popover' do
+              %i.fa.fa-camera-retro
+              %span 添加照片
+            .popover-content{ style: 'display: none;' }
+
+              .popover-header.clearfix
+                %p.fl 按住Ctrl可多选照片，最多不超过十张。
+                = link_to '&times;'.html_safe, 'javascript:void(0);', class: 'fr btn-close-popover'
+              .modal-body
+                .form-group.upload{ data: { target: 'status_multi' } }
+                  .controls-block
+                    %ul#status_images.clearfix
+
+                    .action
+                      = link_to 'javascript:void(0)', class: 'btn btn-default', id: 'btn-pupload' do
+                        %i.fa.fa-picture-o
+                        选择图片
+
+            = f.button :submit, '发布', class: 'btn btn-primary fr button-flat-highlight'
+      %section.newsfeed
+        = render_activities(@activities, layout: '/public_activity/layout')
+        = paginate @activities
+    = render 'sidebar'
+  .bg
+
+- content_for :js do
+  :coffee
+    $ ->
+      $('a[rel=popover]').on 'shown.bs.popover', ->
+        new StatusImageUploader
+          url: "#{global_images_path}.js"
+          button: 'btn-pupload'

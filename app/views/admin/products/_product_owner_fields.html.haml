@@ -1,0 +1,20 @@
+= f.input :name, input_html: { class: 'owner_attribute' }
+.global_upload_wrapper
+  .form-group.upload.global_upload
+    %label.control-label.col-md-2= ProductOwner.human_attribute_name(:avatar)
+    .controls.clearfix.col-md-10
+      .img-holder
+        = image_tag('sns/user-header-bg.png', size: '120x120')
+      .action
+        = link_to '#', class: 'btn btn-default', id: 'btn-pupload2' do
+          %i.glyphicon.glyphicon-picture
+          选择图片
+        %p 
+          %small 
+            %p 支持png、jpg、gif格式
+            %p 大小不超过1M
+            %p.g-block
+              %b 
+  = f.input :avatar, as: :hidden, input_html: { class: 'target_input required owner_attribute' }
+
+= f.input :body, as: :text, input_html: { class: 'reditor owner_attribute' }

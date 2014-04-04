@@ -1,0 +1,64 @@
+.row
+  .col-md-9
+    %section.panel.panel-default
+      %header.panel-heading 广告
+      .panel-body
+        = simple_form_for resource, url: url, html: { class: 'form-horizontal company-form', multipart: true } do |f|
+          = f.input :title, autofoces: true
+          = f.input :area, as: :select, collection: Ad.get_area_values, prompt: false, input_html: { class: 'select2-option' }, wrapper_class: 'select_width'
+          = f.input :type_identifier, as: :select, collection: Ad.get_type_identifier_values, prompt: false, input_html: { class: 'select2-option' }, wrapper_class: 'select_width'
+
+          .global_upload_wrapper
+            .form-group.upload.global_upload
+              %label.control-label.col-md-2= Ad.human_attribute_name(:image)
+              .controls.clearfix.col-md-10
+                .img-holder
+                  = image_tag('sns/user-header-bg.png', size: '120x120')
+                .action
+                  = link_to '#', class: 'btn btn-default', id: 'btn-pupload' do
+                    %i.glyphicon.glyphicon-picture
+                    选择图片
+                  %p 
+                    %small 
+                      %p 支持png、jpg、gif格式
+                      %p 大小不超过1M
+                      %p.g-block
+                        %b 
+            = f.input :image, as: :hidden, input_html: { class: 'target_input' }
+          = f.input :body, as: :text, input_html: { class: 'reditor' }
+
+          .form-actions
+            = f.button :submit, class: 'btn btn-primary pull-right'
+
+  .col-md-3
+
+
+- content_for :js do
+  :coffee
+    $ ->
+      $(document).on 'click', '.btn-add-photo', (e) ->
+        e.preventDefault()
+        $('input#topic_photo').trigger 'click'
+
+      redactor = new RedactorInitializer
+      redactor.init_by_default()
+
+      new MainUploader
+        url: "#{admin_global_images_path}.js"
+        button: 'btn-pupload'
+      
+      # init
+      if $("select[name='ad[type_identifier]']").val() is "photo"
+        $(".ad_body").addClass "hide"
+      else
+        $(".global_upload_wrapper").addClass "hide"
+
+      # for change
+      $(".simple_form").on "change", "select[name='ad[type_identifier]']", (event) ->
+        if $(this).val() is "photo"
+          $(".ad_body").addClass "hide"
+          $(".global_upload_wrapper").removeClass "hide"
+        else
+          $(".ad_body").removeClass "hide"
+          $(".global_upload_wrapper").addClass "hide"
+        return

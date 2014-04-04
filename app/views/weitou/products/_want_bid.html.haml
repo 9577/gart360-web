@@ -1,0 +1,67 @@
+= simple_form_for :bid, url: want_bid_weitou_product_path(resource), html: { class: 'form-horizontal row-border', id: 'new_bid', method: :post }, remote: true do |f|
+  = f.input :price, as: :string, label: '出价', label_html: { class: 'give-price' } do
+    = f.input_field :price, id: 'set-price', value: resource.default_bid, wrapper: :readonly, readonly: true
+    %dl.change-price
+      %dd.add-price +
+      %dd.reduce-price -
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        %label
+          = f.check_box :is_anonymous
+          匿名出价
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      %button.btn.btn-primary{:type => "submit"} 我要出价
+      = link_to '出价', '#', 'data-target' => '#new_bid_modal', 'data-toggle' => 'modal', id: 'new_bid_modal_hidden', class: 'hide'
+
+
+#new_bid_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+
+  .modal-dialog
+    .modal-content
+      = simple_form_for :bid, url: check_bid_weitou_product_path(resource), html: { class: 'form-horizontal row-border', id: 'new_bid', method: :post } do |f|
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        .modal-body.modal-fix-body
+          %p
+            您的出价为
+            %span.orange.font18#modal_bid_price
+              = "￥#{session[:bid_price]}"
+          %p.font16
+            系统将在您的玩艺儿账户中冻结
+            %span.orange> 
+              = resource.deposit
+            元作为竞拍保证金
+
+        .modal-footer.modal-fix-footer
+          %button.btn.btn-primary{:type => "submit"} 确认
+
+          %button.btn.btn-cancel{"data-dismiss" => "modal", :type => "button"} 取消
+          %a.blackish-green{:href => "#"} 去充值
+        .modal-clause
+          %a.blackish-green{:href => "#"} 查看保证金归属规则
+
+- content_for :js do
+  :javascript
+    jQuery(document).ready(function($) {
+      var add_button = $('.add-price');
+      var reduce_button = $('.reduce-price');
+
+      var minimum_price = parseFloat($('#set-price').val());
+      var per_price = parseFloat($('#per_price').html());
+      // add button
+      $('#new_bid').on('click', '.add-price', function(event) {
+        $('#set-price').attr('value', (parseFloat($('#set-price').val()) + per_price).toFixed(2));
+      });
+
+      // reduce button
+      $('#new_bid').on('click', '.reduce-price', function(event) {
+        price = (parseFloat($('#set-price').val()) - per_price).toFixed(2);
+        if (price >= minimum_price) {
+          $('#set-price').attr('value', price);
+        };
+      });
+    });

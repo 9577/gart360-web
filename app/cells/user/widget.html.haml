@@ -1,0 +1,13 @@
+.user-widget
+  = render_user_avatar @user, size: '60x60', fl: true
+  %p.mydetail.fl
+    = render_username @user
+    %br/
+    - unless current_user == @user
+      = follow_link_to @user
+    %span
+      = @user.location
+      %br/
+      #{ @user.confirmed_at.try(:to_date) } 加入
+    = link_to user_path(@user), class: 'intro' do
+      艺术家简介&gt;

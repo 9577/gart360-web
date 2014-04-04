@@ -1,0 +1,43 @@
+- content_for :subhead do
+  = render 'sns/shared/header/user'
+
+.wrap.home
+  .container.cf
+    .col-main
+      = render 'profile_nav'
+      .lang-nav
+        %p 共发布了#{ resource.statuses_count }条说说
+      %section.newsfeed
+        - @statuses.each do |status|
+          %dl
+            %dt
+              = render_user_avatar status.user, size: '60x60'
+              = link_to status.user_name, user_profile_url(status.user)
+              说：
+            %dd.newsfeed-cont
+              %p.text= status.body
+
+              - if status.images_count == 1
+                %p.pic
+                  - status.images.each do |img|
+                    = image_tag img.data_url(325, 260)
+              - elsif status.images_count > 1
+                %p.album
+                  - status.images.each do |img|
+                    = image_tag img.data_url
+            %dd.newsfeed-info
+              %span.time #{ time_ago_in_words status.created_at }前
+              %span.rlink
+                %span
+                  回应
+                  %b 0
+                %span
+                  赞
+                  %b 0
+                %a.sdel{:href => "#"} 删除
+
+
+    %aside.col-sub
+      .myshop
+        %a{:href => "#"} 我的小铺>>
+  .bg

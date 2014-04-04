@@ -1,0 +1,69 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    
+    = render 'sidebar'
+
+    .recharge-con.right
+      %p.recharge-name 我的竞拍订单
+      .selling-list
+        %table
+          %tr
+            %th.selling-radio
+              .checkbox
+                %label
+                  %input{:type => "checkbox"}
+                    订单编号
+            %th.selling-left 拍品信息
+            %th 成交价
+            %th 成交时间
+            %th 状态
+            %th 操作
+          - if @orders.empty?
+            %tr
+              %td{ colspan: 6 }
+                暂无订单信息
+                %strong= link_to '竞拍首页', weitou_root_path
+          - else
+            - @orders.each do |order|
+              - product = order.product
+              %tr
+                %td.selling-radio
+                  .checkbox
+                    %label
+                      %input{:type => "checkbox"}
+                        = order.code
+                %td.selling-left
+                  = image_tag product.photos.first.data, alt: product.title, width: 80
+                  = link_to weitou_product_path(product) do
+                    = product.title
+                %td
+                  %span.orange ￥#{order.price}
+                %td.gray6= order.created_at.strftime('%F %R')
+                %td
+                  %span{ class: order.pending? ? 'red' : 'gray6' }
+                    = order.state_text
+                  %br
+                    = link_to '查看订单详情', detail_order_path(order), class: 'blackish-green line'
+                %td
+                  - if order.pending?
+                    = link_to '付款', order_path(order), class: 'orange'
+                    %br
+                      %a.gray6.line{:href => "#"} 取消订单
+                  - elsif order.paid?
+                    %a.orange{:href => "#"} 等待发货
+                    %br
+                      %a.gray6.line{:href => "#"} ###
+                  - elsif order.delivered?
+                    %span.gray6 已发货
+                    %br
+                      = link_to '查看订单详情', detail_order_path(order), class: 'blackish-green line'
+                      %br
+                        %a.blackish-green.line{:href => "#"} 查看物流
+                  - elsif order.finished?
+                    %span.gray6 交易完成
+                    %br
+                      = link_to '查看订单详情', detail_order_path(order), class: 'blackish-green line'
+                  - elsif order.colsed?
+                    %span.gray6 交易关闭
+                    %br
+                      = link_to '查看订单详情', detail_order_path(order), class: 'blackish-green line'

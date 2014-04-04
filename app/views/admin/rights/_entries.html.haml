@@ -1,0 +1,50 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    维权
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= Right.human_attribute_name(:order_id)
+          %th= Right.human_attribute_name(:is_received)
+          %th= Right.human_attribute_name(:type_identifier)
+          %th= Right.human_attribute_name(:certificates_count)
+          %th= Right.human_attribute_name(:is_satisfied)
+          %th= Right.human_attribute_name(:state)
+          %th= Right.human_attribute_name(:created_at)
+          %th
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.order_id
+            %td= resource.is_received_text
+            %td= resource.type_identifier_text
+            %td= resource.certificates_count
+            %td= resource.is_satisfied_text
+            %td= resource.state_text
+            %td= resource.created_at.to_date
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  %li 
+                    = link_to resource_path(resource) do
+                      %i.fa.fa-search 
+                      详情
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂无维权数据

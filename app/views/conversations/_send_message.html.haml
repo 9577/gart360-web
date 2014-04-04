@@ -1,0 +1,45 @@
+.msglist
+  .msgnav.rows.rows_cur.cf
+    %strong 与 #{user.username} 的消息
+  %section.my-message
+    %dd.newsfeed-comment
+      - case params[:action]
+      - when 'new'
+        - @image = resource.messages.build
+
+        = simple_nested_form_for resource, url: collection_path, html: { class: 'form-horizontal converastion-form' } do |f|
+          .comment-pub
+            = render_user_avatar user, size: '36x36'
+            .comment-pub-area
+              = f.input :recipient_id, as: :hidden, input_html: { value: user.id }
+              = f.input :sender_id, as: :hidden, input_html: { value: current_user.id }
+              = f.simple_fields_for :messages
+
+            .comment-btn
+              = f.button :submit, '发送', class: 'btn btn-primary'
+              = link_to '取消', '#', class: 'btn btn-default btn-sm'
+
+      - when 'show'
+        = simple_form_for @message, url: conversation_messages_path(resource), html: { class: 'form-horizontal message-form' } do |f|
+          .comment-pub
+            = render_user_avatar user, size: '36x36'
+            .comment-pub-area
+              = f.input :body, wrapper: :sns, label: false, input_html: { rows: 5 }
+            .comment-btn
+              = f.button :submit, '发送', class: 'btn btn-primary'
+              = link_to '取消', '#', class: 'btn btn-default btn-sm'
+        %ul.comment-list
+          - @messages.where('id IS NOT NULL').each do |message|
+            %li
+              %p
+                = render_user_avatar message.user, size: '36x36'
+                %span.fr
+                  %em.comment-time #{time_ago_in_words(message.created_at)} 前
+                %span.comment-text
+                  = render_username message.user
+                  %br
+                    %span= message.body
+
+%ul.msg-sub.fr
+  %li= link_to "#{user.username} 的首页 &gt;".html_safe, user_profile_url(user)
+  %li= link_to '返回 我的消息 &gt;'.html_safe, conversations_path

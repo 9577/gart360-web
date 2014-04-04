@@ -1,0 +1,59 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    订单管理
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= Order.human_attribute_name(:code)
+          %th= User.human_attribute_name(:username)
+          %th= Order.human_attribute_name(:price)
+          %th= Order.human_attribute_name(:paid_at)
+          %th= Order.human_attribute_name(:delivery_code)
+          %th= Order.human_attribute_name(:delivery_price)
+          %th= Order.human_attribute_name(:state)
+          %th
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.code
+            %td= resource.user.username
+            %td= resource.price
+            %td= resource.paid_at_text
+            %td= resource.delivery_code
+            %td= resource.delivery_price
+            %td= resource.state_text
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  - resource.aasm.events.each do |event|
+                    %li 
+                      - if event == :deliver
+                        = link_to deliver_admin_order_path(resource, event: event), method: :put, remote: true do
+                          %i.fa.fa-pencil 
+                          = t(".#{event}")
+                      - else
+                        = link_to resource_path(resource, event: event), method: :put do
+                          %i.fa.fa-pencil 
+                          = t(".#{event}")
+                  %li 
+                    = link_to resource_path(resource) do
+                      %i.fa.fa-search 
+                      详情
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂无竞拍专场数据，请点击右边的添加按钮添加一个。

@@ -1,0 +1,39 @@
+.preview-sale-price.right
+  .preview-sale-start
+    起拍价：
+    %strong.orange ￥#{resource.base_price}
+  .preview-sale-end.clearfix
+    %span.left.s1 据开始：
+    .lxftime.left{ endtime: (l resource.end_at, format: :js), lxfday: '' }
+  .preview-sale-unstart
+    %strong 该竞拍活动已经结束
+    %br
+      开拍时间：#{l resource.start_at, format: :product_start_at}
+  %ul.list-unstyled.cash-deposit.clearfix
+    %li
+      起拍价：
+      %span ￥#{resource.base_price}
+    %li
+      加价幅度：
+      %span ￥#{resource.per_price}
+    %li
+      保证金：
+      %span ￥#{resource.deposit}
+  .preview-sale-author
+    作品作者：
+    %span
+      = resource.owner_name
+    延时周期：
+    %span #{resource.delay_time}分/次
+    买家保障：
+    %span
+  .bid-history
+    - bids = resource.bids.real
+    %h5 出价记录（#{bids.count}）
+    %ul.list-unstyled.same-history
+      %li.bid-head
+        %span 状态
+        %span 竞拍人
+        %span 价格
+        %span 时间
+    = render 'bid_history', bids: bids

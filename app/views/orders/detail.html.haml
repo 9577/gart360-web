@@ -1,0 +1,136 @@
+.recharge-warpper
+  .layout990
+    .bread-nav
+      %ol.breadcrumb
+        %li
+          %a.gray3{:href => "#"} 首页
+        %li
+          %a.gray3{:href => "#"} 竞拍
+        %li.active 马元素作品专场
+    #order
+      .order-main
+        .time-axis
+          .progress
+            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
+              %span.sr-only 40% Complete (success)
+          .time-item.clearfix
+            %dl.first-step.active
+              %dd 竞拍到的拍品
+              %dd.item
+                %span.first-item
+            %dl.second-step
+              %dd 付款
+              %dd.item
+                %span.second-item
+            %dl.third-step
+              %dd 拍品发货
+              %dd.item
+                %span.third-item
+            %dl.fourth-step
+              %dd 确认收获
+              %dd.item
+                %span.fourth-item
+        .order-meta.clearfix
+          .order-msg.left
+            %h2 订单信息
+            %p
+              %span 拍品名称：
+              = link_to weitou_product_path(@product), class: 'orange' do
+                = @product.title
+            %p
+              %span> 订单编号：
+              = resource.code
+            %p
+              %span> 成交时间：
+              = resource.created_at.strftime('%F %R')
+            %p
+              %span> 交易类型：
+              = resource.type_identifier_text
+          .order-status.right
+            %h2 订单状态
+            %h3
+              %span.glyphicon.glyphicon-warning-sign>
+              拍品已成功拍下，正在等待付款！
+            %p.gray3
+              您还有：
+              %span.red 
+              = time_left(@product.end_at + 2.days, '过期了')
+              来付款；
+            %p.gray6 超出此时间，订单将自动取消，同时您的竞拍保证金#{@product.deposit}元将自动划扣给卖家
+            %p.pay-now
+              您可以：
+              %a.canel-order.gray9{:href => "#"} 取消订单
+        .order-addr
+          %h2 选择收货地址
+          .addr-list.clearfix
+            = render 'addresses'
+          %p.show-addr
+            = render 'show_addr', extended: false
+          %p.new-addr
+            = link_to '使用新收获地址', new_address_path, remote: true, class: 'btn btn-default'
+      .order-information
+        %h2 拍品消息
+        %table
+          %tbody
+            %tr
+              %th.information-left 商品信息
+              %th 起拍价
+              %th 成交价
+              %th 状态
+              %th 运费
+            %tr
+              %td.information-left
+                %img.left{:alt => "", :src => "images/selling-item.jpg"}
+                  %a.orange.left{:href => "#"}
+                    王雄伟 :精雕新疆和田羊脂
+                    %br 白玉山子雕摆件
+              %td ￥2000
+              %td
+                %span.orange ￥2050
+              %td
+                %span.red 未付款
+              %td ￥0.00
+            %tr
+              %td.information-left
+                %img.left{:alt => "", :src => "images/selling-item.jpg"}
+                  %a.orange.left{:href => "#"}
+                    王雄伟 :精雕新疆和田羊脂
+                    %br 白玉山子雕摆件
+              %td ￥2000
+              %td
+                %span.orange ￥2050
+              %td
+                %span.green 已支付
+              %td ￥0.00
+      .order-next
+        = simple_form_for resource, url: resource_path(resource), html: { method: :put } do |f|
+          %p.text-right
+            实付款：
+            %strong.orange ￥#{resource.price}
+          = f.input :address_id, as: :hidden, input_html: { value: current_user.addresses.default.first.id }
+          %p.text-right
+            = f.submit '立即付款', class: 'btn btn-primary'
+
+- content_for :js do
+  :javascript
+    jQuery(document).ready(function($) {
+      $('.order-addr').on('click', '#show_all_addresses', function(event) {
+        $('.addr-list').find('.addr-item.hide').each(function(index, el) {
+          $(this).removeClass('hide').addClass('active_hide');
+        });
+        $(this).attr('id', 'hide_addresses');
+        $(this).html('收起部分收货地址&uarr;');
+      });
+      $('.order-addr').on('click', '#hide_addresses', function(event) {
+        $('.addr-list').find('.addr-item.active_hide').each(function(index, el) {
+          $(this).removeClass('active_hide').addClass('hide');
+        });
+        $(this).attr('id', 'show_all_addresses');
+        $(this).html('展开所有收货地址&darr;');
+      });
+
+      $('.order-addr').on('click', '.addr-item', function(event) {
+        $(this).addClass('active-item').siblings().removeClass('active-item');
+        $('#order_address_id').attr('value', $(this).attr('data-id'));
+      });
+    });

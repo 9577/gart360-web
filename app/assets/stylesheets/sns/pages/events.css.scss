@@ -1,0 +1,19 @@
+.form-group {
+  &.columns > .controls {
+    .form-control { width: auto !important; }
+    .col-sm-10, label { float: left; }
+    label { width: 40px; text-align: center; }
+  }
+
+  &.subtitle {
+    .controls {
+      width: 550px;
+      p {
+        padding: 7px 0;
+        span { color: #FC8611; font-weight: bold; font-size: 14px; }
+      }
+    }
+  }
+
+  &.form-actions { margin-top: 20px; }
+}

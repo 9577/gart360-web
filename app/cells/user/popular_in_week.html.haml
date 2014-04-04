@@ -1,0 +1,13 @@
+%dl.recomm
+  %dt.aside-info
+    %b.fl 本周活跃用户
+  - @users.each do |user|
+    %dd.userinfo
+      = render_user_avatar user, size: '60x60', fl: true
+      %p
+        %a.name{ href: user_profile_url(user) }= user.username
+        %br/
+        = follow_status user
+      %span.str
+        %em>
+        共发布了#{user.topics_count}个话题

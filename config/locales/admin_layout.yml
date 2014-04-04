@@ -1,0 +1,18 @@
+zh-CN:
+  admin:
+    auctions:
+      index:
+        header: 竞拍专场
+        create: 创建竞拍
+      new:
+        header: 创建竞拍
+      edit:
+        header: 修改竞拍
+    products:
+      index:
+        header: 竞拍商品管理
+        create: 创建商品
+      new:
+        header: 创建商品
+      edit:
+        header: 修改商品

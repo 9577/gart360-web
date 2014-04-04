@@ -1,0 +1,9 @@
+.headspace
+.container.cf
+  
+  = render '/users/settings_nav'
+
+  %section.setting-sec
+    %h3 我的消息
+    
+    = render 'send_message', user: @user

@@ -1,0 +1,7 @@
+- if current_user.addresses.count > 4
+  - if extended
+    = link_to 'javascript:void(0)', class: 'gray6', id: 'hide_addresses' do
+      收起部分收货地址&uarr;
+  - else
+    = link_to 'javascript:void(0)', class: 'gray6', id: 'show_all_addresses' do
+      展开所有收货地址&darr;

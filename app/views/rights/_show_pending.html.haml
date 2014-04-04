@@ -1,0 +1,36 @@
+= simple_form_for resource.descriptions.new, url: add_description_order_right_path(parent, resource), html: { class: 'form-horizontal row-border', multipart: true } do |f|
+  - @descriptions.real.each do |description|
+    .form-group
+      %label.col-sm-3.text-right 我的描述：
+      .col-sm-9
+        .my_describe
+          %p= description.body
+          %p.gray6= l description.created_at
+    - if description.response
+      .form-group
+        %label.col-sm-3.text-right 客服回复：
+        .col-sm-9
+          .my_describe
+            %p= description.response
+            %p.gray6= l description.created_at
+
+  = render 'description_fields', f: f
+  .form-group
+    %label.col-sm-3.text-right 上传凭证：
+    .col-sm-9
+      .update-img.clearfix
+        -# .img-item
+        -#   %img{:alt => "", :src => "images/tc.jpg"}
+        -#     %span x
+        -# .img-item
+        -#   %img{:alt => "", :src => "images/tc.jpg"}
+        -#     %span x
+        -# .img-item
+        -#   %img{:alt => "", :src => "images/tc.jpg"}
+        -#     %span x
+      %input{:id => "", :name => "", :type => "file"}
+        %br
+          %span.gray6 每张图片大小不超过5M，支持JPG、PNG格式，最多上传5张
+  .form-group
+    .col-sm-offset-3.col-sm-9
+      %button.btn.btn-success{:type => "submit"} 提交申请

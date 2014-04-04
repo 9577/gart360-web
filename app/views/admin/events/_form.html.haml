@@ -1,0 +1,19 @@
+.row
+  .col-md-8
+    %section.panel.panel-default
+      %header.panel-heading 发布会
+
+      .panel-body
+        = simple_form_for resource, url: url, html: { class: 'form-horizontal row-border', multipart: true } do |f|
+          = f.input :subject, autofocus: true
+          = f.input :description
+          .form-actions
+            = f.button :submit, class: 'btn btn-info btn-large pull-right'
+
+  .col-md-4
+    %section.panel.panel-default
+      %header.panel-heading.font-bold
+        %i.fa.fa-lightbulb-o
+        帮助中心
+      .panel-body
+        %p 这里添加一些帮助性的文字

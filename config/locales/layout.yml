@@ -1,0 +1,10 @@
+zh-CN:
+  layout:
+    title: 'Art360 玩艺儿 | 首页'
+  views:
+    pagination:
+      first: "&laquo; 首页"
+      last: "尾页 &raquo;"
+      previous: "&lsaquo; 上一页"
+      next: "下一页 &rsaquo;"
+      truncate: "..."

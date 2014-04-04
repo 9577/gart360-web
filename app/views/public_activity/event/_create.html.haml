@@ -1,0 +1,64 @@
+%dd.newsfeed-cont
+  %a.strong{:href => (event = activity.trackable)}= event.subject
+  %p.text
+    = sanitize event.description
+  %p.datetime
+    活动时间: #{event.start_at.to_short} - #{event.end_at.to_short}
+  %p.pic
+    %img{:src => "/assets/sns/pic-temp/1.png"}/
+%dd.newsfeed-info
+  %span.time= timeago_tag(event.created_at, lang: 'zh-CN')
+  %a.comment{:href => "#"} 回应(8)
+%dd.newsfeed-comment
+  %ul.comment-list
+    %li
+      %p
+        %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+          %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+        %span.comment-text
+          %a.username{:href => "#"} 蒲公英被吹散了：
+          这个情况能说下么，用谷歌搜索进来的….
+          %br/
+          %a{:href => "#"} 回复
+          %em.comment-time 2013-12-18 20:02
+      %p.recomment
+        %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+          %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/1.png", :width => "36"}/
+        %span.comment-text
+          %a.username{:href => "#"} 蒲公英被吹散了：
+          这个情况能说下么，用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的….
+          %br/
+          %a{:href => "#"} 回复
+          %em.comment-time 2013-12-18 20:02
+    %li
+      %p
+        %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+          %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+        %span.comment-text
+          %a.username{:href => "#"} 蒲公英被吹散了：
+          这个情况能说下么，用谷歌搜索进来的….
+          %br/
+          %a{:href => "#"} 回复
+          %em.comment-time 2013-12-18 20:02
+    %li
+      %p
+        %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+          %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+        %span.comment-text.blockquote
+          %em.use 引用：
+          %span.blockquote-cont
+            %b> “
+            这个情况能说下么
+        %span.comment-text
+          %a.username{:href => "#"} 蒲公英被吹散了：
+          加我一个哦
+          %br/
+          %a{:href => "#"} 回复
+          %em.comment-time 2013-12-18 20:02
+  .comment-pub
+    %a.userpic{:href => "#", :title => "七彩的幸福"}
+      %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+    .comment-pub-area
+      %textarea.status-body{:autocomplete => "off", :maxlength => "140", :name => "content", :placeholder => "我也来说两句..."}
+    .comment-btn
+      %input.button.button-rounded.button-flat-highlight.fr{:type => "button", :value => "发表"}/

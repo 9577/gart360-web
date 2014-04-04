@@ -1,0 +1,27 @@
+.cash-warpper
+  .layout990
+    .cash-pledge
+      = simple_form_for resource, url: weitou_product_bids_path(parent), html: { class: 'form-horizontal row-border' } do |f|
+        .cash-title
+          我的个人账户
+          %span 竞拍保证金缴纳
+        .cash-number
+          %p 付款后，您的资金将暂时冻结在您的个人账户
+          %h2
+            竞拍押金
+            %span.orange= parent.deposit
+            = f.input :price, as: :hidden, input_html: { value: session[:bid_price] }
+            = f.input :is_anonymous, as: :hidden, input_html: { value: session[:bid_is_anonymous] }
+          %p.time
+            创建时间：#{l Time.now}
+            %a{:href => "#"} 查看保证金归属规则&gt;&gt;
+        .cash-enough
+          %h2
+            %span.orange> Tony
+            ,您的玩艺儿网个人账户可支付余额为：
+            %span.red> 
+              = current_user.user_payment.amount
+              元
+          %p 您的账户余额充足，可以缴纳保证金，缴纳后保证金将冻结在您的个人账户中
+          .cash-cofirm
+            = f.submit '确认缴纳保证金', class: 'btn btn-primary'

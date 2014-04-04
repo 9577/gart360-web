@@ -1,0 +1,36 @@
+.slider-bar.left
+  %ul.list-unstyled.recharge-bar
+    = sec_nav :settings do
+      = link_to edit_user_registration_path do
+        %i.fa.fa-cog
+        账户设置
+
+    = sec_nav :conversations do
+      = link_to conversations_path do
+        %i.fa.fa-comments-o
+        我的消息
+
+    = sec_nav :conversations do
+      = link_to weitou_my_active_products_path do
+        %i.fa.fa-clock-o
+        我的竞拍
+
+    -# = sec_nav :orders do
+    -#   = link_to orders_path do
+    -#     %i.fa.fa-list-alt
+    -#     我的订单
+
+    -# = sec_nav :cart do
+    -#   = link_to '#' do
+    -#     %i.fa.fa-shopping-cart
+    -#     我的购物车
+
+    = sec_nav :account do
+      = link_to account_statements_path do
+        %i.fa.fa-money
+        账户余额
+
+    = sec_nav :right do
+      = link_to my_rights_path do
+        %i.fa.fa-exchange
+        维权申请

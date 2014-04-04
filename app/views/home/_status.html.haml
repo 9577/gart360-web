@@ -1,0 +1,12 @@
+%section.publish
+  %form
+    .publish-type
+      %a.btn-icon.btn-icon-word.btn-icon-word-hover{:href => ""} 说说
+      %a.btn-icon.btn-icon-pic{:href => ""} 发作品
+      %a.btn-icon.btn-icon-event{:href => ""} 发布会
+    %input{:name => "type", :type => "hidden", :value => ""}/
+    .publish-cont
+      %textarea.status-body{:autocomplete => "off", :name => "content", :placeholder => "随时随地分享新鲜玩艺儿"}
+    .publish-sub
+      %span.btn-icon.btn-icon-addpic.fl 添加照片
+      %input.button.button-rounded.button-flat-highlight.fr{:type => "button", :value => "发布"}/

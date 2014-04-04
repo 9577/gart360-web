@@ -1,0 +1,9 @@
+= simple_form_for [:sns, parent, resource], html: { class: 'form-horizontal topic-form' } do |f|
+  = f.input :title, wrapper: :sns
+  = f.input :body, wrapper: :sns, input_html: { rows: 8 }
+
+  .form-group
+    %label.control-label
+    .controls
+      = f.button :submit, '发表话题', class: 'btn btn-primary'
+      = link_to '撤销', '#', class: 'btn btn-default'

@@ -1,0 +1,13 @@
+.slider-bar.left
+  %ul.center-bar
+    = sec_nav :active_products do
+      = link_to '正在竞拍的商品', weitou_my_active_products_path, class: 'gray3'
+    
+    = sec_nav :closed_products do
+      = link_to '竞拍结束的商品', weitou_my_closed_products_path, class: 'gray3'
+
+    = sec_nav :orders do
+      = link_to '我的竞拍订单', weitou_my_orders_path, class: 'gray3'
+      
+    = sec_nav :deposits do
+      = link_to '我的保证金', weitou_my_deposits_path, class: 'gray3'

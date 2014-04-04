@@ -1,0 +1,14 @@
+%header.groupheader
+  .container
+    .navlogo.fl
+      %h1 玩艺小组
+    %nav.nav.fl
+      %ul
+        = sec_nav :my do
+          = link_to '我的小组', overview_sns_groups_path
+        = sec_nav :groups do
+          = link_to '小组首页', sns_groups_path
+        = sec_nav :explore do
+          = link_to '加入小组', explore_sns_groups_path
+    .navsearch.fr
+      = render 'sns/shared/header/search'

@@ -1,0 +1,22 @@
+common: &common
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: '123456'
+  host: localhost
+
+development:
+  <<: *common
+  database: gart360_development
+
+test: &test
+  <<: *common
+  database: gart360_test
+
+staging:
+  <<: *common
+  database: gart360_production
+
+production:
+  <<: *common
+  database: gart360_production

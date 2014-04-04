@@ -1,0 +1,270 @@
+- content_for :subhead do
+  = render 'sns/shared/header/user'
+
+.wrap.home
+  .container.cf
+    .col-main
+      = render 'profile_nav'
+      %dl.opus.mylang
+        %dt
+          我的创艺廊
+          %em （共#{resource.artworks_count}个作品）
+        - @artworks.each do |artwork|
+          - url = sns_gallery_artwork_path(artwork.gallery, artwork)
+
+          %dd
+            = link_to url, class: 'pic' do
+              = image_tag artwork.avatar_url
+            = link_to artwork.name, url
+            %br
+              %span.num #{ artwork.updated_at.to_date } 更新
+      %dl.opus.mylang
+        %dt
+          我喜欢的作品
+          %em （共#{ resource.liked_artworks.size }个）
+        - @liked_artworks.each do |artwork|
+          - url = sns_gallery_artwork_path(artwork.gallery, artwork)
+
+          %dd
+            = link_to url, class: 'pic' do
+              = image_tag artwork.avatar_url
+            = link_to artwork.name, url
+            %a.icon.icon-like{:href => "#"} #{ artwork.fans_count }
+
+      / 我收藏的商品
+      -# %dl.opus.mylang
+      -#   %dt
+      -#     我收藏的商品
+      -#     %em （共23个）
+      -#   %dd
+      -#     %a.pic{:href => "#"}
+      -#       %img{:src => "/assets/sns/pic-temp/1.png"}/
+      -#     %a.name{:href => "#"} 创一简约台灯
+      -#     %span.price ￥59.00
+      -#     %a.icon.icon-like{:href => "#"} 102
+      -#   %dd
+      -#     %a.pic{:href => "#"}
+      -#       %img{:src => "/assets/sns/pic-temp/2.png"}/
+      -#     %a.name{:href => "#"} 创一简约台灯
+      -#     %span.price ￥59.00
+      -#     %a.icon.icon-like{:href => "#"} 102
+      -#   %dd
+      -#     %a.pic{:href => "#"}
+      -#       %img{:src => "/assets/sns/pic-temp/1.png"}/
+      -#     %a.name{:href => "#"} 创一简约台灯
+      -#     %span.price ￥59.00
+      -#     %a.icon.icon-like{:href => "#"} 102
+      / 我的发布会
+      %section.my-fbh
+        .hd
+          %span.rt.fr
+            %a{:href => "#"} 开发布会&gt;
+          %h3 我的发布会 ( 2 )
+        %ul
+          %li
+            .fbh-img
+              %a.fbhpic{:href => "#", :title => "七彩的幸福"}
+                %img{:alt => "七彩的幸福", :src => "/assets/sns/pic-temp/1.png"}/
+            .info
+              %h3
+                %span.start.style> 即将开始
+                复古花纹布伞
+              %p 画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，它们仿佛在细语，仿佛在有趣的比高，似乎有生命力的它们共同构成了这美好的城市...
+              %span.zp
+                参展作品：
+                %a{:href => "#"} 水壶
+                %a{:href => "#"} 陶瓷
+                %a{:href => "#"} 油画
+              %span.time 时间：2013-11-15 至 2013-11-20
+          %li
+            .fbh-img
+              %a.fbhpic{:href => "#", :title => "七彩的幸福"}
+                %img{:alt => "七彩的幸福", :src => "/assets/sns/pic-temp/1.png"}/
+            .info
+              %h3
+                %span.start.style1> 已结束
+                复古花纹布伞
+              %p 画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，它们仿佛在细语，仿佛在有趣的比高，似乎有生命力的它们共同构成了这美好的城市...
+              %span.zp
+                参展作品：
+                %a{:href => "#"} 水壶
+                %a{:href => "#"} 陶瓷
+                %a{:href => "#"} 油画
+              %span.time 时间：2013-11-15 至 2013-11-20
+      / 我常去的玩艺小组
+      %section.my-group
+        .hd
+          %h3 我常去的玩艺小组... ( 27 )
+        %ul.mydp
+          %li
+            %a{:href => "#", :title => "身边的创意生"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "身边的创意生"} 身边的创意生
+          %li
+            %a{:href => "#", :title => "一起做减法"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "一起做减法"} 一起做减法
+          %li
+            %a{:href => "#", :title => "生活就是这般"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "生活就是这般"} 生活就是这般
+          %li
+            %a{:href => "#", :title => "生活就是这般"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "生活就是这般"} 生活就是这般
+          %li
+            %a{:href => "#", :title => "生活就是这般"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "生活就是这般"} 生活就是这般
+          %li
+            %a{:href => "#", :title => "生活就是这般"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "生活就是这般"} 生活就是这般
+          %li.last
+            %a{:href => "#", :title => "生活就是这般"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "生活就是这般"} 生活就是这般
+      / 留言板...
+      %section.my-message
+        .hd
+          %h3 留言板...
+        %dd.newsfeed-comment
+          .comment-pub
+            %a.userpic{:href => "#", :title => "七彩的幸福"}
+              %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+            .comment-pub-area
+              %textarea.status-body{:autocomplete => "off", :name => "content", :placeholder => "我也来说两句..."}
+            .comment-btn
+              %input.button.button-rounded.button-flat-highlight.fr{:type => "button", :value => "发表"}
+          %ul.comment-list
+            %li
+              %p
+                %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                  %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+                %span.fr
+                  %a{:href => "#"} 删除
+                %span.comment-text
+                  %a.username{:href => "#"} 蒲公英被吹散了：
+                  这个情况能说下么，用谷歌搜索进来的….
+                  %br
+                    %a{:href => "javascript:void(0);", :rel => "popover"} 回复
+                    %em.comment-time 2013-12-18 20:02
+              .popover-content{:style => "display: none"}
+                ssssss
+            %li
+              %p
+                %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                  %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+                %span.comment-text.blockquote
+                  %em.use 引用：
+                  %span.blockquote-cont
+                    %b> “
+                    这个情况能说下么
+                %span.comment-text
+                  %a.username{:href => "#"} 蒲公英被吹散了：
+                  加我一个哦
+                  %br
+                    %a{:href => "javascript:void(0);", :rel => "popover"} 回复
+                    %em.comment-time 2013-12-18 20:02
+              .popover-content{:style => "display: none"}
+                ssssss
+    %aside.col-sub
+      = render_cell :user, :social_widget, user: resource
+      / 关注的人
+      = render_cell :user, :following, user: resource
+      / 我的小铺
+      -# .aside-lists
+      -#   %span.aside-info
+      -#     %b.fl 我的小铺
+      -#   %ul
+      -#     %li.userinfo
+      -#       %a.userpic.fl.userpic-nobd{:href => "#"}
+      -#         %img{:src => "/assets/sns/pic-temp/1.png"}/
+      -#       %p
+      -#         %a.name{:href => "#"} 简约生活创意 小铺
+      -#         %br/
+      -#         %span.from 2010-10-25 开店
+      -#     %li.userinfo
+      -#       %a.userpic.fl.userpic-nobd{:href => "#"}
+      -#         %img{:src => "/assets/sns/pic-temp/1.png"}/
+      -#       %p
+      -#         %a.name{:href => "#"} 简约生活创意 小铺
+      -#         %br/
+      -#         %span.from 2010-10-25 开店
+      / 我的说说
+      .aside-lists
+        %span.aside-info
+          %b.fl
+            我的说说(
+            %a{:href => "#"} 全部
+            )
+        %ul
+          %li.myss
+            %p 昆明的雪美到极致，却摆脱不了落地即融的命运。没看够啊~~
+            %span
+              11月13日 09:19
+              %a.fr{:href => "#"} 删除
+          %li.myss
+            %p 昆明的雪美到极致，却摆脱不了落地即融的命运。没看够啊~~
+            %p.pic
+              %img{:height => "90px", :src => "/assets/sns/pic-temp/1.png", :width => "90px"}
+            %span
+              11月13日 09:19
+              %a.fr{:href => "#"} 删除
+      / 我收藏的店铺
+      .aside-lists
+        %span.aside-info
+          %b.fl
+            我收藏的店铺 (
+            %a{:href => "#"} 12
+            )
+        %ul.mydp
+          %li
+            %a{:href => "#", :title => "身边的创意生"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "身边的创意生"} 身边的创意生
+          %li
+            %a{:href => "#", :title => "一起做减法"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "一起做减法"} 一起做减法
+          %li.last
+            %a{:href => "#", :title => "生活就是这般"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a{:href => "#", :title => "生活就是这般"} 生活就是这般
+      / 我参与的小组话题
+      .aside-lists.hot-lists
+        %span.aside-info
+          %b.fl 我参与的小组话题
+        %ul
+          %li.userinfo
+            %a.fl.hotpic{:href => "#"}
+              124891
+              %br 参与
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.from 贴图专业户 小组
+          %li.userinfo
+            %a.fl.hotpic{:href => "#"}
+              124891
+              %br 参与
+            %p
+              %a.name{:href => "#", :title => "贴图专业户午后的贴图专业户午后的贴图专业户午后的"} 贴图专业户午后的贴图专业户午后的贴图专业户午后的
+              %span.from 贴图专业户 小组
+          %li.userinfo
+            %a.fl.hotpic{:href => "#"}
+              124891
+              %br 参与
+            %p
+              %a.name{:href => "#", :title => "贴图专业户午后的贴图专业户午后的贴图专业户午后的"} 贴图专业户午后的贴图专业户午后的贴图专业户午后的
+              %span.from 贴图专业户 小组
+  .bg

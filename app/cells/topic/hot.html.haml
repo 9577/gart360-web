@@ -1,0 +1,5 @@
+.aside-lists
+  %h3.ht-title 大家正在看的话题
+  %ul.ht-list
+    - @topics.each do |topic|
+      %li= link_to topic.title, sns_group_topic_path(topic.group, topic)

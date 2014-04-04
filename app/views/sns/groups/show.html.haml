@@ -1,0 +1,40 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      .g-topic.my-group{id: "group_#{resource.id}"}
+        .topic-body
+          = render_group_logo resource
+          .topic-cont
+            .meta
+              %h3
+                %a{:href => "javascript:void(0)"}= resource.name
+              %p
+                %span= "创建于#{resource.created_at.to_minute}"
+                组长：
+                = link_to resource.user.username, user_path, class: 'lan'
+              - unless resource.user == current_user
+                .g-link= group_status current_user, @group
+            .summery= resource.description
+      %ul.nav.nav-pills
+        %li{class: params['topics'] == 'hot' ? '' : 'active'}
+          = link_to '最新话题', sns_group_path(@group, topics: 'latest')
+        %li{class: params['topics'] == 'hot' ? 'active' : ''}
+          = link_to '最热话题', sns_group_path(@group, topics: 'hot')
+        %li.pull-right
+          = link_to '我要发言 >', new_sns_group_topic_path(resource)
+      = render 'topics_list'
+    %aside.col-sub
+      = render_cell :group, :active_users, group: @group
+      - if @group.user == current_user
+        .g-text
+          = link_to members_sns_group_path(@group), class: 'lan' do
+            成员管理（#{@group.members_count}） >
+          = link_to edit_sns_group_path(@group), class: 'lan' do
+            小组管理 >
+          %a.hui{:href => "#"} 解散小组>
+      / 本小组成员也喜欢去
+      = render_cell :group, :related, group: @group
+  .bg

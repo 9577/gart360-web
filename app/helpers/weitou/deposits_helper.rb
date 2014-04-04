@@ -1,0 +1,2 @@
+module Weitou::DepositsHelper
+end

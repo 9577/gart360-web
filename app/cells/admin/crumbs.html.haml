@@ -1,0 +1,7 @@
+%ul.breadcrumb.no-border.no-radius.b-b.b-light.pull-in
+  %li
+    = link_to admin_root_path do
+      %i.fa.fa-home
+      控制面板
+    - if @main_nav && @main_nav != :dashboard
+      %li= link_to t(".#{@sec_nav}"), send("admin_#{@sec_nav}_path")

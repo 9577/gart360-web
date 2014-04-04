@@ -1,0 +1,30 @@
+= simple_form_for resource, url: collection_path, html: { class: 'form-horizontal artwork-form' } do |f|
+  
+  = f.input :name, wrapper: :sns
+  = f.input :content, wrapper: :sns, input_html: { rows: 5 }
+
+  .form-group.artworks.subtitle.upload{ data: { target: 'artwork_multi' } }
+    %label.control-label 作品图片
+    .controls
+      %p 请至少上传一张图片，单张图片请小于10M
+
+      %ul.upload-pic#photos
+
+      .action
+        = link_to 'javascript:void(0)', class: 'btn btn-default', id: 'btn-pupload' do
+          %i.fa.fa-picture-o
+          选择图片
+        %small 按住Ctrl可多选照片，最多不超过十张。
+  
+  .form-group.form-actions
+    %label.control-label
+    .controls
+      = f.button :submit, '发布作品', class: 'btn btn-primary'
+
+
+- content_for :js do
+  :coffee
+    $ ->
+      new ArtworkImageUploader
+        url: "#{global_images_path}.js"
+        button: 'btn-pupload'

@@ -1,0 +1,98 @@
+- content_for :subhead do
+  = render 'sns/shared/header/event'
+
+.wrap.gray
+  .container.cf
+    .pub-info.lang-info
+      = render_user_avatar current_user, size: '60x60', fl: true
+      %p.mydetail.fl
+        %a.name{ href: my_profile_path }= current_user.username
+        %br
+          %span
+            #{ current_user.location },  #{ current_user.confirmed_at.try(:to_date) }加入
+            %a.intro{ href: my_profile_path } [我的简介]
+            %a.intro.intro2{ href: '#' } 参加过的发布会&gt;
+    .pub-dateline
+      %ul.list3.list2.list4
+        %li
+          %span.date 召开发布会
+          %span.aricl
+          .p= link_to '创建我的发布会 &gt;'.html_safe, new_sns_event_path, class: ' btn btn-default'
+
+        %li
+          %span.date
+            11.24.2013
+            %br/
+            %span 17 : 22
+          %span.aricl
+          .p2
+            .cf.title
+              %em.pub-static.pub-static1 即将开始
+              %a.tit{:href => "#"} 复古花纹布伞
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.words 画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                参展作品：
+                %span 水壶 陶瓷 油画
+                %br
+                  时间：2013-11-15 至 2013-11-20
+                  %br
+          %p.userlist
+            %span.tit 参与的小伙伴...
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %span.num
+              123
+              %br>/
+              参与
+        %li
+          %span.date
+            11.24.2013
+            %br/
+            %span 17 : 22
+          %span.aricl
+          .p2
+            .cf.title
+              %em.pub-static.pub-static1 即将开始
+              %a.tit{:href => "#"} 复古花纹布伞
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.words 画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                参展作品：
+                %span 水壶 陶瓷 油画
+                %br
+                  时间：2013-11-15 至 2013-11-20
+                  %br
+          %p.userlist
+            %span.tit 参与的小伙伴...
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %a{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %span.num
+              123
+              %br>/
+              参与
+      .line

@@ -1,0 +1,10 @@
+%aside.col-sub
+  = link_to new_sns_group_path, class: 'btn btn-default btn-block btn-create-group' do
+    %i.fa.fa-plus
+    创建小组
+  / 最新热门小组
+  = render_cell :group, :popular
+  / 新创建的小组
+  = render_cell :group, :latest
+  / 本周活跃用户
+  = render_cell :user, :popular_in_week

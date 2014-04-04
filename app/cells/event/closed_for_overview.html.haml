@@ -1,0 +1,20 @@
+%h3.site.site2
+  人气历史发布会
+  = link_to '更多 &gt;&gt;'.html_safe, sns_events_path(filter_by_state: :closed), class: 'more'
+%ul.list2.cf
+  - @events.each do |event|
+    %li
+      = link_to sns_event_path(event), class: 'pic fl' do
+        = image_tag event.cover_url, size: '160x160'
+        %span #{ event.users_count }人已参加
+      %p.fl
+        = link_to event.subject, sns_event_path(event), class: 'tit'
+        %span.words= event.description
+        %span.info
+          参展作品：
+          %span 水壶 陶瓷 油画
+          %br/
+          时间：#{ event.start_at.to_date } 至 #{ event.end_at.to_date }
+          %br/
+          发起人：
+          = link_to event.user_name, user_profile_url(event.user)

@@ -1,0 +1,14 @@
+%dd.newsfeed-cont
+  / 图片列表
+  %p.album
+    - (artwork = activity.trackable).images.each do |image|
+      %img{:src => image.gallery_img_url(200, 200)}
+%dd.newsfeed-info
+  %span.time= timeago_tag activity.trackable.created_at, lang: 'zh-CN'
+  %span.from
+    来自
+    %a{:href => "#"} 新摄影
+    的手工艺廊，
+    %a{:href => "#"} 怀旧的漫画
+    作品
+  %a.comment{:href => "#"} 回应(#{artwork.comments_count})

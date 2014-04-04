@@ -1,0 +1,38 @@
+#carousel_rule.clearfix
+  #carousel-example-generic.carousel.slide.left{ data: { ride: 'carousel' } }
+    %ol.carousel-indicators
+      - banners.each_with_index do |b, i|
+        %li{ class: i.zero? ? 'active' : '', data: { :'slide-to' => i.to_s, target: '#carousel-example-generic' }}
+    .carousel-inner
+      - banners.each_with_index do |b, i|
+        .item{ class: i.zero? ? 'active' : '' }
+          = link_to '#' do
+            = image_tag b.banner_url, alt: b.title
+
+    / Controls
+    -# %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+    -#   %span.glyphicon.glyphicon-chevron-left
+    -# %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+    -#   %span.glyphicon.glyphicon-chevron-right
+  .rule.right
+    %ul#myTab.nav.nav-tabs
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#rule_list"} 竞拍规则
+      -# %li
+        -# %a{"data-toggle" => "tab", :href => "#proxy"} 代理规则
+    .tab-content
+      #rule_list.tab-pane.active
+        %ul.list-unstyled.rule-count
+          %li
+            %a{:href => "#"} 保证金收取规则
+          %li
+            %a{:href => "#"} 保证金收取规则保证金收取规则
+          %li
+            %a{:href => "#"} 保证金收取规则保证金收取规则
+        .text-center
+          = image_tag 'weitou/rule-icone.png'
+        .rule-desc
+          %span 质量保障
+          %span 官方认证
+          %span 安全交易
+      -# #proxy.tab-pane

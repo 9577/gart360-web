@@ -1,0 +1,16 @@
+.white-warpper
+  .layout990.recharge-finish
+    %h1
+      我的个人账户
+      %span 我的收银台
+    .finish
+      %h2 付款完成！
+      %p
+        如果页面还没有跳转，请点击
+        = link_to '跳转至订单详情', order_path(resource), class: 'orange'
+      %p
+        您可以在
+        = link_to '竞拍个人中心', my_profile_path, class: 'orange'
+        %span ->
+        = link_to '我的竞拍订单', weitou_my_closed_products_path, class: 'orange'
+        查看这笔充值的支出详细

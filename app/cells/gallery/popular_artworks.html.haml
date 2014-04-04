@@ -1,0 +1,12 @@
+- @artworks.each do |artwork|
+  %ul.reflow-col
+    %li.reflow-item
+      = link_to '#', class: 'pic' do
+        = image_tag artwork.avatar_url
+      = link_to artwork.name, '#', class: 'name'
+      %p.cf.userinfo
+        = render_user_avatar artwork.gallery.user, size: '36x36', fl: true
+        %span
+          = link_to artwork.gallery.user_name, user_profile_url(artwork.gallery.user), class: 'user'
+          %br
+          = link_to artwork.gallery.name, sns_gallery_path(artwork.gallery)

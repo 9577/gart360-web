@@ -1,0 +1,61 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    创意廊
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= Gallery.human_attribute_name(:name)
+          %th= Gallery.human_attribute_name(:content)
+          %th= Gallery.human_attribute_name(:tag_list)
+          %th= Gallery.human_attribute_name(:is_featured)
+          %th= Gallery.human_attribute_name(:artworks_count)
+          %th= Gallery.human_attribute_name(:user_id)
+          %th= Gallery.human_attribute_name(:created_at)
+          %th 操作
+          %th
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.name
+            %td= resource.content
+            %td= resource.tag_list
+            %td
+              - if resource.is_featured?
+                %span.label.label-success 已加入精选
+              - else
+                无   
+            %td= resource.artworks_count
+            %td= resource.user.username     
+            %td= resource.created_at.to_date
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  %li 
+                    - if resource.is_featured?
+                      = link_to resource_path(resource, event: :mark_as_unfeatured), method: :put do
+                        %i.fa.fa-thumbs-o-down
+                        取消精选
+                    - else
+                      = link_to resource_path(resource, event: :mark_as_featured), method: :put do
+                        %i.fa.fa-thumbs-o-up
+                        加入精选
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂时还没有牌品数据，请上传。
+

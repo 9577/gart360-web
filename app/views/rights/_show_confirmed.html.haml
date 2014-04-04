@@ -1,0 +1,83 @@
+= simple_form_for resource, url: order_right_path(parent, resource), html: { class: 'form-horizontal row-border' } do |f|
+  / 除了最后一条的所有 descriptions
+  - @descriptions[0..(@descriptions.count - 2)].each do |description|
+    .form-group
+      %label.col-sm-2.text-right 我的描述：
+      .col-sm-10
+        .my_describe
+          %p= description.body
+          %p.gray6= l description.created_at
+    - if description.response
+      .form-group
+        %label.col-sm-2.text-right 客服回复：
+        .col-sm-10
+          .my_describe
+            %p= description.response
+            %p.gray6= l description.created_at
+
+  / 最后一条 description
+  - last_description = @descriptions.last
+  .form-group
+    %label.col-sm-2.text-right 我的描述：
+    .col-sm-10
+      .my_describe
+        %p= last_description.body
+        %p.gray6= l last_description.created_at
+  .form-group
+    %label.col-sm-2.text-right 客服回复：
+    .col-sm-10
+      .my_describe
+        %p= last_description.response
+        %p.gray6= l last_description.created_at
+      .satisfied
+        您对客服回复是否满意：
+        %label.check-right
+          %input.pleased{name: 'optionsRadios', type: 'radio', value: 'true'}
+            满意
+        %label
+          %input.unpleased{name: 'optionsRadios', type: 'radio', value: 'false'}
+            不满意
+        %span.orange 10天内未选择，系统将自动将此次维权视为完成。
+      .discontent-default
+        .hope 是否确认此次维权已达到您的期望？
+        %button.btn.btn-success{:type => "submit"} 确认
+.discontent.g-hidden
+  = simple_form_for resource.descriptions.new, url: add_description_order_right_path(parent, resource), html: { class: 'form-horizontal row-border', multipart: true } do |f|
+    %p.send-again.text-center 如客服的解答没有达到您的期望，请继续发起申请：
+    .form-group
+      %label.col-sm-2.control-label 维权描述：
+      .col-sm-10
+        = f.text_area :body
+    .form-group
+      %label.col-sm-2.text-right 上传凭证：
+      .col-sm-10
+        .update-img.clearfix
+          .img-item
+            %img{:alt => "", :src => "images/tc.jpg"}
+              %span x
+          .img-item
+            %img{:alt => "", :src => "images/tc.jpg"}
+              %span x
+          .img-item
+            %img{:alt => "", :src => "images/tc.jpg"}
+              %span x
+        %input{:id => "", :name => "", :type => "file"}
+          %br
+            %span.gray6 每张图片大小不超过5M，支持JPG、PNG格式，最多上传5张
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        %button.btn.btn-success{:type => "submit"} 提交申请
+
+- content_for :js do
+  :javascript
+    $(function(){
+      $('.pleased').click(function(){
+        $(".discontent-default").show();
+        $(".discontent").hide();
+      });
+      $('.unpleased').click(function(){
+        $(".discontent-default").hide();
+        $(".discontent").show();
+      });  
+
+    })

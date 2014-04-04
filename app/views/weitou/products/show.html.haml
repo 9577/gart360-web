@@ -1,0 +1,268 @@
+.layout990
+  .bread-nav
+    %ol.breadcrumb
+      %li= link_to '首页', root_path, class: 'gray3'
+      %li= link_to '竞拍', weitou_root_path, class: 'gray3'
+      %li.active= resource.title
+  .preview-sale-head.clearfix
+    .preview-sale-slider.left
+      .picFocus
+        .bd
+          %ul.list-unstyled
+            - resource.photos.limit(4).each do |photo|
+              %li= image_tag photo.image_url(420, 420)
+        .hd
+          %ul.list-unstyled
+            - resource.photos.limit(4).each do |photo|
+              %li= image_tag photo.image_url(101, 65)
+
+    = render resource.state_text.to_s
+
+  .preview-sale-info
+    %ul.list-unstyled.preview-sale-tabs.clearfix
+      %li.active_li 拍品描述
+      %li 作者介绍
+      %li 出价记录(12)
+      %li 服务保障
+    .auction-describe
+      .normal-describe
+        %h5.acution-describe-title 基本信息：
+        %table.describe-table
+          - cut_array(resource.product_attributes).each do |v1, v2|
+            %tr
+              %td.td1= v1.name_text
+              %td= v1.value
+              - unless v2.nil?
+                %td.td1= v2.name_text
+                %td= v2.value
+        %h5.acution-describe-title 专家评语：
+        .preview-comment
+          - resource.reviews.each do |review|
+            %p 
+              = review.body
+        %h5.acution-describe-title 详细信息：
+        .preview-detailed.clearfix
+          = resource.detail.body.html_safe
+
+        = render_cell :product, :related_products, product: resource if resource.auction?
+    .author-introduce.g-hidden
+      .introduce.clearfix
+        .introduce-img
+          %img{ :'data-src' => 'holder.js/130x130' }
+        .introduce-info
+          .name
+            %a.blackish-green{:href => "#"} OlgaWiltshire
+            %a.follow{:href => "#"}
+              %span.orange +
+              关注
+          %table
+            %tr
+              %td 性别：女
+              %td 生日：1988年9月25日
+              %td 常住地：上海 浦东新区
+            %tr
+              %td
+                已创建
+                %span.orange 3
+                个创艺廊
+              %td
+                共发布
+                %span.orange 20
+                个作品
+              %td
+                共召开了
+                %span.orange 10
+                场发布会
+          .go
+            %a.gray7{:href => "#"} 去看看 OlgaWiltshire的主页>>
+      %dl
+        %dt 个人介绍
+        %dd.desc 个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍个人介绍
+        %dt 教育经历：
+        %dd
+          2013年入学
+          %span 中央民族大学
+          %span 中国画专业
+          %span 硕士
+        %dt 参展经历：
+        %dd
+          %table
+            %tr
+              %th 作品名称
+              %th 展览名称
+              %th 参展时间
+              %th 参展地点
+            %tr
+              %td 山水国画
+              %td 上海国画艺术展
+              %td 2013年9月20日
+              %td 上海浦东
+            %tr
+              %td 山水国画
+              %td 上海国画艺术展
+              %td 2013年9月20日
+              %td 上海浦东
+        %dt 获奖经历：
+        %dd
+          %table
+            %tr
+              %th 作品名称
+              %th 展览名称
+              %th 参展时间
+              %th 参展地点
+            %tr
+              %td 山水国画
+              %td 上海国画艺术展
+              %td 2013年9月20日
+              %td 上海浦东
+            %tr
+              %td 山水国画
+              %td 上海国画艺术展
+              %td 2013年9月20日
+              %td 上海浦东
+        %dt 他的作品：
+        %dd
+          .auction-list.clearfix
+            .item
+              .cover
+                %a{:href => "#"}
+                  %img{:alt => "产品1", :'data-src' => 'holder.js/228x228'}/
+              .meta-info
+                %h3
+                  %a.gray3{:href => "#"} 精雕细琢和田羊脂白玉山子雕摆件
+            .item
+              .cover
+                %a{:href => "#"}
+                  %img{:alt => "产品1", :'data-src' => 'holder.js/228x228'}/
+              .meta-info
+                %h3
+                  %a.gray3{:href => "#"} 精雕细琢和田羊脂白玉山子雕摆件
+            .item
+              .cover
+                %a{:href => "#"}
+                  %img{:alt => "产品1", :'data-src' => 'holder.js/228x228'}/
+              .meta-info
+                %h3
+                  %a.gray3{:href => "#"} 精雕细琢和田羊脂白玉山子雕摆件
+            .item
+              .cover
+                %a{:href => "#"}
+                  %img{:alt => "产品1", :'data-src' => 'holder.js/228x228'}/
+              .meta-info
+                %h3
+                  %a.gray3{:href => "#"} 精雕细琢和田羊脂白玉山子雕摆件
+    .buy-history.g-hidden
+      %table
+        %tr
+          %th
+          %th 竞拍人
+          %th 价格
+          %th 时间
+        %tr.orange
+          %td
+            %span.lead-user 领先
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+        %tr
+          %td
+            %span.out 出局
+          %td 匿名用户
+          %td ￥2000.00
+          %td 2013-09-30 12:56
+    .server-ensure.g-hidden
+      %h2 卖家服务保障
+      %dl
+        %dt 一、卖家承诺
+        %dd
+          %p 1. 卖家承诺所发拍品均为真品。
+          %p 2. 卖家成交不卖，竞买成功人保证金退一赔一。
+          %p 3. 竞拍成功，拍品全国包邮。
+      %dl
+        %dt 二、维权服务流程
+        %dd
+          .server-img
+            = image_tag 'invest/server.png', alt: '维权服务流程'
+      %dl
+        %dt 三、基础服务
+        %dd
+          %p 如实描述承诺
+          %p 卖家承诺如实描述，一旦发现描述不符的拍品，买家可在交易成功后指定期限内向玩艺儿网投诉卖家。
+      %dl
+        %dt 四、售后服务保障
+        %dd 卖家承诺提供全面的售后服务，买家在竞拍过程中及竞拍成功后，如遇售中或售后问题，可以要求玩艺儿网介入处理。
+      %dl
+        %dt 五、七天鉴赏期
+        %dd 此款拍品卖家提供“七天鉴赏”的保障服务，签收货物7天内可以退换
+
+- content_for :js do
+  :coffee
+    $ ->
+      lxfEndtime()
+
+      jQuery(".picFocus").slide
+        mainCell: ".bd ul"
+        effect: "left"
+        autoPlay: true
+
+      jQuery(".bid-history").slide
+        mainCell: ".infoList"
+        autoPlay: true
+        effect: "topMarquee"
+        vis: 4
+        interTime: 50
+
+
+      $div_li = $(".preview-sale-tabs li")
+      $div_li.click ->
+        $(this).addClass("active_li").siblings().removeClass "active_li"
+        index = $div_li.index(this)
+        $(".preview-sale-info > div").eq(index).show().siblings("div").hide()

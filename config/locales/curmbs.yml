@@ -1,0 +1,25 @@
+zh-CN:
+  admin:
+    crumbs:
+      categories: 竞拍分类
+      auctions: 竞拍专场
+      users: 用户管理
+      products: 竞拍商品
+      rights: 维权
+      experts: 专家
+      pages: 静态页面
+      basic: 基本信息
+      orders: 订单管理
+      ads: 广告管理
+      groups: 小组管理
+      topics: 话题管理
+      events: 发布会
+      galleries: 创意廊
+      artworks: 廊作品
+      default_tags: 默认标签
+      withdraws: 提现管理
+      daily_items: 每日一砍
+      episodes: 画报
+      wikis: Wiki
+      wiki_categories: Wiki目录
+      collection_items: 换一换

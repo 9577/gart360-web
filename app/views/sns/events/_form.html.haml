@@ -1,0 +1,58 @@
+= simple_form_for resource, url: collection_path, html: { class: 'form-horizontal event-form' } do |f|
+
+  = f.input :subject, wrapper: :sns
+  = f.input :description, wrapper: :sns, input_html: { rows: 5 }
+
+  .form-group.columns
+    %label.control-label
+      %abbr{ title: 'required' } *
+      起止时间
+    .controls
+      = f.input :start_at, as: :string, wrapper: false, label: false, input_html: {class: 'datepicker'}
+      = f.input :end_at, as: :string, wrapper: false, label: '至', required: false, input_html: {class: 'datepicker'}
+
+  .form-group.artworks.subtitle
+    %label.control-label 作品图片
+    .controls
+      %p
+        已添加作品（
+        %span 5
+        \/ 20），至少上传一张
+
+
+      %ul.fl.upload-pic
+        %li
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/2.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/2.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/2.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/2.png"}/
+        %li
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %li.add
+          %span>
+            还可上传
+            %br>/
+            13张
+          继续添加+
+
+  .form-group.form-actions
+    %label.control-label
+    .controls
+      = f.button :submit, '创建发布会', class: 'btn btn-primary'
+
+- content_for :js do
+  :coffee
+    $ ->
+      $('.datepicker').datepicker
+        language: 'zh-CN'

@@ -1,0 +1,2 @@
+module Sns::EventsHelper
+end

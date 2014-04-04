@@ -1,0 +1,7 @@
+%li
+  %a.userpic.pic.fl{href: "#"}
+    = image_tag result.avatar_url
+  %p.fl
+    %a.name{href: "#"} #{result.username}
+    %span.words #{result.followers_count}人已关注
+    %span.info #{result.bio}

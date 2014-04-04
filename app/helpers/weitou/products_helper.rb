@@ -1,0 +1,2 @@
+module Weitou::ProductsHelper
+end

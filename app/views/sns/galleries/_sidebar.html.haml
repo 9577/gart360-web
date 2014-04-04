@@ -1,0 +1,41 @@
+%aside.col-sub
+  .lang-info
+    .lang-link
+      = link_to new_sns_gallery_path, class: 'btn btn-default btn-block' do
+        %i.fa.fa-plus
+        创建我的创艺廊 
+    / 热门艺术家
+
+    = render_cell :gallery, :popular_artists
+
+    .lang-link
+      = link_to sns_images_path, class: 'btn btn-default' do
+        %i.fa.fa-picture-o
+        发布图片作品
+    / 可能喜欢的作品
+    .aside-lists
+      %span.aside-info
+        %b.fl 可能喜欢的作品
+        %a.fr.icon.icon-refresh{:href => "#"} 换一换
+      %ul
+        %li.userinfo
+          %a.userpic.fl.userpic-nobd{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %br
+              %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+              %span.from
+                来自
+                %a{:href => "#"} 新摄影
+        %li.userinfo
+          %a.userpic.fl.userpic-nobd{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %br
+              %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+              %span.from
+                来自
+                %a{:href => "#"} 新摄影
+                的手工艺廊

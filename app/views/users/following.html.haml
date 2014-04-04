@@ -1,0 +1,199 @@
+- content_for :subhead do
+  = render 'sns/shared/header/user'
+
+
+.wrap.home
+  .container.cf
+    .col-main
+      %h3.site.site2
+        我关注的人(
+        %span.num> 123
+        )
+      .nav-focus.cf
+        %a.cur{:href => "#"} 全部
+        %span |
+        %a.nor{:href => "#"}
+          同学
+          %em.icon.icon-edit
+        %span |
+        %a.nor{:href => "#"}
+          画友
+          %em.icon.icon-edit
+        %input{:type => "button", :value => "新建分组"}/
+      .recomment-cont.gray.cf
+        %dl
+          %dt 以下是推荐的玩艺儿达人，关注他们发现更多有趣的生活吧！
+          %dd.cur 全部
+          %dd 画家
+          %dd 摄影
+          %dd 雕塑
+          %dd 读书
+          %dd 旅行
+          %dd 音乐
+        %ul.recomm.recommlist.cf
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br
+                %span.focus 12306 关注
+                %br/
+                %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br
+                %span.focus 12306 关注
+                %br/
+                %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br
+                %span.focus 12306 关注
+                %br/
+                %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br
+                %span.focus 12306 关注
+                %br/
+                %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br
+                %span.focus 12306 关注
+                %br/
+                %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br
+                %span.focus 12306 关注
+                %br/
+                %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}
+        .refresh.cf
+          %a.fr.icon.icon-refresh{:href => "#"} 换一换
+      %ul.userman
+        %li.userinfo
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %span.str
+              %em>
+              生活其实可以很简单，艺术源于生活
+          %p.btn
+            %a{:href => "#"}
+              未分组
+              %b.caret
+            %br/
+            %a.cancel{:href => "#"} 取消关注
+        %li.userinfo
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %span.str
+              %em>
+              生活其实可以很简单，艺术源于生活
+          %p.btn
+            %a{:href => "#"}
+              未分组
+              %b.caret
+            %br/
+            %a.cancel{:href => "#"} 取消关注
+        %li.userinfo
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %span.str
+              %em>
+              生活其实可以很简单，艺术源于生活
+          %p.btn
+            %a{:href => "#"}
+              未分组
+              %b.caret
+            %br/
+            %a.cancel{:href => "#"} 取消关注
+      .page
+        %span 上一页
+        %a.cur{:href => "#"} 1
+        %a{:href => "#"} 2
+        %a{:href => "#"} 3
+        %a{:href => "#"} 4
+        %span ...
+        %a{:href => "#"} 19
+        %a{:href => "#"} 20
+        %a{:href => "#"} 下一页
+      %br/
+      %br/
+      %br/
+      %ul.dlg.dlg-group
+        %li
+          %label
+            %input{:type => "checkbox"}>/
+            我的同学
+        %li
+          %label
+            %input{:type => "checkbox"}>/
+            朋友
+        %li
+          %label
+            %input{:type => "checkbox"}>/
+            特别关注
+        %li.add
+          %input{:type => "button", :value => "新建分组"}/
+      %br/
+      %ul.dlg.dlg-edit
+        %li
+          %a{:href => "#"} 删除分组
+        %li
+          %a{:href => "#"} 改组名
+      %br/
+      %br/
+      .dlg.dlg-create
+        %span.tit 创建分组
+        .rows.cf
+          %input.input.input-s{:type => "text", :value => ""}/
+        %span 最多可建10个，还可建8个
+        .rows.rows-btn
+          %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "创建"}
+            %input.button.button-rounded{:type => "button", :value => "取消"}
+      %br/
+      %br/
+      %br/
+      %br/
+    %aside.col-sub
+      / 关注的人
+      .focuslist
+        %span.aside-info
+          %b.fl
+            我关注的人(
+            %i> 39
+            )
+          %a.fr{:href => "#"} 全部&gt;&gt;
+        %p
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/2.png"}/
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/2.png"}/
+        %span.aside-invite
+          %a{:href => "#"} 邀请我的朋友加入玩艺儿&gt;
+  .bg

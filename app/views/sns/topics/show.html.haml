@@ -1,0 +1,120 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      %h3.site.site2
+        %span.pop>
+          = link_to '玩艺小组', sns_groups_path, class: 'crumb-gray'
+          >
+          = link_to "#{parent.name}小组", sns_group_path(parent), class: 'crumb-gray'
+          >
+        话题详细
+      .g-content
+        %h2= resource.title
+        .newsfeed
+          %dl
+            %dt
+              = link_to user_path(@topic.user), class: 'userpic' do
+                = image_tag @topic.user.avatar_url, :height => "60", :width => "60"
+              来自
+              = link_to @topic.user.username, user_path(@topic.user)
+              %span.time.fr= @topic.created_at.to_minute
+              .g-bar
+                - unless @topic.user == current_user
+                  = follow_status @topic.user
+            %dd.newsfeed-cont
+              = @topic.body
+            %dd.newsfeed-info
+              %span
+                %b 分享到：
+              / JiaThis Button BEGIN
+              .jiathis_style_24x24
+                %a.jiathis_button_qzone
+                %a.jiathis_button_tsina
+                %a.jiathis_button_tqq
+                %a.jiathis_button_weixin
+                %a.jiathis_button_renren
+                %a.jiathis.jiathis_txt.jtico.jtico_jiathis{:href => "http://www.jiathis.com/share", :target => "_blank"}
+              %script{:charset => "utf-8", :src => "http://v3.jiathis.com/code/jia.js", :type => "text/javascript"}
+              / JiaThis Button END
+              - if current_user && current_user == @topic.user
+                %span.g-rlink
+                  %span
+                    = link_to '编辑', edit_sns_group_topic_path(parent, resource)
+                    |
+                    = link_to '删除', sns_group_topic_path(parent, resource), method: 'delete', data: {confirm: '确定？'}
+
+            %span.g-rlink.pull-right
+              %a.button.button-rounded.button-flat-highlight{:href => "#reply_body", onclick: "$('#reply_body').focus();"}= "+ 发表回应"
+        .my-message
+          .hd
+            %span.fr
+              #{resource.replies_count} 条回应(
+              %span.hui> 只看楼主
+              )
+            %h3 回应...
+          .newsfeed-comment
+            %ul.comment-list
+              - @replies.each do |reply|
+                %li
+                  %p
+                    = link_to user_path, title: reply.user.username, class: 'userpic fl' do
+                      = image_tag reply.user.avatar_url, height: 36, width: 36
+                    - if reply.quote.present?
+                      %span.comment-text.blockquote
+                        %em.use 引用：
+                        %span.blockquote-cont
+                          %b> “
+                          = reply.quote.body
+                    %span.comment-text
+                      - if current_user && reply.user == current_user
+                        %span.fr
+                          = link_to '删除', sns_reply_path(reply), method: 'delete', data: {confirm: '确定？'}
+                      = link_to reply.user.username, user_path(reply.user), class: 'username'
+                      = reply.body
+                      %br
+                        %a{:href => "#"} 回复
+                        %em.comment-time #{time_ago_in_words reply.created_at} 前
+            %h3.site.site3 你的回应...
+            - unless @relation == :member
+              .no-comment-pub
+                %p
+                  %span
+                    - if current_user
+                      - case @relation
+                      - when :guest
+                        = link_to '加入小组', sns_group_group_users_path(parent, topic_id: @topic.id), method: 'post'
+                      - when :pending
+                        = link_to '等待批准', 'javascript:void(0)'
+                    - else
+                      = link_to '加入小组', sns_group_group_users_path(parent, topic_id: @topic.id), method: 'post'
+
+                  和#{parent.members_count}人一起讨论该话题
+              %br/
+            - else
+              .comment-pub
+                = simple_form_for [:sns, @topic.replies.build] do |f|
+                  = f.input :topic_id, as: :hidden
+                  = f.input :body, label: false, wrapper_html: {class: 'comment-pub-area'}
+                  .comment-btn
+                    = f.submit '发表', class: 'button button-rounded button-flat-highlight fr'
+
+    %aside.col-sub
+      / 本话题来自
+      .aside-lists.ht
+        %h3.site.site2 本话题来自
+        %ul
+          %li.userinfo
+            = link_to image_tag(parent.logo_url), sns_group_path(parent), class: 'userpic fl userpic-nobd'
+            %p
+              = link_to parent.name, sns_group_path(parent), class: 'name'
+              %br
+                %span.from #{parent.members_count}人加入
+                = group_status current_user, @group
+                %br/
+                = link_to '我要发言', new_sns_group_topic_path(@group), class: 'fy'
+      / 大家正在看的话题
+      = render_cell :topic, :hot
+  .bg

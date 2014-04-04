@@ -1,0 +1,86 @@
+.wrap.home
+  .container.cf
+    .col-main
+      .hd
+        %h3 精选创艺廊
+        - if @featured_gallery_groups.size > 1
+          .slide-btns
+            %a.prev{ href: '#' } ‹
+            %ol.slide-dots
+              - @featured_gallery_groups.each_with_index do |g, i|
+                %li
+                  %a{ :'data-index' => (i+1).to_s, href: '#', class: i.zero? ? 'active' : '' }
+          %a.next{ href: '#' } ›
+      %section
+        .J_Slide
+          - @featured_gallery_groups.each_with_index do |g, i|
+            %dl.opus{ class: i.zero? ? 'active' : '' }
+              - g.each do |gallery|
+                - url = sns_gallery_path(gallery)
+
+                %dd
+                  = link_to url, class: 'pic' do
+                    = image_tag gallery.cover_artwork_images[0]
+                  %ul.piclist
+                    - gallery.cover_artwork_images[1..2].each do |img|
+                      %li= link_to image_tag(img), url
+                    %li.zp-count
+                      .muns
+                        = link_to url do
+                          %span= gallery.artworks_count
+                          作品
+                  .zb-info
+                    = link_to gallery.name, url
+                    %span.fr= link_to gallery.user_name, user_profile_url(gallery.user)
+
+      %section
+        %h3 精选作品
+        %dl.opus
+          - @featured_artworks.each do |artwork|
+            %dd
+              = link_to '#', class: 'pic' do
+                = image_tag artwork.avatar_url
+              %a.name{:href => "#"} 创一简约台灯
+              %br/
+              %span.icon.icon-like
+                %i.fa.fa-heart
+                = artwork.fans_count
+      %section.opus
+        %h3 热门作品
+        = render_cell :gallery, :popular_artworks
+
+    = render 'sidebar'
+  .bg
+
+- content_for :js do
+  :coffee
+
+    initSlide = ->
+      itemWidth = 700
+
+      $(".J_Slide").slidesjs
+        width: 700
+        height: 347
+        navigation:
+          active: false
+
+        pagination:
+          active: false
+
+        callback:
+          complete: (number) ->
+            $(".slide-dots li a").removeClass("active").eq(number - 1).addClass "active"
+
+      #修复传递width无效的bug
+      $('.slidesjs-container').width itemWidth
+      $('.slidesjs-control').width itemWidth
+      $('.slide-btns .next').click (event) ->
+        event.preventDefault()
+        $('.J_Slide').slidesjs 'next'
+
+      $('.slide-btns .prev').click (event) ->
+        event.preventDefault()
+        $('.J_Slide').slidesjs 'previous'
+
+    $ ->
+      initSlide()

@@ -1,0 +1,14 @@
+%dl.recomm
+  %dt.aside-info
+    %b.fl 你可能感兴趣的人
+    %a.fr.icon.icon-refresh{:href => "#"} 换一换
+  - @users.each do |user|
+    %dd.userinfo
+      = render_user_avatar user, size: '60x60', fl: true
+      %p
+        = link_to user.username, user_profile_url(user), class: 'name'
+        %br/
+        = follow_link_to user
+      %span.str
+        %em
+        生活其实可以很简单，艺术源于生活

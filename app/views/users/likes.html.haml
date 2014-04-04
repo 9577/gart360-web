@@ -1,0 +1,35 @@
+- content_for :subhead do
+  = render 'sns/shared/header/user'
+
+.wrap.home
+  .container.cf
+    .col-main
+      = render 'profile_nav'
+      .lang-nav
+        = link_to '按时间排序', my_likes_path, class: params.key?(:order) ? '' : 'cur'
+        %span |
+        = link_to '按人气排序', my_likes_path(order: :update_at), class: params.key?(:order) ? 'cur' : ''
+      %section.newsfeed.fav
+        - @likes.each do |like|
+          - target = like.target
+          %dl
+            %dt
+              = link_to '#', class: 'favpic' do
+                = image_tag target.images.first.img, alt: target.name
+              %h3
+                = link_to target.name, sns_gallery_artwork_path(target.gallery, target)
+              %p
+                来自
+                = link_to target.gallery.name, sns_gallery_path(target.gallery)
+                %span 的手工艺廊
+              %span= target.content
+            %dd.newsfeed-info
+              %span.fav 喜欢#{target.fans_count}
+              %span.favtime
+                = l like.created_at
+        .page
+          = paginate @likes
+    %aside.col-sub
+      .myshop
+        %a{:href => "#"} 我的小铺>>
+  .bg

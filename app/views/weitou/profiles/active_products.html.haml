@@ -1,0 +1,45 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+
+    = render 'sidebar'
+    
+    .recharge-con.right
+      %p.recharge-name 正在竞拍的拍品
+      .selling-list
+        - if @bids.empty?
+          %p.empty-content 暂无正在竞拍的拍品
+        - else
+          %table
+            %tr
+              %th.selling-left 拍品信息
+              %th 起拍价
+              %th 当前价
+              %th 竞拍时间
+              %th 状态
+              %th 操作
+            - @bids.each do |bid|
+              - product = bid.product
+              %tr
+                %td.selling-left
+                  = image_tag product.photos.first.data, alt: product.title, width: 80
+                  = link_to weitou_product_path(product) do
+                    = product.title
+                %td.gray6 ￥#{product.base_price}
+                %td
+                  %span.orange ￥#{product.current_price}
+                %td.gray6.font12
+                  = product.start_at.strftime('%F %R')
+                  %br
+                  至
+                  %br
+                  = product.end_at.strftime('%F %R')
+                %td
+                  %span.label{ class: bid.active? ? 'label-warning' : 'label-gray' }
+                    = bid.state_text
+                  %br
+                    = link_to '查看出价记录', "#{weitou_product_path(product)}#bid_history", class: 'blackish-green line'
+                %td
+                  = link_to '继续出价', weitou_product_path(product), class: 'orange'
+                  %br
+                  = link_to '取消竞拍', '#', class: 'gray6 line'
+                %td

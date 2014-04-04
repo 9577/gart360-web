@@ -1,0 +1,13 @@
+.aside-lists
+  %span.aside-info
+    %b.fl 我的小组热门话题
+  %ul
+    - @topics.each do |topic|
+      %li.userinfo.add
+        %p
+          = link_to topic.title, sns_group_topic_path(topic.group, topic), class: 'name'
+          %br
+            %span.from
+              来自：
+              = link_to current_user.username, user_path(current_user), class: 'lan'
+              小组

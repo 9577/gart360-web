@@ -1,0 +1,43 @@
+.row
+  .col-md-8
+    %section.panel.panel-default
+      %header.panel-heading 小组管理
+
+      .panel-body
+        = simple_form_for resource, url: url, html: { class: 'form-horizontal row-border', multipart: true } do |f|
+          = f.input :name, autofocus: true
+          = f.input :description
+          = f.input :tag_list
+          .global_upload_wrapper
+            .form-group.upload.global_upload
+              %label.control-label.col-md-2= Group.human_attribute_name(:logo)
+              .controls.clearfix.col-md-10
+                .img-holder
+                  = image_tag('sns/user-header-bg.png', size: '120x120')
+                .action
+                  = link_to '#', class: 'btn btn-default', id: 'btn-pupload' do
+                    %i.glyphicon.glyphicon-picture
+                    选择图片
+                  %p 
+                    %small 
+                      %p 支持png、jpg、gif格式
+                      %p 大小不超过1M
+                      %p.g-block
+                        %b 
+            = f.input :logo, as: :hidden, input_html: { class: 'target_input' }
+          .form-actions
+            = f.button :submit, class: 'btn btn-info btn-large pull-right'
+
+  .col-md-4
+    %section.panel.panel-default
+      %header.panel-heading.font-bold
+        %i.fa.fa-lightbulb-o
+        帮助中心
+      .panel-body
+        %p 这里添加一些帮助性的文字
+- content_for :js do
+  :coffee
+    $ ->
+      new MainUploader
+        url: "#{admin_global_images_path}.js"
+        button: 'btn-pupload'

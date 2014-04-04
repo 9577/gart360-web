@@ -1,0 +1,49 @@
+%section.panel.panel-default
+  %header.panel-heading.font-bold
+    %i.fa.fa-bars
+    提现管理
+  %table.table.table-hover.table-bordered
+    %thead
+      %tr
+        %th= Withdraw.human_attribute_name(:code)
+        %th= Withdraw.human_attribute_name(:bank_name)
+        %th= Withdraw.human_attribute_name(:card_number)
+        %th= Withdraw.human_attribute_name(:amount)
+        %th= Withdraw.human_attribute_name(:name)
+        %th= Withdraw.human_attribute_name(:mobile_phone)
+        %th= Withdraw.human_attribute_name(:state)
+        %th= Withdraw.human_attribute_name(:description)
+        %th
+    %tbody
+      - collection.each do |resource|
+        %tr
+          %td= resource.code
+          %td= resource.bank_name
+          %td= resource.card_number
+          %td= resource.amount
+          %td= resource.name
+          %td= resource.mobile_phone
+          %td= resource.state_text
+          %td= resource.description
+          %td 
+            .btn-group
+              %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                %i.fa.fa-pencil
+              %ul.dropdown-menu
+                - unless resource.rejected?
+                  - if resource.pending?
+                    %li 
+                      = link_to resource_path(resource, event: 'process'), method: :put do
+                        %i.fa.fa-pencil 
+                        正在处理
+                    %li 
+                      = link_to resource_path(resource, event: 'reject'), method: :put do
+                        %i.fa.fa-pencil 
+                        拒绝
+                  - elsif resource.processing?
+                    %li 
+                      = link_to resource_path(resource, event: 'transfer'), method: :put do
+                        %i.fa.fa-pencil 
+                        已经转账
+  .panel-footer.clearfix
+    = paginate collection

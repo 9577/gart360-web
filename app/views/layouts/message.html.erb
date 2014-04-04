@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>t('layout.title')</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!--[if lt IE 9]>
+    <%#= javascript_include_tag Settings.static_host+'/js/html5.js' %>
+  <![endif]-->
+  <%#= stylesheet_link_tag Settings.static_host+'/css/base.css' %>
+  <%#= stylesheet_link_tag Settings.static_host+'/css/main.css' %>
+  <%#= stylesheet_link_tag Settings.static_host+'/css/patch.css' %>
+  <%#= javascript_include_tag Settings.static_host+'/js/jquery-1.10.2.min.js' %>
+  <%#= javascript_include_tag Settings.static_host+'/js/jquery.validate.min.js' %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="setting">
+  <%= render 'shared/nav' %>
+  <div class="headspace"></div>
+  <div class="container cf">
+    <menu class="setting-aside">
+      <li><a href="<%= url_for new_user_info_path %>"><em class="icon icon-config"></em>账号设置</a></li>
+      <li><a href="<%= url_for conversations_path %>"><em class="icon icon-msg"></em>我的消息</a></li>
+      <li><a href="<%= url_for recbox_conversations_path %>"><em class="icon icon-notice"></em>我的提醒</a></li>
+      <!-- <li><a href="#"><em class="icon icon-dingdan"></em>我的订单</a></li> -->
+<!--       <li><a href="#"><em class="icon icon-shopcart"></em>我的购物车</a></li> -->
+    </menu>
+    <%= yield %>
+  </div>
+  <%= render 'shared/footer' %>
+</body>
+</html>
+<%= debug(params) if Rails.env.development? %>

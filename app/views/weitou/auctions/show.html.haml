@@ -1,0 +1,102 @@
+.layout990
+  .bread-nav
+    %ol.breadcrumb
+      %li= link_to '首页', sns_root_path, class: 'gray3'
+      %li= link_to '竞拍', weitou_root_path, class: 'gray3'
+      %li.active= resource.title
+  .special-banner
+    = image_tag resource.banner_url
+  .special-time.clearfix
+    .special-time-name.left= resource.title
+    .special-time-end.left
+      竞拍时间：
+      %span.gray3= l resource.start_at
+      至
+      %span.gray3= l resource.end_at
+    .special-time-ing.left
+      .special-time-lefting.left
+        %span.glyphicon.glyphicon-time>
+        竞拍正在进行中...
+      .lxftime.right{:endtime => "3/7/2014 9:00:0", :lxfday => ""}
+  #special_tab
+    %ul.list-unstyled.clearfix.special-tabs
+      %li.left.active_li 全部拍品
+      %li.left 未结束拍品
+      %li.left 已结束拍品
+      %section.special_sort.right
+        排序：
+        %span.label.label-primary.label-default 默认排序
+        %span.label.label-primary 起拍价↓
+        %span.label.label-primary 当前价↑
+    .sepcial-tab-con
+      .auction-list.clearfix
+        - @products.each do |product|
+          - url = weitou_product_path(product)
+          .col-xs-6.col-md-3
+            .item
+              .cover= link_to image_tag(product.square_cover_url, size: '228x228'), url
+              .meta-info
+                %h3= link_to product.title, url, class: 'gray3'
+                %p.price
+                  当前价格：
+                  %span.orange ￥#{product.current_price}
+                  %span.s1 |
+                  #{product.bids_count}次出价
+                %p.time
+                  %span.glyphicon.glyphicon-time>
+                  距结束：3小时 56分 12秒
+              .item-actions
+                = link_to '我要出价', weitou_product_path(product), class: 'btn btn-primary'
+
+    .sepcial-tab-con.g-hidden
+      .auction-list.clearfix
+        - @products.active.each do |product|
+          - url = weitou_product_path(product)
+          .col-xs-6.col-md-3
+            .item
+              .cover= link_to image_tag(product.square_cover_url, size: '228x228'), url
+              .meta-info
+                %h3= link_to product.title, url, class: 'gray3'
+                %p.price
+                  当前价格：
+                  %span.orange ￥#{product.current_price}
+                  %span.s1 |
+                  #{product.bids_count}次出价
+                %p.time
+                  %span.glyphicon.glyphicon-time>
+                  距结束：3小时 56分 12秒
+              .item-actions
+                %a.btn.btn-primary{:href => "#"} 我要出价
+
+    .sepcial-tab-con.g-hidden
+      .auction-list.clearfix
+        - @products.closed.each do |product|
+          - url = weitou_product_path(product)
+          .col-xs-6.col-md-3
+            .item
+              .cover= link_to image_tag(product.square_cover_url, size: '228x228'), url
+              .meta-info
+                %h3= link_to product.title, url, class: 'gray3'
+                %p.price
+                  当前价格：
+                  %span.orange ￥#{product.current_price}
+                  %span.s1 |
+                  #{product.bids_count}次出价
+                %p.time
+                  %span.glyphicon.glyphicon-time>
+                  距结束：3小时 56分 12秒
+              .item-actions
+                %a.btn.btn-primary{:href => "#"} 我要出价
+
+
+- content_for :js do
+  :coffee
+    $ ->
+      $('.special_sort span').on 'click', ()->
+        $(this).addClass("label-default").siblings().removeClass "label-default"
+
+      $div_li = $("div#special_tab ul li")
+      $div_li.click ->
+        $(this).addClass("active_li").siblings().removeClass "active_li"
+        index = $div_li.index(this)
+        $("div#special_tab > .sepcial-tab-con").eq(index).show().siblings("div").hide()

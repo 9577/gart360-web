@@ -1,0 +1,15 @@
+%header
+  .container
+    %nav.navbar.fl
+      %ul
+        = sec_nav :my do
+          = link_to '我的廊', my_galleries_path
+
+        = sec_nav :galleries do
+          = link_to '精选', sns_galleries_path
+
+        - DefaultTag.roots.each do |tag|
+          = sec_nav tag.name.to_url.to_sym do
+            = link_to tag.name, sns_galleries_path(filter_by_tag: tag.name)
+    .navsearch.fr
+      = render 'sns/shared/header/search'

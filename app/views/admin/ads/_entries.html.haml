@@ -1,0 +1,51 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    广告
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= Ad.human_attribute_name(:area)
+          %th= Ad.human_attribute_name(:type_identifier)
+          %th= Ad.human_attribute_name(:title)
+          %th 内容
+          %th= Ad.human_attribute_name(:created_at)
+          %th 操作
+          %th
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.area
+            %td= resource.type_identifier_text
+            %td= resource.title
+            %td
+              - if resource.photo?
+                = image_tag resource.image, alt: resource.title, width: 100
+              - else
+                = raw resource.body
+            %td= resource.created_at.to_date
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  %li 
+                    = link_to resource_path(resource) do
+                      %i.fa.fa-search 
+                      详情
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂时还没有牌品数据，请上传。

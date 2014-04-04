@@ -1,0 +1,47 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    = render 'user_nav'
+
+    .recharge-con.right
+      %p.recharge-name 维权申请
+      .selling-list
+        .bail.clearfix
+          筛选：
+          %select{:id => "", :name => ""}
+            %option{:value => "1"} aaa
+            %option{:value => "2"} bbb
+            %option{:value => "3"} ccc
+          共12条记录
+        %table
+          %tbody
+            %tr
+              %th.activists-left 订单编号
+              %th 订单类型
+              %th 投诉类型
+              %th 投诉时间
+              %th.activists-con 投诉内容
+              %th 处理状态
+
+            - collection.each do |resource|
+              - product = resource.order.product
+              %tr
+                %td.activists-left
+                  = image_tag product.photos.first.data, alt: product.title, width: 65, class: 'pull-left'
+                  .activists-meta.left
+                    = resource.order.code
+                    %br
+                    = link_to product.title, weitou_product_path(product), class: 'blackish-green'
+                %td 拍卖订单
+                %td= resource.type_identifier_text
+                %td.gray6
+                  = resource.created_at.to_date
+                  %br
+                  = resource.created_at.strftime('%R')
+                %td.gray6.activists-con= resource.descriptions.last.body
+                %td
+                  = resource.state_text
+                  %br
+                  = link_to (resource.closed? ? '查看' : '跟踪投诉'), order_right_path(resource.order, resource)
+
+        .selling-list-foot.text-center
+          = paginate collection

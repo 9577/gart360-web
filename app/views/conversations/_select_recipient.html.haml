@@ -1,0 +1,14 @@
+.msglist
+  .msgnav.rows.rows_cur.cf
+    成员搜索
+    %input.search{:autocomplete => "off", :maxlength => "10", :placeholder => "感觉兴趣的内容或人...", :required => "required", :type => "search"}
+  %section.follow
+    %ul
+      - @recipients.each do |user|
+        %li
+          .con
+            = link_to start_conversation_url(user), class: 'userpic' do
+              = image_tag user.avatar_url(60, 60)
+            %p= link_to user.username, start_conversation_url(user), title: user.username
+%ul.msg-sub.fr
+  %li= link_to '返回 我的消息 &gt;'.html_safe, conversations_path

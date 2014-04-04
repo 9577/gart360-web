@@ -1,0 +1,15 @@
+.order-meta.right
+  %h3 订单信息
+  .img-meta.clearfix
+    = image_tag product.photos.first.data, alt: product.title, width: '100%'
+    %span.blackish-green
+      = product.title
+  %p
+    金 额：
+    %span.orange> 
+      = parent.price
+    元
+  %p 运 费：#{parent.delivery_price}元
+  %p 订单类型：拍卖订单
+  %p 订单编号：#{parent.code}
+  %p 付款时间：#{l parent.paid_at}

@@ -1,0 +1,15 @@
+%li
+  %p
+    = render_user_avatar comment.user, size: '36x36', fl: true
+    %span.fr
+      = link_to '#', class: 'btn btn-default btn-sm' do
+        %i.fa.fa-trash-o
+        删除
+        
+    %span.comment-text
+      = render_username comment.user
+      ：
+      = comment.body
+      %br
+        %a{:href => "#"} 回复
+        %em.comment-time #{ time_ago_in_words comment.created_at }前

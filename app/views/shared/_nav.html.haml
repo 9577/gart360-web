@@ -1,0 +1,91 @@
+.topbar
+  .container
+    %h1.logo.fl
+      = link_to 'http://www.gart360.com', title: 'Art360 玩艺儿' do
+        = image_tag('sns/logo.png')
+        %span Art360 玩艺儿
+    %nav.topbar-left.fl
+      %ul
+        = main_nav :home do
+          = link_to '首页', sns_root_path
+
+        = main_nav :auctions do
+          = link_to '竞拍', weitou_root_path
+
+        = main_nav :money do
+          = link_to '抢钱', invest_root_path
+
+        = main_nav :galleries do
+          = link_to '创意廊', sns_galleries_path
+
+        = main_nav :events do
+          = link_to '发布会', sns_events_path
+
+        = main_nav :groups do
+          = link_to '玩艺小组', sns_groups_path
+
+    
+    %ul.topbar-right.fr
+      -# %li.topbar-shopcart
+      -#   %a.shopping-cart.gray3{:href => "#"}
+      -#     %i.fa.fa-shopping-cart>
+      -#     购物车(
+      -#     %span.orange> 0
+      -#     )
+      - if user_signed_in?
+        %li.topbar-username
+          = link_to 'javascript:void(0)' do
+            = current_user.username
+          %ul.topbar-div
+            %li
+              = link_to my_profile_path do
+                %i.fa.fa-user
+                我的玩艺儿
+            %li
+              = link_to conversations_path do
+                %i.fa.fa-comments-o
+                我的消息
+
+            %li
+              = link_to edit_user_registration_path do
+                %i.fa.fa-gear
+                账户设置
+
+            %li.divider
+            %li
+              = link_to weitou_my_active_products_path do
+                %i.fa.fa-clock-o
+                我的竞拍
+
+            -# = sec_nav :orders do
+            -#   = link_to orders_path do
+            -#     %i.fa.fa-credit-card
+            -#     我的订单
+
+            -# = sec_nav :cart do
+            -#   = link_to '#' do
+            -#     %i.fa.fa-shopping-cart
+            -#     我的购物车
+
+            = sec_nav :account_statements do
+              = link_to account_statements_path do
+                %i.fa.fa-money
+                账户余额
+
+            = sec_nav :right do
+              = link_to '#' do
+                %i.fa.fa-exchange
+                维权申请
+
+            %li.divider
+            %li
+              = link_to destroy_user_session_path, method: :delete do
+                %i.fa.fa-sign-out
+                退出
+        %li.topbar-msg
+          = link_to conversations_path do
+            消息
+            %em 5
+      - else
+        %li= link_to '登录', new_user_session_path
+        %li= link_to '用户注册', sign_up_path(type: :email)

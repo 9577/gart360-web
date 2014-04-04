@@ -1,0 +1,88 @@
+zh-CN:
+  activerecord:
+    symbolizes:
+      user:
+        gender:
+          'male': '男'
+          'female': '女'
+      group:
+        is_confirm_required:
+          'false': '用户自由加入'
+          'true': '用户发出申请，经批准后加入'
+
+      auction:
+        state:
+          pending: 未开始
+          active: 已经开始
+          closed: 关闭
+      right:
+        type_identifier:
+          fee: 申请退款
+          product: 申请退货
+        state:
+          pending: 待客服确认
+          confirmed: 客服已确认
+          closed: 维权完成
+      withdraw:
+        state:
+          pending: 提交成功
+          rejected: 审核失败
+          processing: 客服处理中
+          transferred: '转账成功, 待确认'
+          finished: '已经确认, 完成'
+      product:
+        state:
+          pending: 未上架
+          published: 已上架
+          finished: 已下架
+      page:
+        area:
+          auction_home: 竞拍首页
+          footer: 底部
+        type_identifier:
+          auction_rule: 竞拍规则
+          help_center: 帮助中心
+          payment: 交易详情
+          auction_management: 竞拍管理
+          user_guide: 用户手册
+      order:
+        state:
+          pending: 未完成
+          paid: 已支付
+          delivered: 已发货
+          finished: 已完成
+          closed: 已关闭
+        type_identifier:
+          trade: 购物
+          bid: 竞拍
+          recharged: 充值
+      ad:
+        type_identifier:
+          photo: 图片类
+          text: 文字类
+        area:
+          auction_slider: 竞拍边栏
+      product:
+        type_identifier:
+          auction: 专场拍卖商品
+          zero: 零元拍商品
+          charity: 义拍义卖
+      bid:
+        state:
+          inactive: 出局
+          active: 领先
+      product_attribute:
+        name:
+          size: 尺寸
+          subject: 主题
+          shape: 形式
+      deposit:
+        state:
+          freezed: 冻结
+          unfreezed: 解冻
+          removed: 罚没
+      collection_item:
+        state:
+          active: 生效
+          rejected: 拒绝的
+          pending: 待确认

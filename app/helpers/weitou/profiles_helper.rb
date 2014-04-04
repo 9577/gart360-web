@@ -1,0 +1,2 @@
+module Weitou::ProfilesHelper
+end

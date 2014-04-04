@@ -1,0 +1,15 @@
+= f.input :background, wrapper: false,
+                       label: false,
+                       as: :select,
+                       collection: Settings.user.backgrouns,
+                       input_html: { class: 'select2' }
+
+= f.input :school, wrapper: false,
+                   label: false
+
+= f.input :major, wrapper: false,
+                  label: false
+
+= f.input :entrance_date, wrapper: false,
+                          label: false,
+                          as: :string

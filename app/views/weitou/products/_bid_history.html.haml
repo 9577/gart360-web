@@ -1,0 +1,14 @@
+%ul.list-unstyled.infoList
+  - unless bids.empty?
+    - bids.each do |bid|
+      %li{class: bid.state_for_label}
+        %span
+          - if bid.active?
+            %label.label.label-warning
+              正在竞拍
+          - else
+            %label.label.label-gray
+              出局
+        %span= bid.name
+        %span= bid.price
+        %span= bid.created_at.to_date

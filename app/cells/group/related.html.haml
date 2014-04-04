@@ -1,0 +1,13 @@
+.aside-lists
+  %span.aside-info
+    %b.fl 本小组成员也喜欢去...
+  %ul
+    - @groups.each do |group|
+      %li.userinfo
+        = link_to image_tag(group.logo_url), sns_group_path(group), class: 'userpic fl userpic-nobd'
+        %p
+          = link_to group.name, sns_group_path(group), class: 'name'
+          %br
+            %span.from #{group.members_count}人加入
+            %span.desc
+              = group.description

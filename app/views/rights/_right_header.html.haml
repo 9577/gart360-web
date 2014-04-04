@@ -1,0 +1,17 @@
+.bread-nav
+  %ol.breadcrumb
+    %li
+      %a.gray3{:href => "#"} 我的玩艺儿
+    %li
+      %a.gray3{:href => "#"} 维权申请
+    %li.active 维权详情
+.safeguarding-axis
+  .progress
+    .progress-bar.progress-bar-green{'aria-valuemax' => '100', 'aria-valuemin' => '0', 'aria-valuenow' => '40', role: 'progressbar', 'style' => "width: #{state_for_progress(Right::STATE, resource.state)}%"}
+      %span.sr-only #{state_for_progress(Right::STATE, resource.state)}% Complete (success)
+  .progress-name.clearfix
+    %span.active 1.买家申请维权
+    %span.service 2.客服回复
+    %span.right 3.维权完成
+
+    

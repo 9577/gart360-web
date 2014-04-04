@@ -1,0 +1,5 @@
+<% if @image.errors.empty? %>
+  parent = $("#<%= params[:target] %>").parents('.global_upload_wrapper');
+  parent.find('.img-holder').html('<%= j image_tag(@image.data.url(:group_logo)) %>')
+  parent.find('.target_input').val('<%= @image.data.url %>');
+<% end %>

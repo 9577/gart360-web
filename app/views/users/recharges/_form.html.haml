@@ -1,0 +1,17 @@
+= simple_form_for resource, url: url, html: { class: 'form-horizontal inline-hint row-border' } do |f|
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputEmail3"} 充值账户：
+    .col-sm-10.form-name
+      = current_user.username
+
+  = f.input :amount, input_html: { class: 'recharge-input' }
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      注意：在线支付成功后，充值金额会在1分钟内到账；如果需要提现，请致电玩艺儿客服办理
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      客服电话：021-00000000
+      %span.time 服务时间：9：00-18：00
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.button :submit, '下一步', class: 'btn btn-primary'

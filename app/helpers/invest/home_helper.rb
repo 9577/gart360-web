@@ -1,0 +1,2 @@
+module Invest::HomeHelper
+end

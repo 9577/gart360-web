@@ -1,0 +1,14 @@
+.white-warpper
+  .layout990.recharge-finish
+    %h1
+      我的个人账户
+      %span 我的收银台
+    .finish
+      %h2 充值完成
+      %p
+        如果页面还没有跳转，请点击
+        = link_to '跳转至订单详情', '#', class: 'orange'
+      %p
+        您可以在
+        = link_to '竞拍个人中心-查看充值明细', account_statements_path(filter_by_type: :recharged), class: 'orange'
+        查看这笔充值的详细

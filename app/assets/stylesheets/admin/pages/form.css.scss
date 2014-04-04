@@ -1,0 +1,19 @@
+form.company-form {
+  #user_company_attributes_logo { width: 300px; }
+}
+
+form.search {
+  .form-group { margin-bottom: 0; }
+}
+
+.form-group.file {
+  .form-control.filestyle { display: none !important; }
+}
+
+form {
+  .form-group {
+    &.date-row {
+      input { width: 30%; }
+    }
+  }
+}

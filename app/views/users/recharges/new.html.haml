@@ -1,0 +1,30 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    
+    = render 'user_nav'
+
+    .recharge-con.right
+      %p.recharge-name 账户充值
+      .recharge-list
+        .recharge-progress
+          = render 'recharge_progress', state: resource.state
+        = render 'form', url: recharges_path
+
+        %dl.warm
+          %dt 温馨提示：
+          %dd 1. 充值成功后，余额可能存在延迟现象，一般1到5分钟会内到账，如有问题，请咨询客服；
+          %dd 2. 充值金额输入值必须是不小于10且不大于50000的正整数；
+          %dd
+            3. 充值完成后，您可以进入
+            %a{:href => "#"}> 账户余额
+            页面进行查看余额充值状态。
+- content_for :js do
+  :javascript
+    $('#new_recharge_record').submit(function(event) {
+      var recharge_record_amount = $('#recharge_record_amount');
+      if (recharge_record_amount.val() <= 0) {
+        $('.help-block').html('<div class="red">金额必须大于0元.</div>');
+        event.preventDefault();
+        return false;
+      };
+    });

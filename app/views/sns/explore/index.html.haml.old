@@ -1,0 +1,215 @@
+%header.groupheader
+  .container
+    = render 'nav_search_panel'
+.wrap
+  .container.cf
+    .col-main
+      .mod-search
+        %h3
+          与"
+          %span.huang> 搜索
+          "相关的人员
+        %p 共找到1543个
+      .search-cate
+        %ul
+          %li.cur
+            %a{:href => "#"} 全部
+          %li
+            %a{:href => "#"} 成员
+          %li
+            %a{:href => "#"} 创意廊
+          %li
+            %a{:href => "#"} 作品
+          %li
+            %a{:href => "#"} 发布会
+          %li
+            %a{:href => "#"} 小组
+          %li
+            %a{:href => "#"} 话题
+      .search-result
+        %ul.list2.cf
+          %li
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.hui [创意廊]
+              %a.tit{:href => "#"}
+                复古花纹
+                %span.huang 布伞
+              %span.words
+                画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，
+                %span.huang> 布伞
+                它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市,仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                来自用户：
+                %a{:href => "#"} 午后的阳光
+          %li
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.hui [创意廊]
+              %a.tit{:href => "#"}
+                复古花纹
+                %span.huang 布伞
+              %span.words
+                画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，
+                %span.huang> 布伞
+                它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市,仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                来自用户：
+                %a{:href => "#"} 午后的阳光
+          %li
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.hui [创意廊]
+              %a.tit{:href => "#"}
+                复古花纹
+                %span.huang 布伞
+              %span.words
+                画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，
+                %span.huang> 布伞
+                它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市,仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                来自用户：
+                %a{:href => "#"} 午后的阳光
+          %li
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.hui [创意廊]
+              %a.tit{:href => "#"}
+                复古花纹
+                %span.huang 布伞
+              %span.words
+                画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，
+                %span.huang> 布伞
+                它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市,仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                来自用户：
+                %a{:href => "#"} 午后的阳光
+          %li
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.hui [创意廊]
+              %a.tit{:href => "#"}
+                复古花纹
+                %span.huang 布伞
+              %span.words
+                画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，
+                %span.huang> 布伞
+                它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市,仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                来自用户：
+                %a{:href => "#"} 午后的阳光
+          %li
+            %a.pic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p.fl
+              %span.hui [创意廊]
+              %a.tit{:href => "#"}
+                复古花纹
+                %span.huang 布伞
+              %span.words
+                画作笔调清新自然，勾勒出印象城市。无数耸立的高楼相互交接着，
+                %span.huang> 布伞
+                它们仿佛在细语，仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市,仿佛在有趣地比高，似乎有生命力的它们共同构成了这美好的城市…
+              %span.info
+                来自用户：
+                %a{:href => "#"} 午后的阳光
+        .page
+          %span 上一页
+          %a.cur{:href => "#"} 1
+          %a{:href => "#"} 2
+          %a{:href => "#"} 3
+          %a{:href => "#"} 4
+          %span ...
+          %a{:href => "#"} 19
+          %a{:href => "#"} 20
+          %a{:href => "#"} 下一页
+    %aside.col-sub
+      .mod-search
+        %h3
+          与"
+          %span.huang> 搜索
+          "相关的人员
+        %p 共找到1543个
+      .s-user.g-info
+        %ul.userman
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"}
+                午后的
+                %span.huang> 搜索
+                阳光
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo
+            %a.userpic.fl{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.gz 267人已关注
+              %span.str 生活其实可以很简单，艺术源于生活
+          %li.userinfo{:style => "text-align: center;"}
+            %a.lan{:href => "#"} 查看更多>
+  .bg

@@ -1,0 +1,200 @@
+%aside#nav.bg-dark.lter.aside-md.hidden-print
+  %section.vbox
+    %section.w-f.scrollable
+      .slimScrollDiv{style: "position: relative; overflow: hidden; width: auto; height: 286px;"}
+        .slim-scroll{"data-color" => "#333333", "data-disable-fade-out" => "true", "data-distance" => "0", "data-height" => "auto", "data-size" => "5px", style: "overflow: hidden; width: auto; height: 286px;"}
+          / nav
+          %nav.nav-primary.hidden-xs
+            %ul.nav
+
+              = main_nav :dashboard do
+                = link_to admin_root_path do
+                  %i.fa.fa-home.icon
+                  管理首页
+              = main_nav :weixin do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-comments-o.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span 微信公众平台
+
+                %ul.nav.lt
+                  = sec_nav :weixin_menus do
+                    = link_to admin_weixin_menus_path do
+                      %i.fa.fa-angle-right
+                      自定义菜单
+
+              = main_nav :sns do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-comments-o.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span 社区
+
+                %ul.nav.lt
+                  = sec_nav :galleries do
+                    = link_to admin_galleries_path do
+                      %b.badge.bg-danger.pull-right= Gallery.count
+                      %i.fa.fa-angle-right
+                      创艺廊
+                  = sec_nav :artworks do
+                    = link_to admin_artworks_path do
+                      %b.badge.bg-danger.pull-right= Artwork.count
+                      %i.fa.fa-angle-right
+                      廊作品
+                  = sec_nav :default_tags do
+                    = link_to admin_default_tags_path do
+                      %b.badge.bg-danger.pull-right= DefaultTag.count
+                      %i.fa.fa-angle-right
+                      默认标签
+                  = sec_nav :events do
+                    = link_to admin_events_path do
+                      %b.badge.bg-danger.pull-right= Event.count
+                      %i.fa.fa-angle-right
+                      发布会
+                  = sec_nav :groups do
+                    = link_to admin_groups_path do
+                      %b.badge.bg-danger.pull-right= Group.count
+                      %i.fa.fa-angle-right
+                      小组
+                  = sec_nav :topics do
+                    = link_to admin_topics_path do
+                      %b.badge.bg-danger.pull-right= Topic.count
+                      %i.fa.fa-angle-right
+                      话题
+
+              = main_nav :auc do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-cny.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span 竞拍
+
+                %ul.nav.lt
+                  = sec_nav :categories do
+                    = link_to admin_categories_path do
+                      %b.badge.bg-danger.pull-right= Category.count
+                      %i.fa.fa-angle-right
+                      竞拍分类
+
+                  = sec_nav :auctions do
+                    = link_to admin_auctions_path do
+                      %b.badge.bg-danger.pull-right= Auction.count
+                      %i.fa.fa-angle-right
+                      竞拍专场
+                  = sec_nav :products do
+                    = link_to admin_products_path do
+                      %i.fa.fa-angle-right
+                      竞拍商品
+              = main_nav :transaction do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-user.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span 交易管理
+                %ul.nav.lt
+                  = sec_nav :rights do
+                    = link_to admin_rights_path do
+                      %b.badge.bg-danger.pull-right= Right.count
+                      %i.fa.fa-angle-right
+                      维权管理
+                  = sec_nav :orders do
+                    = link_to admin_orders_path do
+                      %b.badge.bg-danger.pull-right= Order.count
+                      %i.fa.fa-angle-right
+                      订单管理
+                  = sec_nav :withdraws do
+                    = link_to admin_withdraws_path do
+                      %b.badge.bg-danger.pull-right= Withdraw.count
+                      %i.fa.fa-angle-right
+                      提现管理
+
+              = main_nav :user do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-user.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span 用户管理
+                %ul.nav.lt
+                  = sec_nav :users do
+                    = link_to admin_users_path do
+                      %b.badge.bg-danger.pull-right= User.count
+                      %i.fa.fa-angle-right
+                      用户
+                  = sec_nav :experts do
+                    = link_to admin_experts_path do
+                      %b.badge.bg-danger.pull-right= Expert.count
+                      %i.fa.fa-angle-right
+                      专家
+              = main_nav :basic do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-user.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span 基础信息
+                %ul.nav.lt
+                  = sec_nav :pages do
+                    = link_to admin_pages_path do
+                      %b.badge.bg-danger.pull-right= Page.count
+                      %i.fa.fa-angle-right
+                      静态页面
+                  = sec_nav :ads do
+                    = link_to admin_ads_path do
+                      %b.badge.bg-danger.pull-right= Ad.count
+                      %i.fa.fa-angle-right
+                      广告管理
+              = main_nav :pc1_pc2 do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-user.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span Pc1/Pc2
+                %ul.nav.lt
+                  = sec_nav :daily_items do
+                    = link_to admin_daily_items_path do
+                      %b.badge.bg-danger.pull-right= DailyItem.count
+                      %i.fa.fa-angle-right
+                      每日一砍
+                  = sec_nav :collection_items do
+                    = link_to admin_collection_items_path do
+                      %b.badge.bg-danger.pull-right= CollectionItem.count
+                      %i.fa.fa-angle-right
+                      换一换
+                  = sec_nav :episodes do
+                    = link_to admin_episodes_path do
+                      %b.badge.bg-danger.pull-right= Episode.count
+                      %i.fa.fa-angle-right
+                      画报
+              = main_nav :wiki do
+                = link_to 'javascript:void(0);' do
+                  %i.fa.fa-user.icon
+                    %b.bg-primary
+                  %span.pull-right
+                    %i.fa.fa-angle-down.text
+                    %i.fa.fa-angle-up.text-active
+                  %span Wiki
+                %ul.nav.lt
+                  = sec_nav :wiki_categories do
+                    = link_to admin_wiki_categories_path do
+                      %b.badge.bg-danger.pull-right= WikiCategory.count
+                      %i.fa.fa-angle-right
+                      wiki目录
+                  = sec_nav :wikis do
+                    = link_to admin_wikis_path do
+                      %b.badge.bg-danger.pull-right= Wiki.count
+                      %i.fa.fa-angle-right
+                      wiki

@@ -1,0 +1,43 @@
+.layout990
+  .auction-title.clearfix
+    0元拍
+  .zero-classify
+    %ul.list-inline
+      %li.classify 分类
+      %li= filter_by_category_link_to '全部', url_for(params.merge(filter_by_category: nil)), :'data-category' => 'all'
+      - Category.roots.each do |cat|
+        %li
+          = filter_by_category_link_to cat.name, url_for(params.merge(filter_by_category: cat.id)), :'data-category' => cat.id
+    %ul.list-inline
+      %li.classify 状态
+      %li= filter_by_state_link_to '所有', url_for(params.merge(filter_by_state: nil)), :'data-state' => 'all'
+
+      - Settings.auction_states.each do |state|
+        %li= filter_by_state_link_to state[1], url_for(params.merge(filter_by_state: state[0])), :'data-state' => state[0]
+
+  .clearfix.special-tabs
+    %p.left 相关拍品（#{ @search.count }
+    %section.special_sort.right
+      排序：
+      %span.label.label-primary.label-default 默认排序
+      %span.label.label-primary 起拍价↓
+      %span.label.label-primary 当前价↑
+  .zero-con
+    .auction-list.clearfix
+      - products.each do |product|
+        .col-xs-6.col-md-3
+          .item
+            .cover
+              = link_to weitou_product_path(product) do
+                = image_tag product.square_cover_url(228, 228)
+                %span.label.label-warning 正在竞拍
+            .meta-info
+              %h3= link_to product.title, weitou_product_path(product), class: 'gray3'
+              %p.price
+                当前价格：
+                %span.orange ￥#{ product.current_price }
+                %span.s1 |
+                #{ product.bids_count }次出价
+              %p.time
+                %i.fa.fa-clock-o
+                距结束：3小时 56分 12秒

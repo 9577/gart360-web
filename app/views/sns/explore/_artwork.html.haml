@@ -1,0 +1,12 @@
+%li
+  %a.pic.fl{href: "#"}
+    = image_tag result.avatar_url
+  %p.fl
+    %span.hui [作品]
+    %a.tit{href: "#"}
+      = result.name
+    %span.words
+      = result.content
+    %span.info
+      来自用户：
+      = result.user.username

@@ -1,0 +1,46 @@
+.panel#basic
+  .rows.rows_cur.cf.panel-heading
+    %label 个人资料
+    %span.input= resource.username
+    %a.cf.icon.icon-open.panel-toggle{:href => "javascript:void(0);"} 编辑
+
+  .panel-body.collapse
+    = simple_form_for resource, as: resource_name, url: registration_path(resource_name, type: :basic), html: { method: :put, class: 'form-horizontal settings-form', id: 'edit_user' }, remote: true do |f|
+
+      = f.input :username, wrapper: :sns
+      = f.input :gender, wrapper: :sns,
+                         as: :radio_buttons,
+                         input_html: { class: 'btn-radio' },
+                         collection: User.get_gender_values,
+                         required: true
+      
+      .form-group.region
+        %label.control-label 常住地
+        .controls
+
+          = f.input :province_id, wrapper: false,
+                                  as: :region,
+                                  collection: Province.select('id, name'),
+                                  sub_region: :city_id,
+                                  label: false,
+                                  input_html: { class: 'select2' },
+                                  prompt: false
+
+          = f.input :city_id, as: :region,
+                              wrapper: false,
+                              label: false,
+                              input_html: { class: 'select2' },
+                              collection: current_user.province.nil? ? [] : current_user.province.cities
+
+      = f.input :birthdate, as: :date,
+                            wrapper: :sns,
+                            input_html: { class: 'select2' },
+                            wrapper_html: { class: 'combo' }
+
+      = f.input :bio, wrapper: :sns, input_html: { rows: 5 }
+
+      .form-group.form-actions
+        %label.control-label
+        .controls
+          = f.button :submit, '保存', class: 'btn btn-primary'
+          .loading.hide

@@ -1,0 +1,14 @@
+%header
+  .container
+    / 导航 :s
+    %nav.navbar.fl
+      %ul
+        = sec_nav :my do
+          = link_to '我的发布会', my_sns_events_path
+        = sec_nav :overview do
+          = link_to '发布会首页', overview_sns_events_path
+        = sec_nav :all do
+          = link_to '全部发布会', sns_events_path
+    / 导航 :e
+    .navsearch.fr
+      = render 'sns/shared/header/search'

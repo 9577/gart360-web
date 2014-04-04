@@ -1,0 +1,42 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      .filter.cf
+        .cf
+          %span 标签：
+          %a.cur{:href => "#"} 全部
+          %a{:href => "#"} 画家
+          %a{:href => "#"} 手工艺
+          %a{:href => "#"} 摄影
+      %ul.list2.cf
+        .g-hot
+          %a.cur{:href => "#"}
+            活跃度
+            %i.fa-arrow-down
+          %a{:href => "#"} 成员数
+          %a{:href => "#"} 话题数
+        - @groups.each do |group|
+          %li
+            .group-list{id: "group_#{group.id}"}
+              = link_to sns_group_path(group), class: 'pic fl' do
+                = image_tag group.logo
+              .g-group.fl
+                %h3
+                  = link_to group.name, sns_group_path(group)
+                .g-num
+                  = "#{group.topics_count}个话题"
+                  = succeed "345\u{4e2a}\u{52a0}\u{5165}" do
+                    %span |
+                .g-link
+                  = group_status(current_user, group)
+
+      = paginate @groups
+    %aside.col-sub
+      / 创建小组
+      = link_to '创建小组 &gt;'.html_safe, new_sns_group_path, class: 'btn btn-default btn-block tb-padding'
+      / 本周小组上升榜
+      = render_cell :group, :rising_in_week
+  .bg

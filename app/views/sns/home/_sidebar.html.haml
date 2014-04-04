@@ -1,0 +1,85 @@
+%aside.col-sub
+  = render_cell :user, :social_widget, user: current_user
+  / 关注的人
+  = render_cell :sidebar, :following
+  / 感兴趣的人
+  = render_cell :user, :interested_users
+
+  / 即将举办的发布会
+  .aside-lists
+    %span.aside-info
+      %b.fl 即将举办的发布会
+    %ul
+      %li.userinfo
+        %a.userpic.fl.userpic-nobd{:href => "#"}
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %p
+          %a.name{:href => "#"} 午后的
+          %br/
+          %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+          %span.from
+            来自
+            %a{:href => "#"} 新摄影</a 的手工艺廊
+      %li.userinfo
+        %a.userpic.fl.userpic-nobd{:href => "#"}
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %p
+          %a.name{:href => "#"} 午后的
+          %br/
+          %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+          %span.from
+            来自
+            %a{:href => "#"} 新摄影
+            的手工艺廊
+  / 艺术新作
+  .aside-lists
+    %span.aside-info
+      %b.fl 艺术创作
+    %ul
+      %li.userinfo
+        %a.userpic.fl.userpic-nobd{:href => "#"}
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %p
+          %a.name{:href => "#"} 午后的
+          %br/
+          %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+          %span.from 活动时间：2013-09-25
+      %li.userinfo
+        %a.userpic.fl.userpic-nobd{:href => "#"}
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        %p
+          %a.name{:href => "#"} 午后的
+          %br/
+          %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+          %span.from 活动时间：2013-09-25
+    %span.aside-info.aside-info-more
+      %a{:href => "#"} 更多发布会&gt;&gt;
+  / 热门话题
+  .aside-lists.hot-lists
+    %span.aside-info
+      %a.strong{:href => "#"} 热门话题
+    %ul
+      %li.userinfo
+        %a.fl.hotpic{:href => "#"}
+          124891
+          %br>/
+          参与
+        %p
+          %a.name{:href => "#"} 午后的
+          %span.from 贴图专业户 小组
+      %li.userinfo
+        %a.fl.hotpic{:href => "#"}
+          124891
+          %br>/
+          参与
+        %p
+          %a.name{:href => "#", :title => "贴图专业户午后的贴图专业户午后的贴图专业户午后的"} 贴图专业户午后的贴图专业户午后的贴图专业户午后的
+          %span.from 贴图专业户 小组
+      %li.userinfo
+        %a.fl.hotpic{:href => "#"}
+          124891
+          %br>/
+          参与
+        %p
+          %a.name{:href => "#", :title => "贴图专业户午后的贴图专业户午后的贴图专业户午后的"} 贴图专业户午后的贴图专业户午后的贴图专业户午后的
+          %span.from 贴图专业户 小组

@@ -1,0 +1,34 @@
+- content_for :subhead do
+  = render 'sns/shared/header/user'
+
+.wrap.home
+  .container.cf
+    .col-main
+      %h3 关注我的人(#{resource.followers_count})
+      .seatitle
+        %span 成员搜索
+        %input.search{:autocomplete => "off", :maxlength => "10", :placeholder => "艺名、email、常住地", :required => "required", :type => "search"}/
+      %section.follow
+        %ul
+          - @followers.each do |follower|
+            %li
+              .con
+                = link_to user_path(follower), class: 'userpic' do
+                  = image_tag follower.avatar_url
+                %p= link_to follower.username, user_path(follower), title: follower.username
+        
+    %aside.col-sub
+      / 关注的人
+      .focuslist
+        %span.aside-info
+          %b.fl 我关注的人(39)
+        %p
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/2.png"}/
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/2.png"}/
+      .otext
+        %a{:href => "#"} 邀请我的朋友加入玩艺儿>
+  .bg

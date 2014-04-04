@@ -1,0 +1,58 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    换一换
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= CollectionItem.human_attribute_name(:name)
+          %th= CollectionItem.human_attribute_name(:user_id)
+          %th= CollectionItem.human_attribute_name(:photos_count)
+          %th= CollectionItem.human_attribute_name(:is_featured)
+          %th= CollectionItem.human_attribute_name(:state)
+          %th= CollectionItem.human_attribute_name(:created_at)
+          %th 操作
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.name
+            %td= resource.user.username
+            %td= resource.photos_count
+            %td= resource.is_featured_text
+            %td= resource.state_text
+            %td= l resource.created_at
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  - if resource.active?
+                    %li 
+                      = link_to resource_path(resource, actions: :reject), method: :put do
+                        %i.fa.fa-search 
+                        拒绝
+                  - if resource.pending?
+                    %li 
+                      = link_to resource_path(resource, actions: :approve), method: :put do
+                        %i.fa.fa-search 
+                        同意
+                  %li 
+                    = link_to resource_path(resource) do
+                      %i.fa.fa-search 
+                      详情
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂时还没有数据，请上传。

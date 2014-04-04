@@ -1,0 +1,9 @@
+$('.new-addr').html("<%= j link_to '使用新收获地址', new_address_path, remote: true, class: 'btn btn-default' %>");
+
+if ($('#show_all_addresses').length == 0 || $('.addr-list').find('.col-md-3').count == 4) {
+  $('.show-addr').html('<%= j render("orders/show_addr", extended: true) %>');
+  $('.addr-list').append('<%= j render("new_address", append_class: "active_hide") %>');
+}else{
+  $('.show-addr').html('<%= j render("orders/show_addr", extended: false) %>');
+  $('.addr-list').append('<%= j render("new_address", append_class: "hide") %>');
+};

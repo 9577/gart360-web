@@ -1,0 +1,15 @@
+- content_for :subhead do
+  = render 'sns/shared/header/event'
+
+.wrap.home
+  .container.cf
+    .col-main
+      
+      = render_cell :event, :active_for_overview
+
+      = render_cell :event, :pending_for_overview
+
+      = render_cell :event, :closed_for_overview
+
+    = render 'sidebar'
+  .bg

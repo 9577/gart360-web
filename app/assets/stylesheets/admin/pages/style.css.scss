@@ -1,0 +1,35 @@
+body#admin_categories {
+  span.media-xs { min-width: 20px; }
+}
+
+fieldset {
+  margin: 30px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e4e4e4;
+
+  &#photos_wrap {
+    .form-group { margin: 0; }
+  }
+
+  .fields {
+    padding: 10px 0;
+    border-bottom: 1px dashed #e4e4e4;
+  }
+  legend {
+    font-size: 14px;
+
+    strong {
+      width: 100px;
+      background-color: #888;
+      color: #fff;
+      padding: 3px 20px;
+    }
+  }
+}
+
+a.add_nested_fields {
+  margin-left: 135px;
+  margin-top: 10px;
+}
+
+span.error-block { color: #FB6B5B; }

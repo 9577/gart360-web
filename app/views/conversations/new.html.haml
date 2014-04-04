@@ -1,0 +1,12 @@
+.headspace
+.container.cf
+
+  = render '/users/settings_nav'
+
+  %section.setting-sec
+    %h3 我的消息
+
+    - if params.key?(:recipient_id)
+      = render 'send_message', user: @recipient
+    - else
+      = render 'select_recipient'

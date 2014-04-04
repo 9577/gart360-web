@@ -1,0 +1,4 @@
+- if params.key?(:filter_by_type)
+  = render "weitou/products/types/#{params[:filter_by_type]}", products: collection
+- else
+  = render 'entries'

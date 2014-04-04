@@ -1,0 +1,40 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      = render 'sns/groups/nav'
+      %h3.site.site2 我创建的小组
+      .my-topic
+        - if @groups.any?
+          %ul.recomm.recommlist.cf
+            - @groups.each do |group|
+              %li.userinfo
+                = link_to sns_group_path(group), class: 'userpic fl' do
+                  = image_tag group.logo_url(60, 60)
+                %p
+                  = link_to group.name, sns_group_path(group), class: 'name'
+                  %br
+                    %span.focus= "#{group.members_count}人加入"
+        - else
+          %p.empty-content 我还创建任何小组.
+
+      %h3.site.site2 加入的小组
+      .my-topic
+        - if @joined_groups.any?
+          %ul.recomm.recommlist.cf
+            - @joined_groups.each do |group|
+              %li.userinfo
+                = link_to sns_group_path(group), class: 'userpic fl' do
+                  = image_tag group.logo
+                %p
+                  = link_to group.name, sns_group_path(group), class: 'name'
+                  %br
+                    %span.focus= "#{group.members_count}人加入"
+        - else
+          %p.empty-content 我还没有加入任何小组.
+    %aside.col-sub
+      .lang-info
+        = render_cell :user, :widget, user: current_user
+  .bg

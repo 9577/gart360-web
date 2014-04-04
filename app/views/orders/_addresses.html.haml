@@ -1,0 +1,7 @@
+- current_user.addresses.each_with_index do |address, index|
+  %ul.list-unstyled.addr-item{ class: address_class(address, index), data: { id: address.id } }
+    %li
+      = "#{address.province.name} #{address.city.name} #{address.district.name}"
+      %span （#{address.recipient} 收）
+    %li= address.body
+    %img.addr-tip{:alt => "", :src => "images/addr-tip.png"}

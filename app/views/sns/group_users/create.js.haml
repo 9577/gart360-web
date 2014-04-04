@@ -1,0 +1,4 @@
+- html = capture do
+  = group_status @group_user.user, @group_user.group
+
+$("#group_#{@group.id}").find('.g-link').html('#{j html}')

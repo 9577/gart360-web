@@ -1,0 +1,24 @@
+%section.panel.panel-default
+  %header.panel-heading.bg-light
+    默认标签
+    %small (快捷创建)
+  .panel-body
+    = simple_form_for DefaultTag.new, url: collection_path, html: { class: 'form-horizontal row-border' } do |f|
+      = f.input :name, wrapper: :no_label, label: false, placeholder: '输入名称并提交...'
+
+      = f.input :parent_id, wrapper: :no_label,
+                                  label: false,
+                                  as: :select,
+                                  collection: DefaultTag.roots,
+                                  input_html: { class: 'select2-option' },
+                                  prompt: '选择上一级标签'
+      .form-actions
+        = f.button :submit, '快速创建', class: 'btn btn-primary'
+
+
+%section.panel.panel-default
+  %header.panel-heading.font-bold
+    %i.fa.fa-lightbulb-o
+    帮助中心
+  .panel-body
+    %p 这里添加一些帮助性的文字

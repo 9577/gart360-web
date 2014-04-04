@@ -1,0 +1,42 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    每日一砍
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= DailyItem.human_attribute_name(:title)
+          %th= DailyItem.human_attribute_name(:price)
+          %th= DailyItem.human_attribute_name(:start_at)
+          %th= DailyItem.human_attribute_name(:photos_count)
+          %th 操作
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.title
+            %td= resource.price
+            %td= l resource.start_at
+            %td= resource.photos_count
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂时还没有牌品数据，请上传。
+
+

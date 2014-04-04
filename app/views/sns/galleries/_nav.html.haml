@@ -1,0 +1,5 @@
+%h3.site.site2 #{user.username} 的创艺廊
+.lang-nav
+  %ul
+    %li= profile_link_to '廊主页', current_user == user ? my_galleries_path : galleries_user_path(user)
+    %li= profile_link_to '喜欢的作品', '#'

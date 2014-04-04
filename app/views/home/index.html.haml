@@ -1,0 +1,283 @@
+- content_for :subhead do
+  = render 'sns/shared/header/user'
+
+
+.wrap.home
+  .container.cf
+    .col-main
+      = render 'status'
+      %section.newsfeed
+        %dl
+          %dt
+            %a.userpic{:href => "#", :title => "七彩的幸福"}
+              %img{:alt => "七彩的幸福", :height => "60", :src => "/assets/sns/pic-temp/1.png", :width => "60"}/
+            %a{:href => "#"} 七彩的幸福
+            发表了 新作品
+          %dd.newsfeed-cont
+            / 图片列表
+            %p.album
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+              %img{:src => "/assets/sns/pic-temp/2.png"}/
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+              %img{:src => "/assets/sns/pic-temp/2.png"}/
+          %dd.newsfeed-info
+            %span.time 2小时前
+            %span.from
+              来自
+              %a{:href => "#"} 新摄影
+              的手工艺廊，
+              %a{:href => "#"} 怀旧的漫画
+              作品
+            %a.comment{:href => "#"} 回应(8)
+        %dl
+          %dt
+            %a.userpic{:href => "#", :title => "七彩的幸福"}
+              %img{:alt => "七彩的幸福", :height => "60", :src => "/assets/sns/pic-temp/2.png", :width => "60"}/
+            %a{:href => "#"} 七彩的幸福
+            发表了 新说说
+          %dd.newsfeed-cont
+            %p.text
+              过年不想回家了，本来打算故
+            %p.pic
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %dd.newsfeed-info
+            %span.time 2小时前
+            %a.del{:href => "#"} 删除
+            %a.comment{:href => "#"} 回应(8)
+        %dl
+          %dt
+            %a.userpic{:href => "#", :title => "七彩的幸福"}
+              %img{:alt => "七彩的幸福", :height => "60", :src => "/assets/sns/pic-temp/2.png", :width => "60"}/
+            %a{:href => "#"} 七彩的幸福
+            发表了 新话题
+          %dd.newsfeed-cont
+            %a.strong{:href => "#"} 目的地--斯里兰卡/一个人去旅行
+            / 说说内容
+            %p.text
+              过年不想回家了，本来打算故地重游 去清迈 ，其实意义不大 ，我是因为红茶认识的斯里兰卡这个地方了解不多 。只是暂时计划新年过去，女生一枚 ，假期应该可以有15天左右...
+          %dd.newsfeed-info
+            %span.time 2小时前
+            %a.comment{:href => "#"} 回应(8)
+        %dl
+          %dt
+            %a.userpic{:href => "#", :title => "七彩的幸福"}
+              %img{:alt => "七彩的幸福", :height => "60", :src => "/assets/sns/pic-temp/2.png", :width => "60"}/
+            %a{:href => "#"} 七彩的幸福
+            召开了 新发布会
+          %dd.newsfeed-cont
+            %a.strong{:href => "#"} 青蛙陶瓷
+            / 说说内容
+            %p.text
+              清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型，所有作品都是原创·作品主要是雕塑瓷·以及一些适用的小东西·青蛙是我们...
+            %p.datetime
+              活动时间:2013-09-25 - 2013-10-25
+            %p.pic
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %dd.newsfeed-info
+            %span.time 2小时前
+            %a.comment{:href => "#"} 回应(8)
+          %dd.newsfeed-comment
+            %ul.comment-list
+              %li
+                %p
+                  %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                    %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+                  %span.comment-text
+                    %a.username{:href => "#"} 蒲公英被吹散了：
+                    这个情况能说下么，用谷歌搜索进来的….
+                    %br/
+                    %a{:href => "#"} 回复
+                    %em.comment-time 2013-12-18 20:02
+                %p.recomment
+                  %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                    %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/1.png", :width => "36"}/
+                  %span.comment-text
+                    %a.username{:href => "#"} 蒲公英被吹散了：
+                    这个情况能说下么，用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的….
+                    %br/
+                    %a{:href => "#"} 回复
+                    %em.comment-time 2013-12-18 20:02
+              %li
+                %p
+                  %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                    %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+                  %span.comment-text
+                    %a.username{:href => "#"} 蒲公英被吹散了：
+                    这个情况能说下么，用谷歌搜索进来的….
+                    %br/
+                    %a{:href => "#"} 回复
+                    %em.comment-time 2013-12-18 20:02
+              %li
+                %p
+                  %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                    %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+                  %span.comment-text.blockquote
+                    %em.use 引用：
+                    %span.blockquote-cont
+                      %b> “
+                      这个情况能说下么
+                  %span.comment-text
+                    %a.username{:href => "#"} 蒲公英被吹散了：
+                    加我一个哦
+                    %br/
+                    %a{:href => "#"} 回复
+                    %em.comment-time 2013-12-18 20:02
+            .comment-pub
+              %a.userpic{:href => "#", :title => "七彩的幸福"}
+                %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+              .comment-pub-area
+                %textarea.status-body{:autocomplete => "off", :maxlength => "140", :name => "content", :placeholder => "我也来说两句..."}
+              .comment-btn
+                %input.button.button-rounded.button-flat-highlight.fr{:type => "button", :value => "发表"}/
+        .page
+          %span 上一页
+          %a.cur{:href => "#"} 1
+          %a{:href => "#"} 2
+          %a{:href => "#"} 3
+          %a{:href => "#"} 4
+          %span ...
+          %a{:href => "#"} 19
+          %a{:href => "#"} 20
+          %a{:href => "#"} 下一页
+    %aside.col-sub
+      .myinfo
+        %a.fl.pic{:href => "#"}
+          %img{:src => "/assets/sns/pic-temp/1.png"}/
+        .myinfo-r
+          .myinfo-name
+            %a{:href => "#"} 王艺Angle
+          %span.fans
+            %a{:href => "#"} 粉丝
+            %b 1052
+          %span
+            %a{:href => "#"} 关注
+            %b 49
+      / 关注的人
+      .focuslist
+        %span.aside-info
+          %b.fl 我关注的人(39)
+          %a.fr{:href => "#"} 全部&gt;&gt;
+        %p
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/2.png"}/
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/2.png"}/
+        %span.aside-info
+          %a.fl{:href => "#"} 寻找认识的人&gt;&gt;
+          %i.fr 没准他们也在玩艺儿
+      / 感兴趣的人
+      %dl.recomm
+        %dt.aside-info
+          %b.fl 你可能感兴趣的人
+          %a.fr.icon.icon-refresh{:href => "#"} 换一换
+        %dd.userinfo
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %br/
+            %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}/
+          %span.str
+            %em>
+            生活其实可以很简单，艺术源于生活
+        %dd.userinfo
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/2.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %br/
+            %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}/
+          %span.str
+            %em>
+            生活其实可以很简单，艺术源于生活
+        %dd.userinfo
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %br/
+            %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}/
+          %span.str
+            %em>
+            生活其实可以很简单，艺术源于生活
+      / 即将举办的发布会
+      .aside-lists
+        %span.aside-info
+          %b.fl 即将举办的发布会
+        %ul
+          %li.userinfo
+            %a.userpic.fl.userpic-nobd{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br/
+              %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+              %span.from
+                来自
+                %a{:href => "#"} 新摄影</a 的手工艺廊
+          %li.userinfo
+            %a.userpic.fl.userpic-nobd{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br/
+              %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+              %span.from
+                来自
+                %a{:href => "#"} 新摄影
+                的手工艺廊
+      / 艺术新作
+      .aside-lists
+        %span.aside-info
+          %b.fl 艺术创作
+        %ul
+          %li.userinfo
+            %a.userpic.fl.userpic-nobd{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br/
+              %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+              %span.from 活动时间：2013-09-25
+          %li.userinfo
+            %a.userpic.fl.userpic-nobd{:href => "#"}
+              %img{:src => "/assets/sns/pic-temp/1.png"}/
+            %p
+              %a.name{:href => "#"} 午后的
+              %br/
+              %span.intro 清和堂成立于2009年，主要从事雕塑制作·以及陶艺成型……
+              %span.from 活动时间：2013-09-25
+        %span.aside-info.aside-info-more
+          %a{:href => "#"} 更多发布会&gt;&gt;
+      / 热门话题
+      .aside-lists.hot-lists
+        %span.aside-info
+          %a.strong{:href => "#"} 热门话题
+        %ul
+          %li.userinfo
+            %a.fl.hotpic{:href => "#"}
+              124891
+              %br>/
+              参与
+            %p
+              %a.name{:href => "#"} 午后的
+              %span.from 贴图专业户 小组
+          %li.userinfo
+            %a.fl.hotpic{:href => "#"}
+              124891
+              %br>/
+              参与
+            %p
+              %a.name{:href => "#", :title => "贴图专业户午后的贴图专业户午后的贴图专业户午后的"} 贴图专业户午后的贴图专业户午后的贴图专业户午后的
+              %span.from 贴图专业户 小组
+          %li.userinfo
+            %a.fl.hotpic{:href => "#"}
+              124891
+              %br>/
+              参与
+            %p
+              %a.name{:href => "#", :title => "贴图专业户午后的贴图专业户午后的贴图专业户午后的"} 贴图专业户午后的贴图专业户午后的贴图专业户午后的
+              %span.from 贴图专业户 小组
+  .bg

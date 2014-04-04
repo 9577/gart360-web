@@ -1,0 +1,11 @@
+<div class="container cf">
+    <h3 class="cf site">
+        <span class="fl">注册</span>
+        <span class="fr">已有账号？<%= link_to '立即登录',new_session_path(resource_name) %></span>
+    </h3>
+    <ul class="site-type">
+        <li class="cur">邮箱注册</li><li>手机注册</li>
+    </ul>
+    <%= render 'devise/shared/form_email' %>
+    <%= render 'devise/shared/login_open' %>
+</div>

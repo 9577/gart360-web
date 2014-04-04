@@ -1,0 +1,21 @@
+%aside.col-sub
+  .mod-search
+    %h3
+      与"
+      %span.huang> #{params[:q]}
+      "相关的人员
+    %p 共找到#{@users_count}个
+  .s-user.g-info
+    %ul.userman
+      - @sunspot_search.results.each do |result|
+        - if result.class.name == 'User'
+          %li.userinfo
+            %a.userpic.fl{href: "#"}
+              = image_tag result.avatar_url
+            %p
+              %a.name{href: "#"} #{result.username}
+              %span.gz #{result.followers_count}人已关注
+              %span.str #{result.bio}
+
+      %li.userinfo{style: "text-align: center;"}
+        = link_to '查看更多>', url_for(q: params[:q], :klass => 'User'), class: 'lan'

@@ -1,0 +1,2 @@
+module Weitou::BidsHelper
+end

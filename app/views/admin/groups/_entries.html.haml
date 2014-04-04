@@ -1,0 +1,49 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    小组
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= Group.human_attribute_name(:name)
+          %th= Group.human_attribute_name(:description)
+          %th= Group.human_attribute_name(:logo)
+          %th= Group.human_attribute_name(:is_confirm_required)
+          %th= Group.human_attribute_name(:tag_list)
+          %th= Group.human_attribute_name(:topics_count)
+          %th= Group.human_attribute_name(:members_count)
+          %th 操作
+          %th
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.name
+            %td= resource.description
+            %td= image_tag resource.logo_url
+            %td= resource.is_confirm_required
+            %td= resource.tag_list
+            %td= resource.topics_count
+            %td= resource.members_count
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂时还没有牌品数据，请上传。
+
+

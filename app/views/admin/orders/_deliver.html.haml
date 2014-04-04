@@ -1,0 +1,8 @@
+%section.panel.panel-default 
+  %header.panel-heading 
+    填写快递单号
+  = simple_form_for resource, url: url, html: { class: 'form-horizontal row-border' } do |f|
+    = f.input :delivery_code, autofocus: true, hint: '您必须填写单号', required: true
+    = f.input :delivery_price, input_html: { value: 0 }
+    .form-actions.clearfix
+      = f.button :submit, '确认发货', class: 'btn btn-info btn-large pull-right'

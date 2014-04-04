@@ -1,0 +1,133 @@
+- content_for :subhead do
+  = render 'sns/shared/header/event'
+
+.wrap.home
+  .container.cf
+    .col-main
+      %h3.site.site2
+        %em.pub-static.pub-static2 正在进行
+        = resource.subject
+        %span.more= render_period resource
+      .slide-pubpic.cf
+        .slide-pic
+          %img{:src => "/assets/sns/pic-temp/1.png"}
+            %a.prev{:href => "javascript:void(0)"} &lt;
+            %a.next{:href => "javascript:void(0)"} &gt;
+        %p.slide-info.cf
+          %strong.tit 花鸟国画
+          %span
+            我们在春风中牵手，静听鸟语花香，静听花瓣安然飘落，在木棉花下许愿，希望在每一个木棉花的春天一起度过。无数个昨天，发生了的，最后都归结成甜美的记忆，一页一页…
+            %a{:href => "#"} [作品详细]
+          %a.icon.icon-like{:href => "#"} 1002
+        %h3.site.site2 评论
+        .comment-pub.pubdetail-comment
+          = simple_form_for resource.comments.new, url: sns_event_comments_path(resource), html: { class: 'form-horizontal comment-form' } do |f|
+            = render_user_avatar current_user, size: '36x36' if current_user
+
+            = f.input :body, label: false
+
+            .comment-btn
+              = f.button :submit, '发表', class: 'btn btn-primary'
+        %ul.comment-list.pubdetail-list
+          %li
+            %p
+              %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+              %span.comment-text
+                %a.username{:href => "#"} 蒲公英被吹散了：
+                这个情况能说下么，用谷歌搜索进来的….
+                %br
+                  %a{:href => "#"}> 回复
+                  \&nbsp;&nbsp;
+                  %em.comment-time 2013-12-18 20:02
+            %p.recomment
+              %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/1.png", :width => "36"}/
+              %span.comment-text
+                %a.username{:href => "#"} 蒲公英被吹散了：
+                这个情况能说下么，用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的用谷歌搜索进来的….
+                %br
+                  %a{:href => "#"}> 回复
+                  \&nbsp;&nbsp;
+                  %em.comment-time 2013-12-18 20:02
+          %li
+            %p
+              %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+              %span.comment-text
+                %a.username{:href => "#"} 蒲公英被吹散了：
+                这个情况能说下么，用谷歌搜索进来的….
+                %br
+                  %a{:href => "#"}> 回复
+                  \&nbsp;&nbsp;
+                  %em.comment-time 2013-12-18 20:02
+          %li
+            %p
+              %a.userpic.fl{:href => "#", :title => "七彩的幸福"}
+                %img{:alt => "七彩的幸福", :height => "36", :src => "/assets/sns/pic-temp/2.png", :width => "36"}/
+              %span.comment-text.blockquote
+                %em.use 引用：
+                %span.blockquote-cont
+                  %b> “
+                  这个情况能说下么
+              %span.comment-text
+                %a.username{:href => "#"} 蒲公英被吹散了：
+                加我一个哦
+                %br
+                  %a{:href => "#"}> 回复
+                  \&nbsp;&nbsp;
+                  %em.comment-time 2013-12-18 20:02
+    %aside.col-sub
+      %p.slide-info.cf
+        %strong.tit 花鸟国画
+        %span
+          我们在春风中牵手，静听鸟语花香，静听花瓣安然飘落，在木棉花下许愿，希望在每一个木棉花的春天一起度过。无数个昨天，发生了的，最后都归结成甜美的记忆，一页一页…
+          %a{:href => "#"} [作品详细]
+      / 感兴趣的人
+      %dl.recomm
+        %dt.aside-info
+          %h3.site.site2 作者简介
+        %dd.userinfo
+          %a.userpic.fl{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 午后的
+            %br/
+            %input.button.button-rounded.button-flat-highlight{:type => "button", :value => "+关注"}/
+          .cf.cf-space
+          %span.lang.span
+            %a{:href => "#"} 廊
+            %b 5
+          %span.span
+            %a{:href => "#"} 作品
+            %b 12
+          %span.span
+            %a{:href => "#"} 发布会
+            %b 39
+          %p.detail-myinfo.cf
+            %span.bold
+              上海市，浦东新区
+              %br>/
+              男
+            %span.bold
+              个人介绍
+            %span.text
+              The name rolah comes from Ryan and Olga;the union of my husband and I. Art was always a part of my being. Whether it was playing music ...
+              %a{:href => "#"} [详细]
+            %span.bold
+              教育经历
+            %span.text
+              2013年入学  中央民族大学  中国画专业  硕士
+            %span.bold
+              参展经历（
+              %em> 2
+              ）
+              %br/
+              获奖经历（
+              %em> 3
+              ）
+              %br/
+              出版经历（
+              %em> 5
+              ）
+  .bg

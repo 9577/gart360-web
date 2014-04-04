@@ -1,0 +1,9 @@
+- topic = activity.trackable
+- url = sns_group_topic_path(topic.group, topic)
+%dd.newsfeed-cont
+  = link_to topic.title, url, class: 'strong'
+  %p.text= sanitize topic.body
+%dd.newsfeed-info
+  %span.time= timeago_tag(topic.created_at, lang: 'zh-CN')
+  = link_to url, class: 'comment' do
+    回应(#{topic.replies_count})

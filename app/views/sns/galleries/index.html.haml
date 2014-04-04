@@ -1,0 +1,7 @@
+- content_for :subhead do
+  = render 'sns/shared/header/gallery'
+
+- if params.key?(:filter_by_tag)
+  = render 'filter_by_tag'
+- else
+  = render 'overview'

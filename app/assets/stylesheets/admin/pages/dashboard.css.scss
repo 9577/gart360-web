@@ -1,0 +1,15 @@
+section{
+  &.custom_panel{
+    background-color: inherit;
+    box-shadow: none !important;
+  }
+  &.no-bg {
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  &.comment-body {
+    .panel-body img { max-width: 50px; }
+  }
+}

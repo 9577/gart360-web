@@ -1,0 +1,72 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    = render 'user_nav'
+
+    .recharge-con.right
+      %p.recharge-name 申请提现
+      .get-cash-list
+        .get-cash-head
+          %p
+            %span> 提现申请编号：
+            = resource.code
+            %em 申请时间：
+            = l resource.send("#{resource.state}_time")
+          %p
+            %span 处理状态：
+            %strong.green= resource.state_text
+          - if resource.transferred?
+            .waiting-confirm.clearfix
+              转账成功，请您检查自己的银行卡信息。
+              .right
+                = link_to '确认到账', finish_withdraw_path(resource), class: 'btn btn-primary', method: :put
+                = succeed "\u{540e}\u{81ea}\u{52a8}\u{786e}\u{8ba4}" do
+                  %span.red 2天9小时25分22秒
+          - else
+            %p.waiting 
+              - if resource.pending?
+                客服人员会在2个工作日内处理您的提现申请。
+              - elsif resource.processing?
+                您的提现申请已被接受，客服人员正在处理。因转账银行的差异，转账操作需要3~5个工作日，请您耐心等待。
+              - elsif resource.rejected?
+                原因：客服失败原因客服失败原因客服失败原因客服失败原因客服失败原因
+              - elsif resource.finished?
+                转账申请已完成。
+
+        .time-axis
+          = render 'withdraws_progress', state: (resource.state == :rejected ? :processing : resource.state)
+
+        .get-progress
+          %p.clearfix
+            进度跟踪
+            %span.right.gray6 如有任何疑问，请联系客服电话：021-00000000
+          %table
+            %tbody
+              %tr
+                %th 处理时间
+                %th 处理信息
+                %th 操作人
+              %tr
+                %td= l resource.send("#{resource.state}_time")
+                %td= resource.state_text
+                %td= [:pending, :finished].include?(resource.state) ? '用户' : '管理员'
+        .get-meta
+          %p 提现信息
+          .get-table
+            %p
+              %span> 银行卡号：
+              = resource.card_number
+            %p
+              %span> 开户行：
+              = resource.bank_name
+            %p
+              %span> 开户姓名：
+              = resource.name
+            %p
+              %span> 提现金额：
+              = "#{resource.amount} 元"
+            %p
+              %span> 联系电话：
+              = resource.mobile
+            %p
+              %span 备注：
+              = resource.description

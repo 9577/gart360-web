@@ -1,0 +1,6 @@
+%h3.site.site2= "#{current_user.username} 的小组"
+.lang-nav
+  %ul
+    %li= profile_link_to '我的全部小组', all_sns_groups_path
+    %li= profile_link_to "发起（#{current_user.topics_count}）", published_topics_sns_groups_path
+    %li= profile_link_to "回应（#{current_user.replies_count}）", replied_topics_sns_groups_path

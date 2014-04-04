@@ -1,0 +1,2 @@
+module Sns::GalleriesHelper
+end

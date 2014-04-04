@@ -1,0 +1,72 @@
+ <div class="container cf">
+            <h3 class="cf site hr"><span class="fl">登录</span><span class="fr">还没有账号？
+            	<%= link_to "立即注册", new_registration_path(resource_name) %></span></h3>
+            <div class="login-form fl">
+                <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+                    <div class="rows cf">
+                        <label>账号：</label>
+                        <%= f.email_field :email, :autofocus => true,:class=>'input',:placeholder=>'请输入注册邮箱' %>
+                        <span class="fl static static-error"></span>
+                    </div>
+                    
+                    <div class="rows cf">
+                        <label>密码：</label>
+                        <%= f.password_field :password,:class=>'input' %>
+                        <span class="fl static static-error"></span>
+                    </div>
+                    <div class="rows cf">
+                        <label class="empty"></label>
+                        <%= f.check_box :remember_me,:class=>'checkbox' %>
+                        <%= f.label :remember_me,"记住我",:class=>'span' %>
+                        <span class="forget"><%= link_to "忘记密码?", new_password_path(resource_name) %></span>
+                    </div>
+                    <div class="rows cf ">
+                        <label></label>
+                        <div class="rows-div fl">
+                        <input class="button button-rounded button-flat-highlight button-w100" type="submit" value="登录" />
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <%= render 'devise/shared/login_open' %>
+        </div>
+
+<%- content_for :js do %>
+<script type='text/javascript'>
+	$().ready(function() {
+        $('.rows .static-error').hide();
+	 $("#new_user").validate({
+	 	// debug: true,
+        rules:{
+            'user[email]': {
+                required: true,
+                email: true
+            },
+            'user[password]':{
+                required: true
+            }
+        },
+        messages:{
+            'user[email]': {
+                required: "请输入Email地址",
+                email: "请输入正确的email地址"
+            },
+            'user[password]':{
+                required: "请输入密码"
+            }   
+        },
+        errorPlacement: function(error, element){
+            $(element).siblings('span').text(error[0].textContent);
+        },
+        highlight:function(element, errorClass, validClass){
+            //單項證驗失敗，參數是驗證對向
+            $(element).siblings('span').show();        
+        },
+        unhighlight:function(element, errorClass, validClass){
+            //單項證驗成功，參數是驗證對向
+            $(element).siblings('span').hide();      
+        }
+	    });
+});
+</script>
+<%- end %>

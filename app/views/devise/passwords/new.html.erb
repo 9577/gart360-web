@@ -1,0 +1,59 @@
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  <!-- <%= devise_error_messages! %> -->
+	<div class="container cf">
+	            <h3 class="cf site"><span class="fl">密码找回</span></h3>
+	            <ul class="site-type">
+	                <li class="cur">邮箱找回</li><li>手机找回</li>
+	            </ul>
+	            <div class="login-form">
+	                <div class="forget-step">
+	                    <span class="cur fl">1</span>
+	                    <span class="fl midd">2</span>
+	                    <span class="fr">3</span>
+	                    <div class="line"></div>
+	                </div>
+	                <div class="rows cf">
+	                    <label>邮箱：</label>
+	                       <%= f.email_field :email,:required=>"required",:autocomplete=>"off",:class=>"input",:placeholder=>"请输入您的邮箱",:autofocus => true  %>
+	                    <span class="fl static static-error">邮箱错误</span>
+	                </div>
+	                <div class="rows cf">
+	                    <label></label>
+	                    <div class="rows-div fl">
+	                        <%= f.submit "找回", :class=>"button button-rounded button-flat-highlight"%>
+	                    </div>
+	                </div>
+	            </div>
+	</div>
+<% end %>
+<script type='text/javascript'>
+	$().ready(function() {
+        $('.rows .static-error').hide();
+	 $("#new_user").validate({
+	 	// debug: true,
+        rules:{
+            'user[email]': {
+                required: true,
+                email: true
+            }
+        },
+        messages:{
+            'user[email]': {
+                required: "请输入Email地址",
+                email: "请输入正确的email地址"
+            },
+        },
+        errorPlacement: function(error, element){
+            $(element).siblings('span').text(error[0].textContent);
+        },
+        highlight:function(element, errorClass, validClass){
+            //單項證驗失敗，參數是驗證對向
+            $(element).siblings('span').show();        
+        },
+        unhighlight:function(element, errorClass, validClass){
+            //單項證驗成功，參數是驗證對向
+            $(element).siblings('span').hide();      
+        }
+	    });
+});
+</script>

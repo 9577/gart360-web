@@ -1,0 +1,45 @@
+.row
+  .col-md-9
+    %section.panel.panel-default
+      %header.panel-heading 专家
+      .panel-body
+        = simple_form_for resource, url: url, html: { class: 'form-horizontal company-form', multipart: true } do |f|
+          = f.input :name, autofoces: true
+          .global_upload_wrapper
+            .form-group.upload.global_upload
+              %label.control-label.col-md-2= Expert.human_attribute_name(:avatar)
+              .controls.clearfix.col-md-10
+                .img-holder
+                  = image_tag('sns/user-header-bg.png', size: '120x120')
+                .action
+                  = link_to '#', class: 'btn btn-default', id: 'btn-pupload' do
+                    %i.glyphicon.glyphicon-picture
+                    选择图片
+                  %p 
+                    %small 
+                      %p 支持png、jpg、gif格式
+                      %p 大小不超过1M
+                      %p.g-block
+                        %b 
+            = f.input :avatar, as: :hidden, input_html: { class: 'target_input' }
+          = f.input :description, as: :text, input_html: { class: 'reditor' }
+
+          .form-actions
+            = f.button :submit, class: 'btn btn-primary pull-right'
+
+  .col-md-3
+
+
+- content_for :js do
+  :coffee
+    $ ->
+      $(document).on 'click', '.btn-add-photo', (e) ->
+        e.preventDefault()
+        $('input#topic_photo').trigger 'click'
+
+      redactor = new RedactorInitializer
+      redactor.init_by_default()
+
+      new MainUploader
+        url: "#{admin_global_images_path}.js"
+        button: 'btn-pupload'

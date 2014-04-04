@@ -1,0 +1,66 @@
+.row
+  .col-md-8
+    %section.panel.panel-default
+      %header.panel-heading 廊作品
+
+      .panel-body
+        = simple_nested_form_for resource, url: url, html: { class: 'form-horizontal row-border' } do |f|
+
+          = f.input :name, autofocus: true
+          = f.input :content
+          = f.input :gallery_id, as: :select,
+                  collection: Gallery.all.pluck(:name, :id),
+                  prompt: '自定义创意廊',
+                  input_html: { class: 'select2-option' }          
+          %fieldset#photos_wrap
+            %legend
+              %strong 作品图片
+            = f.simple_fields_for :images
+            = f.link_to_add :images, class: 'btn btn-sm btn-default' do
+              %i.fa.fa-plus.text 
+              %span.text 添加图片
+
+
+          .form-actions
+            = f.button :submit, class: 'btn btn-info btn-large pull-right'
+
+  .col-md-4
+    %section.panel.panel-default
+      %header.panel-heading.font-bold
+        %i.fa.fa-lightbulb-o
+        帮助中心
+      .panel-body
+        %p 这里添加一些帮助性的文字
+- content_for :js do
+  :coffee
+    $ ->
+      # uploader
+      new MainUploader
+        url: '#{admin_global_images_path}.js'
+        button: 'btn-pupload'
+
+      new MainUploader
+        url: '#{admin_global_images_path}.js'
+        button: 'btn-pupload2'
+
+      # init reditor
+      $(document).on 'click', '.btn-add-photo', (e) ->
+        e.preventDefault()
+        $('input#topic_photo').trigger 'click'
+
+      redactor = new RedactorInitializer
+      redactor.init_by_default()
+      # init reditor
+
+      # init uploader for nested form
+      $(document).on 'nested:fieldAdded', (event) ->
+        
+        field = event.field
+        
+        dateField = field.find('.img')
+        count = field.parents('#new_artwork').find('.fields').size()
+        field.find('.btn.btn-default').attr 'id', 'btn-pupload' + count
+
+        new MainUploader
+          url: '#{admin_global_images_path}.js'
+          button: 'btn-pupload' + count

@@ -1,0 +1,11 @@
+.focuslist
+  %span.aside-info
+    %b.fl 我关注的人(#{current_user.followed_users.count})
+    = link_to '全部&gt;&gt;'.html_safe, my_following_path, class: 'fr'
+  %p
+    - @following.each do |user|
+      = link_to user_path(user), class: 'userpic fl' do
+        = image_tag user.avatar_url
+  %span.aside-info
+    %a.fl{:href => "#"} 寻找认识的人&gt;&gt;
+    %i.fr 没准他们也在玩艺儿

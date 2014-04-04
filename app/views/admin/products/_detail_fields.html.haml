@@ -1,0 +1,10 @@
+= f.input :body, as: :text, input_html: { class: 'reditor' }
+- content_for :js do
+  :coffee
+    $ ->
+      $(document).on 'click', '.btn-add-photo', (e) ->
+        e.preventDefault()
+        $('input#topic_photo').trigger 'click'
+
+      redactor = new RedactorInitializer
+      redactor.init_by_default()

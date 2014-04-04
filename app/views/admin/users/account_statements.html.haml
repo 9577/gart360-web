@@ -1,0 +1,37 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+    = resource.username
+    的收支明细
+
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th 编号
+          %th 时间
+          %th 收入(元)
+          %th 支出(元)
+          %th 类型
+          %th 备注
+      %tbody
+        - @account_statements.each_with_index do |resource, index|
+          %tr
+            %td= index
+            %td= resource.created_at.strftime('%F %R')
+            - if resource.income?
+              %td= resource.amount
+              %td 
+            - else
+              %td
+              %td= resource.amount
+            %td= resource.type_identifier_text
+            %td= resource.description
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂时还没有牌品数据，请上传。
+
+
+

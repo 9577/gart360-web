@@ -1,0 +1,108 @@
+zh-CN:
+  simple_form:
+    'yes': 'Yes'
+    'no': 'No'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: 'Please review the problems below:'
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    labels:
+      group:
+        is_agreed: '<span>我已认真阅读并同意 《社区指导原则》 和 免责声明</span>'
+        is_confirm_required: 加入方式
+        tag_list: 标签
+      user:
+        is_agreed: "<span>我同意接受玩艺儿网<a href='#' class='text-info'>会员条款</a>和<a href='#' class='text-info'>免责声明</a></span>"
+        new:
+          email: 帐号
+          password: 密码
+          password_confirmation: 重复密码
+          remember_me: 记住密码
+        edit:
+          username: 艺名
+          gender: 性别
+          birthdate: 生日
+          bio: 个人简介
+      artist:
+        name: '艺名/姓名'
+        bio: 简介
+    placeholders:
+      group:
+        name: 给小组起个醒目的名称吧
+        tag_list: 输入标签
+      gallery:
+        tag_list: 输入标签
+      user:
+        login: 请输入邮箱地址 或 手机号码
+        email: 请输入邮箱地址
+        password: 请输入密码
+        password_confirmation: 请重复输入密码
+        username: 请输入用户名
+        bio: 一两句话介绍下自己~
+      conversation:
+        messages:
+          body: 我也很高兴认识你，你从事这行多久了？
+      product:
+        title: 请输入拍品名...
+      recharge_record:
+        amount: 金额
+      comment:
+        body: 我也来说两句...
+      artist:
+        exhibitions:
+          name: 展览名称
+          artwork_name: 作品名称
+          year: 参展年份
+          city_name: 参展城市
+        awards:
+          artwork: 作品名称
+          content: 获奖情况
+          year: 获奖年份
+          city_name: 获奖地区
+        educations:
+          background: 学历
+          school: 学校名称
+          major: 专业名称
+          entrance_date: 入学时间
+    hints:
+      topic:
+        title: 50个字以内
+        body: 5000个字以内
+      event:
+        subject: 30个字内
+        description: 500字内
+        start_at: 请选择有效的时间范围
+      artwork:
+        name: 30字内
+        content: 500字内
+      gallery:
+        name: 30字以内
+        content: 500字以内
+        tag_list: 多个标签直接可以用空格、回车或者Tab键分隔开
+      group:
+        name: 30字内
+        description: 500字内
+        tag_list: 多个标签直接可以用空格、回车或者Tab键分隔开
+      auction:
+        start_at: 开始时间只能是今天以后的时间
+        end_at: 结束时间必须大于开始时间
+      recharge_record:
+        amount: 元
+

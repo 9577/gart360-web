@@ -1,0 +1,26 @@
+#users_registrations {
+
+  .fields:before,
+  .fields:after {
+    display: table;
+    content: " ";
+  }
+
+  .fields:after {
+    clear: both;
+  }
+
+  .nested_attrs {
+    .controls { width: auto; }
+  }
+
+  .fields {
+    margin-bottom: 10px;
+    
+    .col-sm-10 {
+      width: 130px;
+      float: left;
+      input { width: 100px; }
+    }
+  }
+}

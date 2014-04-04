@@ -1,0 +1,45 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    自定义公众号菜单
+
+  - if collection.any?
+    .page-actions
+      = link_to sync_admin_weixin_menus_path, class: 'btn btn-primary btn-large pull-right' do
+        %i.icon-share-alt
+        同步到微信
+
+    %section.widget
+      %table.table.table-striped.m-b-none.text-sm
+        %thead
+          %tr
+            %th= WeixinMenu.human_attribute_name(:sequence)
+            %th= WeixinMenu.human_attribute_name(:name)
+            %th= WeixinMenu.human_attribute_name(:menu_type)
+            %th= WeixinMenu.human_attribute_name(:key)
+            %th= WeixinMenu.human_attribute_name(:url)
+            %th= WeixinMenu.human_attribute_name(:weixin_sub_menus)
+            %th
+        %tbody
+          - collection.each do |resource|
+            %tr
+              %td= resource.sequence
+              %td= resource.name
+              %td= resource.human_type
+              %td= resource.human_key
+              %td= resource.url
+              %td
+                - resource.weixin_sub_menus.each do |sub_button|
+                  = sub_button.name
+                  (
+                  = sub_button.human_type
+                  )
+                  %br
+
+              %td
+                = link_to '编辑', edit_admin_weixin_menu_path(resource), class: 'btn btn-info'
+                = link_to '删除', admin_weixin_menu_path(resource), method: :delete, data: {confirm: '确定要删除？'}, class: 'btn btn-danger'
+
+      .panel-footer.clearfix
+        = paginate collection

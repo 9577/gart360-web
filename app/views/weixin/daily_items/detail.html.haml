@@ -1,0 +1,34 @@
+.banner
+  = image_tag asset_url('wx/banner.jpg'), class: 'w100'
+.main
+  .main-tabs
+    %ul.ul-tabs.clearfix
+      %li.active
+        %a{href: "#"} 关于油画
+      %li
+        %a{href: "#"} 活动详情
+    .main-con
+      %ul
+        %li.price
+          %p.clearfix
+            %em 你只需
+            %span 1
+            %span 0
+            %span 9
+            %span 8
+            %em 元购买
+        %li.who
+          已有
+          %span.red 0
+          人为你砍价
+        %li.how-much 已有 104 人获得满数砍价 ，前100名获得购买资格
+        %li.main-btn.try
+          %button.btn.btn-default 帮TA砍价
+          %button.btn.btn-blue 我也试试
+    .item-info.hide
+      %p 邀请好友为自己砍价，每一次砍价立减5元，原价1021元的没画，最低可0元购买！限量100幅，最短时间获得砍价次数量多的，即获得购买资格。抓紧机会，看看你的人气吧！
+      %dl
+        %dt.red 活动规则：
+        %dd.white 1. 邀请好友为你砍价，一次减5元;
+        %dd 2.前100名最短时间获得砍价次数最多的网友，获得购买资格，直接按原价扣除所减金额的最终价格购买。最低可0元购买。
+        %dd 3.获得购买资格后，系统会发送提醒，并出现购买

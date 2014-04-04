@@ -1,0 +1,18 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      %h3.site.site2
+        = @group.name
+        小组基本信息
+      = render partial: 'member_nav', locals: {cur: 'edit'}
+      .lang-create
+        = render 'form', url: resource_path(resource)
+    %aside.col-sub
+      %h3.site.site2 小组创建...
+      .lang-create.lang-create2
+        %p
+          小组创建后，小组的名称、介绍、头像、标签、加入方式在创立后都可以随时更改。
+  .bg

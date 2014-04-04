@@ -1,0 +1,12 @@
+%h3.cf.site
+  %span.fl 注册
+  %span.fr
+    已有账号？
+    = link_to '立即登录', new_user_session_path
+
+%ul.site-type
+  = sec_nav :email do
+    = link_to '邮箱注册', sign_up_path(type: :email)
+
+  = sec_nav :mobile do
+    = link_to '手机注册', sign_up_path(type: :mobile)

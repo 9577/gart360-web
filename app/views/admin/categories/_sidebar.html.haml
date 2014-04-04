@@ -1,0 +1,24 @@
+%section.panel.panel-default
+  %header.panel-heading.bg-light
+    店内分类
+    %small (快捷创建分类)
+  .panel-body
+    = simple_form_for Category.new, url: collection_path, html: { class: 'form-horizontal row-border' } do |f|
+      = f.input :name, wrapper: :no_label, label: false, placeholder: '输入名称并提交...'
+
+      = f.input :parent_id, wrapper: :no_label,
+                                  label: false,
+                                  as: :select,
+                                  collection: Category.roots,
+                                  input_html: { class: 'select2-option' },
+                                  prompt: '选择大分类...'
+      .form-actions
+        = f.button :submit, '快速创建', class: 'btn btn-primary'
+
+
+%section.panel.panel-default
+  %header.panel-heading.font-bold
+    %i.fa.fa-lightbulb-o
+    帮助中心
+  .panel-body
+    %p 这里添加一些帮助性的文字

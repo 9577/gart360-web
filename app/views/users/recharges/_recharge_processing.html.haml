@@ -1,0 +1,93 @@
+.account-list
+  .account-meta
+    %p
+      %span.title> 充值账户：
+      = current_user.username
+    %p
+      %span.title> 充值类型：
+      余额
+    %p.clearfix
+      %span.title 共购买：
+      = succeed "\u{5143}" do
+        %span.green= resource.amount
+      %em.right
+        共需支付：
+        %span.orange> 
+          = resource.amount
+        元人民币
+  -# .account-notice
+  -#   %label{:for => ""}>
+  -#     %input{:type => "checkbox"} 使用玩艺币
+  -#   本次支付使用余额：
+  -#   %span.orange 100.00
+  -#   元
+  -# %p.accout-chose
+  -#   选择在线付款方式
+  -#   %span.gray6
+  -#     需在线支付：
+  -#     %span.orange> 
+  -#       = resource.amount
+  -#     元
+  = simple_form_for :check_payment, url: check_payment_recharge_path(resource), html: { class: ' row-border', method: :post } do |f|
+    .account-style
+      %ul.clearfix.list-unstyled.account-style-tabs
+        %span.left 付款方式：
+        %li.active 支付宝
+        -# %li 网上银行
+      .style-item{:style => "display: block;"}
+        %p
+          使用支付宝付款：
+          %span.orange> 
+            = resource.amount
+          元
+        %ol.list-unstyled.clearfix
+          %li
+            %input#1{name: "#{f.object_name}[payment]", type: 'radio', checked: 'checked', value: 'alipay'}
+              %label
+                = image_tag 'invest/alipay.png', alt: 'alipay'
+      .style-item.g-hidden{:style => "display: none;"}
+        %p
+          使用网上银行付款：
+          %span.orange> 
+            = resource.amount
+          元
+        / input的id和name名称请自行更改，目前只是测试实例
+        %ol.list-unstyled.clearfix
+          %li
+            %input#3{:name => "2", :type => "radio"}
+              %label{:for => "3"}
+                %img{:alt => "", :src => "images/jt.png", :style => "border-color: rgb(255, 124, 0);"}/
+          %li
+            %input#4{:name => "2", :type => "radio"}
+              %label{:for => "4"}
+                %img{:alt => "", :src => "images/jh.png", :style => "border-color: rgb(221, 221, 221);"}/
+          %li
+            %input#5{:name => "2", :type => "radio"}
+              %label{:for => "5"}
+                %img{:alt => "", :src => "images/gh.png", :style => "border-color: rgb(221, 221, 221);"}/
+          %li
+            %input#6{:name => "2", :type => "radio"}
+              %label{:for => "6"}
+                %img{:alt => "", :src => "images/zh.png", :style => "border-color: rgb(221, 221, 221);"}/
+          %li
+            %input#7{:name => "2", :type => "radio"}
+              %label{:for => "7"}
+                %img{:alt => "", :src => "images/zh2.png", :style => "border-color: rgb(221, 221, 221);"}/
+          %li
+            %input#8{:name => "2", :type => "radio"}
+              %label{:for => "8"}
+                %img{:alt => "", :src => "images/gd.png", :style => "border-color: rgb(221, 221, 221);"}/
+          %li
+            %input#9{:name => "2", :type => "radio"}
+              %label{:for => "9"}
+                %img{:alt => "", :src => "images/pa.png", :style => "border-color: rgb(221, 221, 221);"}/
+          %li
+            %input#10{:name => "2", :type => "radio"}
+              %label{:for => "10"}
+                %img{:alt => "", :src => "images/zx.png", :style => "border-color: rgb(221, 221, 221);"}/
+          %li
+            %input#11{:name => "2", :type => "radio"}
+              %label{:for => "11"}
+                %img{:alt => "", :src => "images/nh.png", :style => "border-color: rgb(221, 221, 221);"}/
+    .account-btn
+      = f.button :submit, '确认支付方式', class: 'btn btn-primary'

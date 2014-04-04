@@ -1,0 +1,33 @@
+.row
+  .col-md-8
+    %section.panel.panel-default
+      %header.panel-heading 静态页面
+
+      .panel-body
+        = simple_form_for resource, url: url, html: { class: 'form-horizontal row-border', multipart: true } do |f|
+          = f.input :name, autofocus: true
+          = f.input :area, as: :select, collection: Page.get_area_values, prompt: false, input_html: { class: 'select2-option' }, wrapper_class: 'select_width'
+          = f.input :code
+          = f.input :type_identifier, as: :select, collection: Page.get_type_identifier_values, prompt: false, input_html: { class: 'select2-option' }, wrapper_class: 'select_width'
+          = f.input :body, as: :text, input_html: { class: 'reditor' }
+
+          .form-actions
+            = f.button :submit, class: 'btn btn-info btn-large pull-right'
+
+  .col-md-4
+    %section.panel.panel-default
+      %header.panel-heading.font-bold
+        %i.fa.fa-lightbulb-o
+        帮助中心
+      .panel-body
+        %p 这里添加一些帮助性的文字
+
+- content_for :js do
+  :coffee
+    $ ->
+      $(document).on 'click', '.btn-add-photo', (e) ->
+        e.preventDefault()
+        $('input#topic_photo').trigger 'click'
+
+      redactor = new RedactorInitializer
+      redactor.init_by_default()

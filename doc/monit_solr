@@ -1,0 +1,8 @@
+check process solr
+  with pidfile /var/www/gart360/shared/solr/pids/staging/sunspot-solr-staging.pid
+  start program = "/etc/init.d/solr start"
+  stop program = "/etc/init.d/solr stop"
+  group solr
+  if mem is greater than 800.0 MB for 1 cycles then restart       # eating up memory?
+  if cpu is greater than 50% for 2 cycles then alert                  # send an email to admin
+  if cpu is greater than 80% for 3 cycles then restart                # hung process?

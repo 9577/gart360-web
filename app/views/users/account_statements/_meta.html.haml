@@ -1,0 +1,23 @@
+%p.recharge-name.clearfix
+  账户余额
+  %a.blackish-green.right.font12{ href: edit_user_payment_info_path } 修改支付密码>>
+.record-head.clearfix
+  可用余额：
+  %span.green> 
+    = current_user.user_payment.amount
+  元
+  %span.get-left
+    冻结余额：
+    %span.orange> 
+      = current_user.user_payment.freezing_amount
+    元
+  .right-record.clearfix
+    = link_to '充值', new_recharge_path, class: 'btn btn-primary left'
+    %ul.list-unstyled.left
+      %li= link_to '申请提现', new_withdraw_path, class: 'blackish-green'
+      %li= link_to '查看充值明细', account_statements_path(filter_by_type: 'recharged'), class: 'blackish-green'
+.get-cash-record
+  %p
+    %span= profile_link_to '收支明细', account_statements_path, class: 'gray3'
+    |
+    %span= profile_link_to '提现申请', withdraws_path, class: 'gray3'

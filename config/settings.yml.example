@@ -1,0 +1,32 @@
+alipay:
+  pid: '2088901234220445'
+  key: 'vzb2edyk5itvej2osuj7wyyfip6sgdck'
+  seller_email: 'gart360@yahoo.cn'
+
+qiniu:
+  access_key: "ucu7EKF4k_Ok-F-BdkASP_3UzyfBfMdMcAHtGkVi"
+  secret_key: "IpdiyedOyUvY1ixMndCeF61LXURgDZTGgytBbdBX"
+  bucket: "gart360-dev"
+  bucket_domain: "gart360-dev.qiniudn.com"
+
+email:
+  from: 'support@gart360.com'
+  host: 'www.gart360.com'
+  delivery_method: :smtp
+
+  smtp_settings:
+    address: "smtp.exmail.qq.com"
+    port: 25
+    authentication: :login
+    domain: 'gart360.com'
+    user_name: ''
+    password: ''
+
+
+
+gallery:
+  tags:
+    - 画家
+    - 雕塑
+    - 手工艺
+    - 摄影

@@ -1,0 +1,26 @@
+.layout990
+  #preview
+    - collection.each do |auction|
+      - date = auction.start_at
+      .preview-item.clearfix
+        %ul.preview-time.list-unstyled.left
+          %li.li1= date.day
+          %li.li2= date.strftime('%m月')
+          %li.li3= date.strftime('%Y年')
+        .preview-img.left
+          = link_to weitou_auction_path(auction) do
+            = image_tag auction.banner_url(390, 160)
+        %ul.preview-describe.list-unstyled.left
+          %li.li1
+            = link_to weitou_auction_path(auction), class: 'gray3' do
+              %strong= auction.title
+          %li.li2.gray9
+            %em 开拍时间：#{ auction.start_at.strftime('%m.%d/%H:%M') } - #{ auction.end_at.strftime('%m.%d/%H:%M') }
+            共有：
+            %span.orange= auction.products_count
+            个拍品
+          %li.li3
+            - auction.products.limit(4).each do |product|
+              = link_to image_tag(product.square_cover_url(80, 80)), weitou_auction_product_path(auction, product)
+        .list-tips.preview-tips
+          预展

@@ -1,0 +1,13 @@
+.aside-lists.group.gtop
+  %h3.site 本周小组上升榜
+  %ul
+    - @groups.each_with_index do |group, index|
+      %li
+        .group-list
+          %span.rank.fl= index + 1
+          .g-group.fl
+            %h3
+              = link_to group.name, sns_group_path(group)
+            .g-num #{group.members_count}人加入
+            .g-link
+              = group_status current_user, group

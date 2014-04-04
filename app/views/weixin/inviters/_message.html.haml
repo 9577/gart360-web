@@ -1,0 +1,11 @@
+%li.who
+  砍价成功，为TA获得
+  %span.red 5
+  元的减价。
+%li.how-much 你也可以分享给好友，免费获得作品。
+%li.main-btn.try
+  - if current_wx_user.has_cut?(resource.id)
+    = link_to '帮TA砍价', 'javascript:void(0)', class: 'btn btn-default disabled', id: 'cut_buuton'
+  - else
+    = link_to '帮TA砍价', cut_resource_url(resource), class: 'btn btn-default', id: 'cut_buuton', remote: true
+  = link_to '我也试试', weixin_daily_item_url(resource.daily_item), class: 'btn btn-blue'

@@ -1,0 +1,33 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      %h3.site.site2 话题精选
+      .g-topic
+        %ul
+          - @topics.each do |topic|
+            %li
+              .topic-body
+                .vote
+                  = link_to topic.replies_count, sns_group_topic_path(topic.group, topic, anchor: "reply_body")
+                  %p 回应
+                .topic-cont
+                  %h3
+                    = link_to topic.title, sns_group_topic_path(topic.group, topic)
+                  .summery
+                    = image_tag topic.group.logo
+                    = topic.body
+                .topic-info
+                  %span.time= topic.created_at.to_minute
+                  %span.from
+                    来自
+                    = link_to topic.group.name, sns_group_path(topic.group)
+                    小组
+
+
+
+      = paginate @topics
+    = render 'sidebar'
+  .bg

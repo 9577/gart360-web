@@ -1,0 +1,34 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      = render 'sns/groups/nav'
+      .g-topic
+        - if @topics.any?
+          %ul
+            - @topics.each do |topic|
+              %li
+                .topic-body
+                  .vote
+                    %a{:href => "#"}= topic.replies_count
+                    %p 回应
+                  .topic-cont
+                    %h3
+                      = link_to topic.title, sns_group_topic_path(topic.group, topic)
+                    %p
+                      小组:
+                      = link_to topic.group.name, sns_group_path(topic.group), class: 'lan'
+                  .topic-info
+                    %span.time
+                      创建时间：
+                      = topic.created_at.to_minute
+        - else
+          %p.empty-content 我还没有加入任何小组.
+
+      = paginate @topics
+    %aside.col-sub
+      .lang-info
+        = render_cell :user, :widget, user: current_user
+  .bg

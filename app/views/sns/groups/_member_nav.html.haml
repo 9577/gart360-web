@@ -1,0 +1,9 @@
+.lang-nav.cy
+  = link_to members_sns_group_path(@group), class: (cur == 'members' ? 'cur' : '') do
+    成员管理
+  %span |
+  = link_to pending_members_sns_group_path(@group), class: (cur == 'pending' ? 'cur' : '') do
+    申请加入(#{@group.pending_members.count})
+  %span |
+  = link_to edit_sns_group_path(@group), class: (cur == 'edit' ? 'cur' : '') do
+    基本信息

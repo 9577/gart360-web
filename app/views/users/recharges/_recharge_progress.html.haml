@@ -1,0 +1,12 @@
+- progress = state_for_progress(RechargeRecord::STATES, state)
+- index = Withdraw::STATE_PROCESS.index(state)
+.progress
+  .progress-bar.progress-bar-success{ 'aria-valuemax' => '100', 'aria-valuemin' => '0', 'aria-valuenow' => '40', role: 'progressbar', style: "width: #{progress}%" }
+    %span.sr-only #{progress}% Complete (success)
+.progress-name.clearfix
+  %span.left{class: index >= 0 ? 'active' : '' }
+    1.填写充值金额
+  %span.online{class: index >= 1 ? 'active' : '' }
+    2.在线支付
+  %span.right{class: index >= 2 ? 'active' : '' }
+    3.充值完成

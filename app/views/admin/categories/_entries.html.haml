@@ -1,0 +1,24 @@
+%section.panel.panel-default
+  %header.panel-heading.bg-light 竞拍分类
+  .panel-body
+
+    #nestable3.dd{ data: { :'update-url' => sort_admin_categories_path } }
+      %ol.dd-list
+        - collection.each do |resource|
+          %li.dd-item.dd3-item{'data-id' => resource.id}
+            .dd-handle.dd3-handle Drag
+            .dd3-content
+              = link_to resource.name, '#', class: 'name editable editable-click', data: { type: 'text', pk: 1, title: '修改分类名称', url: admin_category_update_name_path(resource) }
+              .pull-right
+                = link_to resource_path(resource), method: :delete, data: { confirm: '确定要删除吗? 将会删除所有子分类' } do
+                  %i.fa.fa-trash-o
+            - if resource.has_children?
+              %ol.dd-list
+                - resource.children.each do |child|
+                  %li.dd-item.dd3-item{'data-id' => child.id}
+                    .dd-handle.dd3-handle Drag
+                    .dd3-content
+                      = link_to child.name, '#', class: 'name editable editable-click', data: { type: 'text', pk: 1, title: '修改分类名称', url: admin_category_update_name_path(child) }
+                      .pull-right
+                        = link_to resource_path(child), method: :delete, data: { confirm: '确定要删除吗?' } do
+                          %i.fa.fa-trash-o

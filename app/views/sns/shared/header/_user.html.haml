@@ -1,0 +1,15 @@
+%header
+  .container
+    / 导航 :s
+    %nav.navbar.fl
+      %ul
+        = sec_nav :home do
+          = link_to '首页', sns_root_path
+
+        = sec_nav :profile do
+          = link_to '我的玩艺儿', my_profile_path
+
+        = sec_nav :guang do
+          = link_to '随便逛逛', sns_guang_path
+    / 导航 :e
+    = render 'search_panel'

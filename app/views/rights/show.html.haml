@@ -1,0 +1,18 @@
+.white-warpper
+  .layout990.right-safeguarding
+    = render 'right_header'
+    .safeguarding-con.clearfix
+      .safeguarding-meta.left
+        .status
+          %p
+            %span 处理状态：
+            %strong.green= resource.state_text
+          %p
+            %span> 是否收到货：
+            = resource.is_received_text
+          %p
+            %span> 维权类型：
+            = resource.type_identifier_text
+        = render "show_#{resource.state.to_s}"
+      = render 'order_info', product: @product, parent: parent
+

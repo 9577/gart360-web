@@ -1,0 +1,18 @@
+.g-topic
+  %ul
+    - @topics.each do |topic|
+      %li
+        .topic-body
+          .vote
+            = link_to topic.replies_count, sns_group_topic_path(@group, topic)
+            %p 回应
+          .topic-cont
+            %h3
+              = link_to topic.title, sns_group_topic_path(@group, topic)
+            %p
+              小组:
+              = link_to @group.name, sns_group_path(@group), class: 'lan'
+          .topic-info
+            %span.time 创建时间：#{topic.created_at.to_minute}
+
+= paginate @topics

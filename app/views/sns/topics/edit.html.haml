@@ -1,0 +1,23 @@
+- content_for :subhead do
+  = render 'sns/shared/header/group'
+
+.wrap
+  .container.cf
+    .col-main.group
+      %h3.site.site2
+        在
+        %span= link_to parent.name, sns_group_path(parent)
+        小组编辑话题
+      .lang-create
+        = render 'form'
+
+    %aside.col-sub
+      .rgourp
+        %p
+          = link_to sns_group_path(parent), title: parent.name do
+            = image_tag parent.logo_url
+        %p
+          返回
+          = link_to parent.name, sns_group_path(parent)
+          小组
+  .bg

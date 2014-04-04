@@ -1,0 +1,73 @@
+%header.no-nav
+.wrap.home#complete_profile
+  .container.cf
+    .col-main
+      = simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal settings-form' } do |f|
+        %section.com-info.cf
+          .form-group.avatar.fl.upload{ data: { target: 'user_avatar' } }
+            .img-holder
+              = image_tag current_user.avatar_url
+
+            = link_to '上传头像', 'javascript:void(0)', class: 'btn btn-primary', id: 'btn-pupload'
+
+            = f.input :avatar, as: :hidden, input_html: { class: 'target_input' }
+
+          .com-set.fr
+            %strong 你好，#{resource.username}
+            %span.com-set-info 欢迎接入王艺儿网大家庭，完善的资料让你更有人气
+            
+            = f.input :gender, wrapper: :sns,
+                               as: :radio_buttons,
+                               input_html: { class: 'btn-radio' },
+                               collection: User.get_gender_values,
+                               required: true
+
+            .form-group.region
+              %label.control-label 常住地
+              .controls
+                = f.input :province_id, wrapper: false, as: :region,
+                                        collection: Province.select('id, name'),
+                                        sub_region: :city_id,
+                                        label: false,
+                                        input_html: { class: 'select2' },
+                                        prompt: '请选择省份...'
+
+                = f.input :city_id, as: :region,
+                                    wrapper: false,
+                                    label: false,
+                                    input_html: { class: 'select2' },
+                                    collection: current_user.province.nil? ? [] : current_user.province.cities.select('id, name'),
+                                    prompt: '请选择城市...'
+
+            = f.input :birthdate, as: :date,
+                                  wrapper: :sns,
+                                  input_html: { class: 'select2' },
+                                  wrapper_html: { class: 'combo' }
+
+            = f.input :is_profile_completed, as: :hidden, input_html: { value: true }
+
+        %section.com-type
+          %p 选择您当前的身份或兴趣  （至少1个） ，我们会推荐您感兴趣的人或内容
+          .intrests
+            = f.input :intrest_list, as: :string,
+                                     wrapper: :sns,
+                                     label: false,
+                                     input_html: { data: { role: 'tagsinput' } }
+
+          .form-group.form-actions
+            %label.control-label
+            .controls
+              = f.button :submit, '保存设置', class: 'btn btn-primary'
+              = link_to '跳过并进入玩艺', sns_root_path, class: 'btn btn-default'
+
+    %aside.col-sub
+      / 感兴趣的人
+      = render_cell :sidebar, :hot_users
+  .bg
+
+- content_for :js do
+  :coffee
+    $ ->
+      new MainUploader
+        url: "#{global_images_path}.js"
+        button: 'btn-pupload'

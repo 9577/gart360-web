@@ -1,0 +1,40 @@
+%aside.col-sub
+  .lang-info
+    %a.userpic.fl{:href => "#"}
+      %img{:src => "/assets/sns/pic-temp/1.png"}/
+    %p.mydetail.fl
+      %a.name{:href => "#"}= current_user.username
+      %br/
+      %span
+        上海市，浦东新区
+        %br/
+        2010-10-25加入
+      %a.intro{:href => "#"} 艺术家简介&gt;
+    .cf
+    .lang-link
+      = link_to new_sns_gallery_path, class: 'btn btn-default btn-block' do
+        创建我的创艺廊&gt;
+
+      = link_to sns_images_path, class: 'btn btn-default btn-block' do
+        发布作品图片&gt;
+
+    .aside-lists
+      %span.aside-info
+        %b.fl 即将举办的发布会
+      %ul
+        %li.userinfo
+          %a.userpic.fl.userpic-nobd{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 简约生活创意 小铺
+            %br
+              %span.desc 清和堂成立于2009年，主要从事雕塑制作，以及陶艺成型......
+              %span.from 活动时间：2013-10-25
+        %li.userinfo
+          %a.userpic.fl.userpic-nobd{:href => "#"}
+            %img{:src => "/assets/sns/pic-temp/1.png"}/
+          %p
+            %a.name{:href => "#"} 简约生活创意 小铺
+            %br
+              %span.desc 清和堂成立于2009年，主要从事雕塑制作，以及陶艺成型......
+              %span.from 活动时间：2013-10-25

@@ -1,0 +1,35 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    
+    = render 'user_nav'
+
+    .recharge-con.right
+      %p.recharge-name 申请提现
+      .withdraw-list
+        = simple_form_for resource, url: withdraws_path, html: { class: 'form-horizontal row-border' } do |f|
+          = f.input :card_number
+          = f.input :bank_name, as: :select, collection: Settings.bank_name, prompt: true, input_html: { class: 'select2-option' }
+          = f.input :name
+          = f.input :amount
+          .col-md-offset-2.red
+            可用金额: #{current_user.user_payment.amount}
+          = f.input :mobile
+          = f.input :description, as: :text
+          .form-group
+            .col-sm-offset-3.col-sm-9
+              %button.btn.btn-primary{:type => "submit"} 提交申请
+- content_for :js do
+  :javascript
+    jQuery(document).ready(function($) {
+      $("#new_withdraw").validate();
+      $('#new_withdraw').submit(function(event) {
+        var amount = parseFloat($('#withdraw_amount').val()).toFixed(2);
+        if (amount >= #{current_user.user_payment.amount} || amount <= 0) {
+          $('#withdraw_amount').after('<span for="withdraw_amount" class="help-inline">提现金额不正确</span>');
+          event.preventDefault();
+          return false;
+        };
+      });
+    });
+
+    

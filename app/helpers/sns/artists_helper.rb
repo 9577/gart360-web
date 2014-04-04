@@ -1,0 +1,2 @@
+module Sns::ArtistsHelper
+end

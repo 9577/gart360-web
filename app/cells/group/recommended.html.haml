@@ -1,0 +1,14 @@
+#recommended_groups.aside-lists
+  %span.aside-info
+    %b.fl 新锐小组推荐
+    = link_to '换一换', refresh_recommended_sns_groups_path, class: 'fr icon icon-refresh', data: {remote: true}
+  %ul
+    - @groups.each do |group|
+      %li.userinfo
+        = link_to user_path(group.user), class: 'userpic fl userpic-nobd' do
+          = image_tag group.user.avatar
+        %p
+          = link_to group.name, sns_group_path(group), class: 'name'
+          %br
+            %span.from #{group.members_count}人加入
+            %span.desc= group.description

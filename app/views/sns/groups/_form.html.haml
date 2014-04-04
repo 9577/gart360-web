@@ -1,0 +1,52 @@
+= simple_form_for resource, url: url, html: { class: 'form-horizontal group-form' } do |f|
+
+  = f.input :name, wrapper: :sns
+  = f.input :description, wrapper: :sns, input_html: { rows: 5 }
+
+  .form-group.upload{ data: { target: 'group_logo' } }
+    %label.control-label 小组图像
+    .controls.clearfix
+      .img-holder
+        - if resource.logo?
+          = image_tag resource.logo_url, size: '120x120'
+        - else
+          = image_tag('sns/user-header-bg.png', size: '120x120')
+      .action
+        = link_to '#', class: 'btn btn-default', id: 'btn-pupload' do
+          %i.fa.fa-picture-o
+          选择图片
+        %small 支持png、jpg、gif格式，大小不超过1M
+      = f.input :logo, as: :hidden, input_html: { class: 'target_input' }
+
+  = f.input :is_confirm_required, as: :radio_buttons,
+                                  wrapper: :sns,
+                                  collection: Group.get_is_confirm_required_values,
+                                  input_html: { class: 'btn-radio' }
+
+  = f.input :tag_list, as: :string,
+                       wrapper: :sns,
+                       input_html: { data: { role: 'tagsinput' } }
+
+  - if resource.new_record?
+    .form-group.group_is_agreed
+      %label.control-label
+      .controls
+        = f.input :is_agreed, as: :boolean,
+                              wrapper: false,
+                              inline_label: t('simple_form.labels.group.is_agreed').html_safe,
+                              label: false
+
+  .form-group
+    %label.control-label
+    .controls
+      = f.button :submit, '提交', class: 'btn btn-primary'
+
+- content_for :js do
+  :coffee
+    $ ->
+      new MainUploader
+        url: "#{global_images_path}.js"
+        button: 'btn-pupload'
+
+      $('input[name=tag_list]').blur () ->
+        $('#group_tag_list').valid()

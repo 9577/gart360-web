@@ -1,0 +1,19 @@
+.layout990
+  = render 'slider', banners: @banners
+
+  = render_cell :auction, :home_active
+  = render_cell :auction, :home_pending
+  = render_cell :auction, :home_zero
+  = render_cell :auction, :home_charity
+
+
+- content_for :js do
+  :coffee
+    $ ->
+      $('#myTab a:first,#onsale a:first').tab 'show'
+      lxfEndtime()
+      
+      $('#onsale li').mouseenter(->
+        $(this).find('.sale-tab-r').addClass 'tab_hover'
+      ).mouseleave ->
+        $(this).find('.sale-tab-r').removeClass 'tab_hover'

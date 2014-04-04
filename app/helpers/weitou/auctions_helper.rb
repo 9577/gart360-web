@@ -1,0 +1,2 @@
+module Weitou::AuctionsHelper
+end

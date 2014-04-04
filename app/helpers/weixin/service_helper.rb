@@ -1,0 +1,2 @@
+module Weixin::ServiceHelper
+end

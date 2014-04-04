@@ -1,0 +1,4 @@
+- if current_wx_user.inviter?(resource.wx_user_id)
+  = render 'inviter'
+- else
+  = render 'invitee'

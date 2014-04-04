@@ -1,0 +1,162 @@
+.select2-container{
+  height: auto;
+  padding: 0;
+}
+.small{
+  color: #999999;
+}
+.title{
+  padding: 20px;
+}
+.select_width{
+  height: 34px;
+  margin-bottom: 15px;
+}
+.need_padding{
+  padding: 15px;
+  background: white;
+  a{
+    margin: 0 2px;
+  }
+}
+.custom_panel{
+  margin-bottom: 20px;
+}
+.custom_width{
+  background-color: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  float: left;
+  margin: 0 5% 10px 0;
+  width: 30%;
+  padding-left: 15px;
+}
+.search_form_single{
+  label{
+    width: 100px;
+    margin-left: -30px;
+    padding-bottom: 5px;
+  }
+}
+.custom_margin{
+  margin-left: -16px;
+}
+.each_input{
+  width: 145px;
+}
+.search_form_multi{
+  margin: 0 5px 15px 2px !important;
+}
+.line_height{
+  padding-top: 20px;
+}
+.limit_width{
+  width: 400px !important;
+}
+.red{
+  color: red;
+}
+.gray{
+  color: #999 !important;
+}
+.avatar_padding{
+  padding-left: 100px;
+}
+.no_padding{
+  padding: 0 !important;
+}
+.no_padding_top{
+  padding-top: 0;
+}
+.no_margin{
+  margin: 0 !important;
+}
+.no_margin_right{
+  margin-right: 0 !important;
+}
+.small_name{
+  a{
+    color: #999999;
+  }
+  padding: 15px 0 0 15px;
+  margin-top: -30px;
+  font-size: 12px;
+}
+.fix_padding{
+  .col-xs-3{
+    padding: 0 5px !important;
+  }
+}
+.font_black{
+  color: #2E3E4E;
+}
+.margin_for_h4{
+  margin-top: 15px;
+}
+.question_height{
+  height: 500px;
+  overflow: scroll;
+}
+.question_list{
+  margin: 0 0 1px 0;
+  border-top: none;
+  border-bottom: 3px dotted #999999;
+}
+.btn-file{
+  padding: 0px;
+  margin: 0 !important;
+}
+.error{
+  border-color: #FF5F5F !important;
+}
+.teacher_bio{
+  padding: 10px;
+}
+.no_float{
+  float: none !important;
+}
+#mail_index{
+  margin: -10px 0 0 -15px;
+}
+.hbox{
+  width: 101% !important;
+}
+#mail_paginate{
+  .pagination{
+    margin: 0 !important;
+  }
+}
+.each_fan{
+  width: 18%;
+  margin: 1%;
+  float: left;
+}
+#fans_body, #followers_body{
+  padding: 5px !important;
+}
+#custom-panel{
+  margin-bottom: 0px;
+  border-bottom-width: 0px;
+  .panel-heading{
+    border-bottom-width: 0px;
+  }
+}
+.permission_list{
+  margin-bottom: 0;
+}
+.widget_department_id{
+  label{
+    width: 25% !important;
+  }
+  .col-sm-10{
+    width: 70% !important;
+  }
+}
+.global_upload{
+  .img-holder{
+    float: left;
+  }
+  .action{
+    float: left;
+    margin-left: 10px;
+  }
+}

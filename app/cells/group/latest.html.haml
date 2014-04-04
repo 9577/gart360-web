@@ -1,0 +1,14 @@
+.aside-lists
+  %span.aside-info
+    %b.fl 最新创建的小组
+  %ul
+    - @groups.each do |group|
+      %li.userinfo
+        %a.userpic.fl.userpic-nobd{ href: sns_group_path(group) }
+          = image_tag group.logo_url(60, 60)
+        %p
+          = link_to group.name, sns_group_path(group)
+          %br
+            %span.from #{ group.members_count }人加入
+            %span.desc
+              = group.description.try(:truncate, 20)

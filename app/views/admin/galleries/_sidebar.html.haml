@@ -1,0 +1,13 @@
+%section.panel.panel-default
+  %header.panel-heading 快捷过滤
+  .list-group.bg-white
+    = link_to collection_path(filter_by_state: :featured), class: 'list-group-item' do
+      %i.fa.fa-chevron-right.icon-muted
+      %span.badge= Gallery.featured.count
+      %i.fa.fa-picture-o.icon-muted.fa-fw
+      精选创艺廊
+%section.panel.panel-default.doc-buttons.b-light
+  .need_padding
+    = link_to new_resource_path, rel: 'tooltip', title: '新建创意廊', class: 'btn btn-primary' do
+      %i.fa.fa-plus
+      新建创意廊

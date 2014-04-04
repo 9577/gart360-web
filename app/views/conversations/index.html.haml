@@ -1,0 +1,30 @@
+.headspace
+.container.cf
+
+  = render '/users/settings_nav'
+
+  %section.setting-sec
+    %h3 我的消息
+    .msglist
+      .msgnav.rows.rows_cur.cf
+        %ul
+          %li= link_to '站内信(10)', '#', class: 'btn btn-default btn-xs'
+          %li= link_to '系统消息(10)', '#', class: 'btn btn-default btn-xs'
+      %ul.msg
+        - collection.each do |conversation|
+          %li
+            %span.fl.checkbox
+              %input.fl{:type => "checkbox", :value => ""}/
+              %em.icon.icon-msg-hover.fl
+            = render_user_avatar conversation.sender, size: '60x60'
+            %span.fl.cont
+              = link_to conversation.sender.username, user_profile_url(conversation.sender), class: 'name'
+              %em.date= conversation.created_at.to_date
+              %span= conversation.first_message.body
+              %a.del{:href => "#"} 删除
+      .msglist-bott
+        %a.del{:href => "#"} 删除
+        %a.read{:href => "#"} 标记为已读
+    %ul.msg-sub.fr
+      %li= link_to '给我关注的人写信 &gt;'.html_safe, new_conversation_path
+      %li= link_to '去我关注的人列表 &gt;'.html_safe, my_following_path

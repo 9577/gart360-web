@@ -1,0 +1,46 @@
+.cash-warpper
+  .layout990
+    .cash-pledge
+      .cash-title
+        我的个人账户
+        %span 竞拍保证金缴纳
+      .cash-number
+        %p 付款后，您的资金将暂时冻结在您的个人账户
+        %h2
+          竞拍押金
+          %span.orange ￥#{resource.deposit}
+        %p.time
+          创建时间：#{ l Time.zone.now }
+
+          %a{:href => "#"} 查看保证金归属规则&gt;&gt;
+      .cash-enough
+        %h2
+          %span.orange= current_user.username
+          ,您的玩艺儿网个人账户可支付余额为：
+          %span.red> #{current_user.user_payment.amount}
+          元
+        %p 您的账户余额充足，可以缴纳保证金，缴纳后保证金将冻结在您的个人账户中
+      .cash-style
+        %h5 支付方式：
+        %ul.cash-tabs.clearfix.list-unstyled
+          %li.active.left 支付宝
+          -# %li.left 网上银行
+        .tab-pane.active
+          = simple_form_for resource, url: check_payment_weitou_product_path, html: { class: 'form-horizontal row-border', method: :post } do |f|
+            %p 使用支付方式：
+            %ol.list-unstyled.bank-list.clearfix
+              %li
+                %input{id: '', name: "#{f.object_name}[payment]", type: 'radio', value: 'alipay', checked: :checked}
+                  %label{:for => ""}
+                    = image_tag 'invest/alipay.png', alt: 'alipay'
+            .next
+              %input.btn.btn-primary{:type => "submit", :value => "下一步"}/
+        .tab-pane.g-hidden
+          %p 使用支付方式：
+          %ol.list-unstyled.bank-list.clearfix
+            %li
+              %input{:id => "", :name => "", :type => "radio"}
+                %label{:for => ""}
+                  %img{:alt => "", :src => "images/alipay.png"}/
+          .next
+            %input.btn.btn-primary{:type => "button", :value => "下一步"}/

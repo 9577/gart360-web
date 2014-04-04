@@ -1,0 +1,34 @@
+.panel#avatar
+  .rows.rows_cur.cf.panel-heading
+    %label 头像
+    = link_to 'javascript:void(0);', class: 'userpic fl' do
+      = image_tag current_user.avatar_url
+    %a.cf.icon.icon-open.panel-toggle{:href => "#"} 编辑
+  .panel-body.collapse
+
+    = simple_form_for resource, as: resource_name, url: registration_path(resource_name, type: 'avatar'), html: { method: :put, class: 'form-horizontal settings-form' }, remote: true do |f|
+
+      .form-group.upload{ data: { target: 'user_avatar' } }
+        %label.control-label
+        .controls.clearfix
+          .img-holder
+            = image_tag current_user.avatar_url, size: '176x176'
+          .action
+            = link_to '#', class: 'btn btn-default', id: 'btn-pupload-user-avatar' do
+              %i.fa.fa-picture-o
+              选择图片
+            %small 支持png、jpg、gif格式，大小不超过1M
+          = f.input :avatar, as: :hidden, input_html: { class: 'target_input' }
+
+      .form-group.form-actions
+        %label.control-label
+        .controls
+          = f.button :submit, '保存', class: 'btn btn-primary'
+          .loading.hide
+
+- content_for :js do
+  :coffee
+    $ ->
+      new MainUploader
+        url: "#{global_images_path}.js"
+        button: 'btn-pupload-user-avatar'

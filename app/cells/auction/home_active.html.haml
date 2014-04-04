@@ -1,0 +1,39 @@
+.auction-title.clearfix
+  正在进行的专场拍卖
+  .auction-more.right
+    %span.orange= Auction.active.count
+    场正在进行
+    = link_to '更多>>', weitou_auctions_path(filter_by_state: :active), class: 'gray8'
+.auction-onsale.clearfix
+  %ul#onsale.nav.nav-tabs
+    - @active_auctions.each_with_index do |auction, index|
+      %li{ class: index == 0 ? 'active' : '' }
+        %a{ :'data-toggle' => 'tab', href: "#sale_#{index}"}
+          .sale-tab-btn.clearfix
+            .left= image_tag auction.logo_url
+            .left.sale-tab-r
+              .sale-tab-name= auction.title
+              .lxftime{:endtime => auction.end_at_for_js, :lxfday => ""}
+              .sale-tab-time= "结束时间：#{auction.end_at_text}"
+
+  .tab-content
+    - @active_auctions.each_with_index do |auction, index|
+      .tab-pane.same-sale{ id: "sale_#{index}", class: index == 0 ? 'active' : '' }
+        .same-sale-list.clearfix
+          - auction.products.limit(4).each do |product|
+            .col-xs-6.col-md-3
+              %ul.same-sale-item.list-unstyled
+                %li.li1
+                  = link_to weitou_product_path(product) do
+                    = image_tag product.square_cover_url, alt: product.title
+                %li.li2= link_to product.title, weitou_product_path(product), class: 'gray3'
+                %li.li3.gray8
+                  当前价格：
+                  %span.orange ￥#{product.current_price}
+                  %span.s1 |
+                  0次出价
+                %li.li4
+                  %span.glyphicon.glyphicon-time>
+                  距结束：3小时 56分 12秒
+        .watch_more
+          = link_to '查看更多作品>>', weitou_auction_path(auction), class: 'btn btn-primary'

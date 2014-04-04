@@ -1,0 +1,10 @@
+.navsearch.long
+  = simple_form_for 'search', url: sns_explore_path, html: { class: 'form-forizontal search-form' }, method: :get do |f|
+    = f.input :q, wrapper: false,
+                  label: false,
+                  input_html: { class: 'search', value: params[:q], name: 'q' },
+                  placeholder: "感兴趣的内容或人..."
+
+    .form-actions
+      %button{ type: 'submit', value: nil }
+        %i.fa.fa-search

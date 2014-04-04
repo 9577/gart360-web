@@ -1,0 +1,258 @@
+zh-CN:
+  activerecord:
+    models:
+      group: 小组
+      event: 发布会
+      gallery: 创意廊
+      artwork: 作品
+      auction: 竞拍专场
+      product: 竞拍商品
+      product_detail: 商品详情
+      auction_product_detail: 竞拍商品详情
+      user: 用户
+      right: 维权
+      expert: 专家
+      page: 静态页面
+      order: 订单
+      ad: 广告
+      recharge_record: 充值记录
+      review: 评价
+      topic: 话题
+      product_owner: 产品拥有者
+      default_tag: 默认标签
+      product_attribute: 商品属性
+      right_description: 维权描述
+      right: 维权
+      withdraw: 提现
+      address: 地址
+      daily_item: 每日一砍
+      weixin_menu: 公众号菜单
+      episode: 画报
+      wiki_category: 分类目录
+      wiki: Wiki
+      collection_item: 换一换
+    attributes:
+      topic:
+        title: 标题
+        body: 内容
+        replies_count: 回复
+      group:
+        name: 小组名称
+        description: 小组介绍
+        is_confirm_required: 加入方式
+        tag_list: 小组标签
+        logo: 小组图像
+        topics_count: 话题数量
+        members_count: 成员数量
+      event:
+        subject: 主题
+        description: 发布会描述
+        start_at: 开始时间
+        end_at: 截至时间
+      gallery:
+        name: 廊名称
+        content: 廊描述
+        tag_list: 廊标签
+        user_id: 创建者
+        artworks_count: 作品数量
+        created_at: 创建日期
+        is_featured: 状态
+      artwork:
+        name: 作品名称
+        content: 作品描述
+        images_count: 作品图片
+        gallery_id: 所属廊
+      auction:
+        id: 编号
+        title: 名称
+        banner: 图片
+        start_at: 开始时间
+        end_at: 截止日期
+        products_count: 商品数目
+        state: 状态
+        created_at: 创建日期
+        updated_at: 最后一次更新日期
+      product:
+        id: 编号
+        title: 商品名
+        user_id: 拥有者
+        auction_id: 竞拍专场
+        is_zero_auction: 0元拍
+        is_charity: 义拍义卖
+        base_price: 起拍价
+        current_price: 当前价格
+        created_at: 创建日期
+        updated_at: 最后一次更新日期
+        per_price: 加价
+        state: 状态
+        start_at: 开始时间
+        end_at: 结束时间
+        delay_time: 延时周期
+        deposit: 保证金
+        type_identifier: 类型
+        category_id: 分类
+        story: 商品故事
+      auction_product_detail:
+        id: 编号
+        product_id: 竞拍商品编号
+        body: 详情
+        created_at: 创建日期
+        updated_at: 最后一次更新日期
+      user:
+        id: 编号
+        login: 登录
+        email: 邮箱
+        sign_in_count: 登录次数
+        username: 用户名
+        mobile_phone: 手机号码
+        region: 常住地
+        gender: 性别
+        created_at: 创建时间
+        conversations_count: 会话数目
+        addresses_count: 地址数目
+      right:
+        order_id: 订单
+        is_received: 是否收到货?
+        type_identifier: 维权申请类型
+        certificates_count: 证书数目
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+        is_satisfied: 是否满意?
+        state: 维权状态
+      expert:
+        name: 姓名
+        avatar: 头像
+        description: 简介
+        created_at: 创建时间
+      page:
+        name: 名称
+        body: 内容
+        type_identifier: 类型
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+        position: 位置
+        area: 页面位置
+        code: 编码
+      order:
+        id: 编号
+        user_id: 用户ID
+        code: 编号
+        price: 价格
+        delivery_code: 物流单号
+        delivery_price: 运费
+        state: 状态
+        delivered_at: 发货时间
+        finished_at: 完成时间
+        closed_at: 关闭时间
+        paid_at: 付款时间
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+      ad:
+        area: 广告位置
+        position: 排序
+        type_identifier: 广告类型
+        title: 标题
+        body: 文本广告内容
+        image: 富文本
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+      recharge_record:
+        user_id: 用户
+        amount: 充值金额
+        state: 状态
+        finished_at: 完成时间
+        created_at: 创建时间
+        code: 单号
+        discount: 折扣价
+      product_detail:
+        body: 产品描述
+      product_photo:
+        data: 图片
+      review:
+        id: 编号
+        product_id: 商品编号
+        expert_id: 专家
+        body: 评价
+        position: 排序
+      product_owner:
+        name: 拥有者
+        avatar: 头像
+        body: 简介
+      default_tags:
+        name: 标签
+        position: 排序
+      product_attribute:
+        name: 属性
+        value: 参数
+      right_description:
+        body: 理由
+        response: 回复
+      withdraw:
+        code: 编号
+        transferred_at: 转账时间
+        amount: 金额
+        state: 状态
+        card_number: 银行卡号
+        bank_name: 开户行名称
+        name: 姓名
+        mobile: 手机号码
+        description: 描述
+        finished_at: 完成时间
+        rejected_at: 拒绝时间
+      address:
+        body: 地址
+        recipient: 收件人
+        is_default: ''
+      daily_item:
+        title: 名称
+        description: 描述
+        price: 价格
+        start_at: 开始时间
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+        photos_count: 图片数
+      weixin_menu:
+        name: 名称
+        key:  触发事件
+        menu_type: 菜单类型
+        url: 链接网址
+        sequence: 顺序
+        weixin_sub_menus: 子菜单
+      weixin_sub_menu:
+        name: 名称
+        key:  触发事件
+        menu_type: 菜单类型
+        url: 链接网址
+        sequence: 顺序
+      episode:
+        title: 名称
+        body: 内容
+        is_featured: 特色?
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+        photos_count: 图片数目
+      wiki_category:
+        name: 名称
+        wikis_count: wiki数目
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+      wiki:
+        title: 名称
+        body: 内容
+        wiki_category_id: wiki目录
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+      collection_item:
+        name: 名称
+        user_id: 拥有者
+        description: 描述
+        state: 状态
+        photos_count: 图片数
+        is_featured: 推荐
+        created_at: 创建时间
+        updated_at: 最后一次更新日期
+  auction:
+    home_charity:
+      active: 正在竞拍
+      pending: 未开始
+      closed: 竞拍结束

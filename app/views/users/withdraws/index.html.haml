@@ -1,0 +1,62 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    
+    = render 'user_nav'
+
+    .recharge-con.right
+      
+      = render 'users/account_statements/meta'
+
+      %table.get-cash-table
+        %tr
+          %th 提现申请编号
+          %th
+            %select#select_time
+              %option{value: "all"} 申请时间
+              %option{value: "month_in"} 三个月内
+              %option{value: "month_out"} 三个月前
+          %th
+            %select#select_state
+              %option{value: "all"} 全部状态
+              %option{value: "finished"} 已完成
+              %option{value: "rejected"} 审核未通过
+          %th 提现金额(元)
+          %th 操作
+        - collection.each do |resource|
+          %tr
+            %td= resource.code
+            %td= l resource.created_at
+            %td= resource.state_text
+            %td
+              %span.orange= resource.amount
+            %td
+              = link_to '查看详情', withdraw_path(resource), class: 'blackish-green'
+
+- content_for :js do
+  :javascript
+    jQuery(document).ready(function($) {
+      $('#select_time option[value="#{params[:time]}"]').attr('selected', 'selected');
+      $('#select_state option[value="#{params[:state]}"]').attr('selected', 'selected');
+      
+      $('#select_time').change(function(event) {
+        var time = $('#select_time').val();
+        if (time == 'month_in') {
+          window.location.href = '#{withdraws_path(params.merge(time: 'month_in'))}';
+        }else if(time == 'month_out'){
+          window.location.href ='#{withdraws_path(params.merge(time: 'month_out'))}';
+        }else{
+          window.location.href ='#{withdraws_path(params.merge(time: 'all'))}';
+        };
+      });
+
+      $('#select_state').change(function(event) {
+        var state = $('#select_state').val();
+        if (state == 'finished') {
+          window.location.href = '#{withdraws_path(params.merge(state: 'finished'))}';
+        }else if(state == 'rejected'){
+          window.location.href = '#{withdraws_path(params.merge(state: 'rejected'))}';
+        }else{
+          window.location.href = '#{withdraws_path(params.merge(state: 'all'))}';
+        };
+      });
+    });

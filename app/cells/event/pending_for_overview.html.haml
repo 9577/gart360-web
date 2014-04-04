@@ -1,0 +1,11 @@
+%h3.site.site2
+  即将召开的发布会
+  = link_to '更多 &gt;&gt;'.html_safe, sns_events_path(filter_by_state: :pending), class: 'more'
+%ul.list.cf
+  - @events.each do |event|
+    %li
+      = link_to sns_event_path(event), class: 'pic' do
+        = image_tag event.cover_url
+      %strong.num= event.subject
+      %span.date 开始时间：#{ event.start_at.to_date }
+      = render_user_avatar event.user, size: '36x36', fl: true

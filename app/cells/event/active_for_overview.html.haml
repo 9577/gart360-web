@@ -1,0 +1,22 @@
+%h3.site.site2
+  正在进行的发布会
+  = link_to '更多 &gt;&gt;'.html_safe, sns_events_path(filter_by_state: :active), class: 'more'
+.pub-line
+  %ul
+    - @events.each do |event|
+      %li
+        = render_user_avatar event.user, size: '36x36'
+        = link_to event.user_name, user_profile_url(event.user)
+        %span= link_to event.subject, sns_event_path(event)
+
+  %a.prev.prev_dis{:href => "#"} &lt;
+  %a.next{:href => "#"} &gt;
+  .line
+
+%ul.list.cf
+  - @events.each do |event|
+    %li
+      = link_to sns_event_path(event), class: 'pic' do
+        = image_tag event.cover_url
+      %strong.num 已有#{event.users_count}人参与
+      %span.date 截止时间：#{event.end_at.to_date}

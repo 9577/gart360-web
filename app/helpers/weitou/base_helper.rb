@@ -1,0 +1,2 @@
+module Weitou::BaseHelper
+end

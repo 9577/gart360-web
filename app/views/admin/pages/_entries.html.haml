@@ -1,0 +1,43 @@
+%section.panel.panel-default
+  %header.panel-heading
+    %span.label.bg-danger.pull-right
+      = page_entries_info collection
+    静态页面
+  - if collection.any?
+    %table.table.table-striped.m-b-none.text-sm
+      %thead
+        %tr
+          %th= Page.human_attribute_name(:name)
+          %th= Page.human_attribute_name(:type_identifier)
+          %th= Page.human_attribute_name(:area)
+          %th= Page.human_attribute_name(:created_at)
+          %th
+      %tbody
+        - collection.each do |resource|
+          %tr
+            %td= resource.name
+            %td= resource.type_identifier_text
+            %td= resource.area_text
+            %td= resource.created_at.to_date
+            %td 
+              .btn-group
+                %button.btn.btn-default.btn-sm.dropdown-toggle{"data-toggle" => "dropdown"}
+                  %i.fa.fa-pencil
+                %ul.dropdown-menu
+                  %li 
+                    = link_to resource_path(resource) do
+                      %i.fa.fa-search 
+                      详情
+                  %li
+                    = link_to edit_resource_path(resource) do
+                      %i.fa.fa-pencil 
+                      编辑
+                  %li
+                    = link_to resource_path(resource), method: 'delete', data: { confirm: '确认删除吗?' } do 
+                      %i.fa.fa-trash-o 
+                      删除
+    .panel-footer.clearfix
+      = paginate collection
+  - else
+    .panel-body
+      %p 暂无竞拍专场数据，请点击右边的添加按钮添加一个。

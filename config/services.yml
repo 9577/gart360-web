@@ -1,0 +1,37 @@
+common: &common
+  weibo:
+    api_key: "2161788062"
+    api_secret: "be501f905a1faf02b41c6a468ff52044"
+    redirect_uri: "http://127.0.0.1:3000/users/auth/weibo/callback"
+  weixin:
+    api_key: "wx85b88c2b189a7e8a"
+    api_secret: "574718d99a00a5e269931632a72251a6"
+    redirect_uri: "http://127.0.0.1:3000/weixin/auth/wechat/callback"
+
+
+production:
+  weibo:
+    api_key: "3140648102"
+    api_secret: "2ab1d5ad647d0b9f73b80617dbc8c2d7"
+    redirect_uri: "http://sns.gart360.com/users/auth/weibo/callback"
+  weixin:
+    api_key: "wx85b88c2b189a7e8a"
+    api_secret: "574718d99a00a5e269931632a72251a6"
+    redirect_uri: "http://gart360.com/weixin/auth/wechat/callback"
+
+staging:
+  weibo:
+    api_key: "3140648102"
+    api_secret: "2ab1d5ad647d0b9f73b80617dbc8c2d7"
+    redirect_uri: "http://staging.gart360.com/users/auth/weibo/callback"
+  weixin:
+    api_key: "wx85b88c2b189a7e8a"
+    api_secret: "574718d99a00a5e269931632a72251a6"
+    redirect_uri: "http://staging.gart360.com/weixin/auth/wechat/callback"
+
+
+development:
+  <<: *common
+
+test:
+  <<: *common

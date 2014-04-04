@@ -1,0 +1,81 @@
+.navbar-nav li.active a { color: #FC8611; }
+.slider-bar.left ul li.active a { color: #FC8611; }
+.preview-sale-price .preview-sale-now .form-group input[type=text],
+.preview-sale-price .preview-sale-now .form-group input[type=number] {
+  width:252px;border-radius: 0;float: left;height: 45px;font-weight: bold;font-size: 18px;color: #999;
+}
+
+.dropdown-menu > li > a {
+  padding: 5px 20px;
+
+  i { padding-right: 3px; }
+}
+
+form.inline-hint {
+  span.help-block {
+    display: inline-block;
+  }
+}
+
+.form-control { border-radius: 0; }
+.gray3.active { color: #FC8611; }
+#search_bar > ul > li > a { font-size: 16px; }
+.recharge .slider-bar .recharge-bar li { margin: 0 5px; }
+.navbar-right li a { font-size: 13px; }
+
+
+#topbar {
+  border-bottom: 1px solid #B9B4AE;
+  box-shadow: 0 0 3px 3px rgba(88, 88, 88, 0.1);
+  .layout990 {
+    width: 1000px;
+  }
+}
+
+
+.navbar-brand{width: 120px;background: image-url("sns/logo.png") no-repeat 0 8px;}
+.navbar-nav > li > a { font: 14px/1.5 'Microsoft YaHei','微软雅黑'; padding: 15px 16px 14px; }
+.nav > li > a:hover{background-color: transparent;}
+.navbar-right > li > a { font-size: 13px !important; padding-right: 15px; padding-left: 15px; }
+.navbar-right > li > a span.badge {
+  height: 14px;
+  line-height: 14px;
+  padding: 0 2px;
+  background-color: #fc8611;
+  font-style: normal;
+  color: white;
+  border-radius: 3px;
+  display: inline;
+  font-size: inherit;
+}
+.navbar-right > li.dropdown > a > b.caret { display: none;}
+p.empty-content { padding: 10px; }
+
+.recharge-warpper { border-top: none; }
+
+i.fa {
+  font-size: 15px;
+  padding: 3px;
+  color: #666;
+}
+
+li a:hover i.fa { color: #FC8611; }
+li.active i.fa { color: #FC8611; }
+
+a.auction-btn i.fa { color: #fff; }
+.custom_width{
+  label{
+    width: 25% !important;
+  }
+  .col-sm-10{
+    width: 75% !important;
+  }
+}
+
+
+.list-inline a.active { color: #FC8611; }
+.zero-classify ul li { width: 70px; }
+.simple_form_check_box{
+  width: auto !important;
+  height: auto !important;
+}

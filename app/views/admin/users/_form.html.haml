@@ -1,0 +1,35 @@
+.row
+  .col-md-8
+    %section.panel.panel-default
+      %header.panel-heading 用户管理
+
+      .panel-body
+        = simple_form_for resource, url: url, html: { class: 'form-horizontal row-border', multipart: true } do |f|
+          = f.input :username, autofocus: true
+          = f.input :mobile_phone
+          .from-group.gender
+            = f.label :gender
+            = f.collection_radio_buttons :gender,[['male','男'],['female','女']],:first, :last
+          .form-group.region
+            %label.control-label.col-md-2  常住地
+            .controls.col-md-4
+              = f.input :province_id, as: :region,wrapper: false,
+                                          collection: Province.select('id, name'),
+                                          sub_region: :city_id,
+                                          label: false,
+                                          prompt: false
+              = f.input :city_id, as: :region,wrapper: false,
+                                        label: false,
+                                        collection: resource.province.nil? ? [] : resource.province.cities.select('id, name')
+          .form-actions
+            = f.button :submit, class: 'btn btn-info btn-large pull-right'
+
+  .col-md-4
+    %section.panel.panel-default
+      %header.panel-heading.font-bold
+        %i.fa.fa-lightbulb-o
+        帮助中心
+      .panel-body
+        %p 这里添加一些帮助性的文字
+- content_for :js do
+  = js_for_region_ajax

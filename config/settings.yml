@@ -1,0 +1,51 @@
+sms:
+  tui3:
+    username: gart360
+    password: 96566e983a12c12b95c4d9f813014359
+
+alipay:
+  pid: '2088901234220445'
+  key: 'vzb2edyk5itvej2osuj7wyyfip6sgdck'
+  seller_email: 'gart360@yahoo.cn'
+
+qiniu:
+  access_key: "ucu7EKF4k_Ok-F-BdkASP_3UzyfBfMdMcAHtGkVi"
+  secret_key: "IpdiyedOyUvY1ixMndCeF61LXURgDZTGgytBbdBX"
+  bucket: "gart360-dev"
+  bucket_domain: "gart360-dev.qiniudn.com"
+
+email:
+  from: 'support@gart360.com'
+  host: 'www.gart360.com'
+  delivery_method: :smtp
+
+  smtp_settings:
+    address: "smtp.exmail.qq.com"
+    port: 25
+    authentication: :login
+    domain: 'gart360.com'
+    user_name: ''
+    password: ''
+bank_name:
+  - 工行
+  - 建行
+  - 农行
+
+gallery:
+  tags:
+    - 画家
+    - 雕塑
+    - 手工艺
+    - 摄影
+
+user:
+  backgrouns:
+    - 博士
+    - 硕士
+    - 学士
+
+
+auction_states:
+  - [ 'active', '竞拍中' ]
+  - [ 'pending', '预展' ]
+  - [ 'closed', '已成交' ]

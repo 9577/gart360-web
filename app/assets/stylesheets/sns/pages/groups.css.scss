@@ -1,0 +1,95 @@
+nav.fl {
+  ul li { float: left; }
+
+  ul li.active a { color: #FC8611; }
+}
+
+.lang-nav ul li { float: left; margin-right: 20px; }
+.lang-nav ul li a.active { color: #FC8611; }
+
+.tb-padding { margin: 34px 0 25px; }
+
+.btn-sm { padding: 5px 10px !important; }
+
+ul#photos, ul#status_images {
+  // padding: 10px;
+  li {
+    margin: 10px 0 5px 10px;
+
+    &.photo {
+      border: 1px dashed #ccc;
+      padding: 2px;
+    }
+  }
+  li.uploading {
+    width: 80px;
+    height: 80px;
+    display: block;
+    border: 1px dashed #ccc;
+    padding: 2px;
+
+    .g-block {
+      background-color: #eee;
+      display: block;
+      width: 80px;
+      height: 80px;
+      position: relative;
+      b {
+        position: absolute;
+        left: 26px;
+        top: 26px;
+        width: 28px;
+        height: 28px;
+        display: block;
+        line-height: 28px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 30px;
+        border: 1px solid #ccc;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+body#sns_groups {
+  .form-group {
+    &.upload {
+      .img-holder {
+        float: left;
+        width: 120px;
+        height: 120px;
+        padding: 2px;
+        border: 1px dashed #e4e4e4;
+      }
+      .action {
+        float: left;
+        margin-left: 20px;
+        small { font-size: 12px; display: block; margin-top: 10px; color: #666; }
+        .btn-default {
+          color: #777;
+        }
+      }
+    }
+
+    &.group_is_agreed {
+      label.checkbox {
+        padding-left: 0;
+        .form-control {
+          width: auto !important;
+        }
+
+        span { margin-left: 10px; }
+      }
+    }
+  }
+
+  .topic-cont .meta {
+    position: relative;
+    a.btn {
+      position: absolute;
+      right: 10px;
+      top: 0;
+    }
+  }
+}

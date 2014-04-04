@@ -1,0 +1,8 @@
+- resource.descriptions.new if resource.new_record?
+.white-warpper
+  .layout990.right-safeguarding
+    = render 'right_header'
+    .safeguarding-con.clearfix
+      .safeguarding-meta.left
+        = render 'form', url: collection_path
+      = render 'order_info', product: @product, parent: parent

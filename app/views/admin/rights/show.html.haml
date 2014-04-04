@@ -1,0 +1,30 @@
+.row
+  .col-md-10.col-md-offset-1
+    %section.comment-list.block
+      - resource.descriptions.each do |description|
+        %article#comment-id-1.comment-item
+          %span.fa-stack.pull-left.m-l-xs
+            %i.fa.fa-circle.text-info.fa-stack-2x
+            %i.fa.fa-play-circle.text-white.fa-stack-1x
+          %section.comment-body.m-b-lg
+            %header
+              %strong= @order.user.username
+              %br/ 
+              %span.text-muted.text-xs
+                = l description.created_at
+            %div= description.body
+        - if description.response
+          / .comment-reply
+          %article#comment-id-2.comment-reply
+            %article.comment-item
+              %section.comment-body.m-b-lg
+                %header
+                  %strong 客服
+                  %br/ 
+                  %span.text-muted.text-xs
+                    = l description.created_at
+                %div= description.response
+    #respond_field
+      = link_to respond_admin_right_path(resource), class: 'btn btn-default m-b', remote: true do
+        %i.fa.fa-plus.icon-muted 
+        回复

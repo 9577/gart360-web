@@ -1,0 +1,29 @@
+%section#content.m-t-lg.wrapper-md.animated.fadeInUp
+  .container.aside-xxl
+    = link_to '玩艺网', admin_root_path, class: 'navbar-brand block'
+    %section.panel.panel-default.bg-white.m-t-lg
+      %header.panel-heading.text-center
+        %strong 登录
+
+      = simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'panel-body wrapper-lg' } do |f|
+
+        = f.input :email, wrapper: :prepend, input_html: { class: 'input-lg' }, placeholder: 'Email', label: 'Email', label_html: { class: 'no_float' }
+        = f.input :password, wrapper: :prepend,  input_html: { class: 'input-lg' }, placeholder: '密码', label: '密码', label_html: { class: 'no_float' }
+        .checkbox
+          %label
+            %span
+              = f.check_box :remember_me
+              记住我
+        = link_to '忘记密码?', new_admin_user_password_path, class: 'pull-right m-t-xs'
+        = f.button :submit, '登录', class: 'btn btn-primary', data: { disable_with: '登录中...' }
+        .line.line-dashed
+        %p.text-muted.text-center
+          %small 想去玩艺儿逛一逛吗？
+        = link_to '去玩艺儿逛一逛', root_path, class: 'btn btn-default btn-block'
+%footer#footer
+  .text-center.padder
+    %p
+      %small
+        上海中伍跃网络科技有限公司
+        %br>/
+        \Copyright © 2013

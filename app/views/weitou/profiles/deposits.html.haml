@@ -1,0 +1,47 @@
+.recharge-warpper
+  .layout990.recharge.clearfix
+    = render 'sidebar'
+    .recharge-con.right
+      %p.recharge-name 我的保证金
+      .selling-list
+        .bail.clearfix
+          冻结保证金总金额：
+          %span.red> 
+            = @total_amount_freezed
+          元
+          %p.right
+            目前账户可用金额：
+            %span.red> 
+              = current_user.user_payment.amount
+            元
+            = link_to '去充值>>', new_recharge_path, class: 'orange'
+        %table
+          %tr
+            %th.selling-left 拍品信息
+            %th 保证金
+            %th 冻结时间
+            %th 解冻时间
+            %th 罚没时间
+            %th 状态
+          - @deposits.each do |deposit|
+            - product = deposit.product
+            %tr
+              %td.selling-left
+                = image_tag product.photos.first.data, alt: product.title, width: '120'
+                = link_to weitou_product_path(product), class: 'orange' do
+                  = product.title
+              %td.orange ￥#{product.deposit}
+              %td= deposit.freezed_at_text
+              %td.gray6= deposit.unfreezed_at_text
+              %td.gray6= deposit.removed_at_text
+              %td
+                - if deposit.removed?
+                  %span.gray6= deposit.state_text
+                  %br/ 
+                  = link_to '罚没原因', '#', class: 'gray6 line'
+                - elsif deposit.freezed?
+                  %span.red= deposit.state_text
+                - else
+                  = deposit.state_text
+        .selling-list-foot.text-center
+          = paginate @deposits

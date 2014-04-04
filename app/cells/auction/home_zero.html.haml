@@ -1,0 +1,22 @@
+.auction-title.clearfix
+  0元拍
+  .auction-more.right
+    = link_to '更多>>', weitou_products_path(filter_by_type: :zero), class: 'gray8'
+.auction-list.clearfix
+  - @zero_products.each_with_index do |product, index|
+    .col-xs-6.col-md-3
+      .item
+        .cover
+          = link_to weitou_product_path(product) do
+            = image_tag product.square_cover_url, size: '228x228'
+        .meta-info
+          %h3
+            %a.gray3{:href => "#"} 精雕细琢和田羊脂白玉山子雕摆件
+          %p.price
+            当前价格：
+            %span.orange ￥2066
+            %span.s1 |
+            0次出价
+          %p.time
+            %span.glyphicon.glyphicon-time>
+            距结束：3小时 56分 12秒

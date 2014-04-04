@@ -1,0 +1,119 @@
+.recharge-warpper
+  .layout990
+    .cash-pledge
+      .cash-title
+        我的个人账户
+        %span 我的收银台
+      .new-pay-page
+        .order-meta
+          %p 订单详情
+          %p
+            拍品名称：
+            = link_to @product.title, weitou_product_path(@product), class: 'gray6'
+          %p
+            交易金额：
+            %span.gray6= resource.price
+          %p
+            成交时间：
+            %span.gray6= resource.created_at.strftime('%F %R')
+          %p
+            交易类型：
+            %span.gray6= resource.type_identifier_text
+          %p
+            收获地址：
+            %span.gray6
+              - address = resource.address
+              = "#{address.province.name} #{address.city.name} #{address.district.name} #{address.body} （#{address.recipient} 收）"
+          %p.clearfix
+            订单编号：
+            %span.gray6= resource.code
+            %span.right
+              %strong.orange> ￥#{resource.price}
+              元
+        -# .account-notice
+        -#   %label{:for => ""}>
+        -#     %input{:type => "checkbox"} 使用余额
+        -#   本次支付使用余额：
+        -#   %span.orange 100.00
+        -#   元
+        %p.accout-chose
+          选择在线付款方式
+          %span.gray6
+            需在线支付：
+            %span.orange> #{resource.price}
+            元
+
+        = simple_form_for :check_payment, url: check_payment_order_path(resource), html: { class: 'row-border', method: :post } do |f|
+          .account-style
+            %ul.clearfix.list-unstyled.account-style-tabs
+              %span.left 付款方式：
+              %li.active 支付宝
+              -# %li 网上银行
+            .style-item
+              %p
+                使用支付宝付款：
+                %span.orange> #{resource.price}
+                元
+              %ol.list-unstyled.clearfix
+                %li
+                  %input{id: '', name: "#{f.object_name}[payment]", type: 'radio', value: 'alipay', checked: 'checked'}
+                    %label{:for => ""}
+                      = image_tag 'invest/alipay.png', alt: 'alipay'
+
+            -# .style-item.g-hidden
+            -#   %p
+            -#     使用网上银行付款：
+            -#     %span.orange> 1500.00
+            -#     元
+            -#   / input的id和name名称请自行更改，目前只是测试实例
+            -#   %ol.list-unstyled.clearfix
+            -#     %li
+            -#       %input#3{:name => "2", :type => "radio"}
+            -#         %label{:for => "3"}
+            -#           %img{:alt => "", :src => "images/jt.png"}/
+            -#     %li
+            -#       %input#4{:name => "2", :type => "radio"}
+            -#         %label{:for => "4"}
+            -#           %img{:alt => "", :src => "images/jh.png"}/
+            -#     %li
+            -#       %input#5{:name => "2", :type => "radio"}
+            -#         %label{:for => "5"}
+            -#           %img{:alt => "", :src => "images/gh.png"}/
+            -#     %li
+            -#       %input#6{:name => "2", :type => "radio"}
+            -#         %label{:for => "6"}
+            -#           %img{:alt => "", :src => "images/zh.png"}/
+            -#     %li
+            -#       %input#7{:name => "2", :type => "radio"}
+            -#         %label{:for => "7"}
+            -#           %img{:alt => "", :src => "images/zh2.png"}/
+            -#     %li
+            -#       %input#8{:name => "2", :type => "radio"}
+            -#         %label{:for => "8"}
+            -#           %img{:alt => "", :src => "images/gd.png"}/
+            -#     %li
+            -#       %input#9{:name => "2", :type => "radio"}
+            -#         %label{:for => "9"}
+            -#           %img{:alt => "", :src => "images/pa.png"}/
+            -#     %li
+            -#       %input#10{:name => "2", :type => "radio"}
+            -#         %label{:for => "10"}
+            -#           %img{:alt => "", :src => "images/zx.png"}/
+            -#     %li
+            -#       %input#11{:name => "2", :type => "radio"}
+            -#         %label{:for => "11"}
+            -#           %img{:alt => "", :src => "images/nh.png"}/
+            -#     %li
+            -#       %input#12{:name => "2", :type => "radio"}
+            -#         %label{:for => "12"}
+            -#           %img{:alt => "", :src => "images/yz.png"}/
+            -#     %li
+            -#       %input#13{:name => "2", :type => "radio"}
+            -#         %label{:for => "13"}
+            -#           %img{:alt => "", :src => "images/ms.png"}/
+            -#     %li
+            -#       %input#14{:name => "2", :type => "radio"}
+            -#         %label{:for => "14"}
+            -#           %img{:alt => "", :src => "images/pf.png"}/
+          .account-btn
+            = f.button :submit, '确认支付方式', class: 'btn btn-primary'

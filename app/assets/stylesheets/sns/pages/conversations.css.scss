@@ -1,0 +1,16 @@
+body#conversations {
+  background-color: #f5f5f5;
+
+  .msglist {
+    width: 680px;
+    .msgnav ul {
+      float: right;
+      li { float: left; }
+    }
+  }
+
+  form .controls {
+    width: auto;
+    margin-left: 32px;
+  }
+}

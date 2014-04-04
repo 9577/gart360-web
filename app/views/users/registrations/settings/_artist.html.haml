@@ -1,0 +1,102 @@
+- artist = resource.artist.nil? ? resource.build_artist : resource.artist
+- artist.exhibitions.build if artist.exhibitions.empty?
+- artist.awards.build if artist.awards.empty?
+- artist.educations.build if artist.educations.empty?
+
+.panel
+  .rows.rows_cur.cf.panel-heading
+    %label 我是艺术家
+    %a.cf.icon.icon-open.panel-toggle{:href => "#"} 编辑
+  .panel-body.collapse
+    = simple_nested_form_for artist, url: artist_path, html: { class: 'form-horizontal settings-form' }, remote: true do |f|
+
+      .form-group.upload{ data: { target: 'artist_avatar' } }
+        %label.control-label.col-md-2 艺术家头像
+        .controls.clearfix
+          .img-holder
+            = image_tag artist.avatar_url, size: '176x176'
+          .action
+            = link_to '#', class: 'btn btn-default', id: 'btn-pupload-artist-avatar' do
+              %i.fa.fa-picture-o
+              选择图片
+            %small 支持png、jpg、gif格式，大小不超过1M
+          = f.input :avatar, as: :hidden, input_html: { class: 'target_input' }
+
+      = f.input :name, wrapper: :sns
+      = f.input :bio, wrapper: :sns
+
+      .form-group.nested_attrs
+        %label.control-label.col-md-2 参展经历
+        .controls.clearfix
+          = f.simple_fields_for :exhibitions
+          = f.link_to_add '新增', :exhibitions, class: 'btn btn-default btn-xs'
+
+      .form-group.nested_attrs
+        %label.control-label.col-md-2 获奖经历
+        .controls.clearfix
+          = f.simple_fields_for :awards
+          = f.link_to_add '新增', :awards, class: 'btn btn-default btn-xs'
+
+      .form-group.nested_attrs
+        %label.control-label.col-md-2 教育经历
+        .controls.clearfix
+          = f.simple_fields_for :educations
+          = f.link_to_add '新增', :educations, class: 'btn btn-default btn-xs'
+
+    -# .rows.cf
+    -#   %label
+    -#     %i> *
+    -#     参展经历：
+    -#   %input.input.input-s{:autocomplete => "off", :maxlength => "20", :name => "nikename", :placeholder => "作品名称", :required => "required", :type => "text"}/
+    -#   %input.input.input-s{:autocomplete => "off", :maxlength => "20", :name => "nikename", :placeholder => "展览名称", :required => "required", :type => "text"}/
+    -#   %select.select
+    -#     %option 参展年份
+    -#   %select.select
+    -#     %option 参展城市
+    -# .rows.add_rows
+    -#   %label.space
+    -#   %a.add{:href => "#"} + 添加参展经历
+    -# .rows.cf
+    -#   %label
+    -#     %i> *
+    -#     获奖经历：
+    -#   %input.input.input-s{:autocomplete => "off", :maxlength => "20", :name => "nikename", :placeholder => "作品名称", :required => "required", :type => "text"}/
+    -#   %input.input.input-s{:autocomplete => "off", :maxlength => "20", :name => "nikename", :placeholder => "获奖情况", :required => "required", :type => "text"}/
+    -#   %select.select2
+    -#     %option 获奖年份
+    -#   %select.select2
+    -#     %optgroup{:label => "浙江"}
+    -#       %option{:value => "AK"} 杭州
+    -#       %option{:value => "HI"} 湖州
+    -# .rows.add_rows
+    -#   %label.space
+    -#   %a.add{:href => "#"} + 添加获奖经历
+    -# .rows.cf
+    -#   %label 个人介绍：
+    -#   %textarea.textarea{:placeholder => "一两句话介绍下自己~"}
+    -# .rows.cf
+    -#   %label
+    -#     %i> *
+    -#     教育经历：
+    -#   %select.select
+    -#     %option 选择学历
+    -#   %input.input.input-s{:autocomplete => "off", :maxlength => "20", :name => "nikename", :placeholder => "学校名称", :required => "required", :type => "text"}/
+    -#   %input.input.input-s{:autocomplete => "off", :maxlength => "20", :name => "nikename", :placeholder => "专业名称", :required => "required", :type => "text"}/
+    -#   %select.select
+    -#     %option 入学时间
+    -# .rows.add_rows
+    -#   %label.space
+    -#   %a.add{:href => "#"} + 添加教育经历
+    -# .rows.cf
+    -#   %label
+    -#   %input.button.button-rounded.button-flat-highlight.fl{:type => "button", :value => "保存"}/
+    -#   .alert.fl
+    -#     %em.icon.icon-ok>
+    -#     设置成功
+
+- content_for :js do
+  :coffee
+    $ ->
+      new MainUploader
+        url: "#{global_images_path}.js"
+        button: 'btn-pupload-artist-avatar'

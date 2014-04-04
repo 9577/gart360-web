@@ -1,0 +1,66 @@
+.row
+  .col-md-9
+    %section.panel.panel-default#auction_form
+      %header.panel-heading 拍品
+      .panel-body
+        = simple_nested_form_for resource, url: resource_path(resource), html: { class: 'form-horizontal product-form' } do |f|
+          = f.input :name, autofoces: true
+          = f.input :user_id, as: :select, collection: User.all.map{|u| [u.username, u.id]}, prompt: false, input_html: { class: 'select2-option' }
+
+          .form-group
+            %label.col-md-2.control-label
+              = CollectionItem.human_attribute_name(:is_featured)
+            .col-md-10      
+              = f.collection_radio_buttons :is_featured, [['是', true], ['否', false]], :last, :first do |b|
+                .radio
+                  = b.label(class: 'radio-custom') do
+                    = b.radio_button
+                    %i.fa.fa-circle-o
+                    = b.text
+          
+          = f.input :description, as: :text, input_html: { class: 'reditor' }
+
+          %fieldset#photos_wrap
+            %legend
+              %strong 图片
+            = f.simple_fields_for :photos
+            = f.link_to_add :photos, class: 'btn btn-sm btn-default' do
+              %i.fa.fa-plus.text 
+              %span.text 添加图片
+
+
+          .form-actions
+            = f.button :submit, class: 'btn btn-primary pull-right'
+
+  .col-md-3
+
+- content_for :js do
+  :coffee
+    $ ->
+      # uploader
+      new MainUploader
+        url: '#{admin_global_images_path}.js'
+        button: 'btn-pupload'
+
+
+      # init reditor
+      $(document).on 'click', '.btn-add-photo', (e) ->
+        e.preventDefault()
+        $('input#topic_photo').trigger 'click'
+
+      redactor = new RedactorInitializer
+      redactor.init_by_default()
+      # init reditor
+
+      # init uploader for nested form
+      $(document).on 'nested:fieldAdded', (event) ->
+        
+        field = event.field
+        
+        dateField = field.find('.date')
+        count = field.parents('#new_product').find('.fields').size()
+        field.find('.btn.btn-default').attr 'id', 'btn-pupload' + count
+
+        new MainUploader
+          url: '#{admin_global_images_path}.js'
+          button: 'btn-pupload' + count

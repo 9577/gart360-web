@@ -1,0 +1,10 @@
+- owner = activity.owner
+
+%dl{ data: { id: activity.id } }
+  %dt
+    = render_user_avatar owner, size: '60x60'
+    %a{:href => "#"}= owner.username
+
+    - hash = {'Artwork' => '作品', 'Topic' => '话题', 'Status' => '说说',  'Event' => '发布会'}
+    发表了 新#{hash[activity.trackable_type]}
+  = yield
